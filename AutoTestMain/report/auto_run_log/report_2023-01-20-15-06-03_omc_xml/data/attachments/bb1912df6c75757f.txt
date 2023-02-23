@@ -1,0 +1,22 @@
+INFO     root:HmsManager.py:28 2023-01-20 14:59:36: login HMS, ip: 172.16.2.220,username: root
+INFO     root:HmsManager.py:30 2023-01-20 14:59:36: login HMS success!
+INFO     root:HmsManager.py:46 2023-01-20 14:59:36: query gnb info
+INFO     root:HmsManager.py:48 2023-01-20 14:59:36: enbId/enbName:4/Automatic-18
+INFO     root:test_xml.py:46 2023-01-20 14:59:36: run the test <1> times
+INFO     root:VersionManager.py:315 2023-01-20 14:59:36: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-01-20 14:59:37: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-01-20 14:59:37: download xml file to local.
+INFO     root:VersionManager.py:341 2023-01-20 14:59:37: download xml file success!
+INFO     root:VersionManager.py:355 2023-01-20 14:59:37: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-01-20 14:59:37: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-01-20 14:59:39: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-01-20 14:59:39: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-01-20 14:59:39: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-01-20 15:02:39: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-01-20 15:02:39: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-01-20 15:02:44: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-01-20 15:02:49: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-01-20 15:02:54: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-01-20 15:02:59: device is online!
+INFO     root:DeviceManager.py:24 2023-01-20 15:02:59: gnb is online
+INFO     root:basic.py:30 2023-01-20 15:02:59: wait for 30s......

@@ -1,0 +1,1 @@
+[{"uid":"4ff06df3e6016225","name":"testRebootGnbAndPing[200]","time":{"start":1676374375355,"stop":1676462281948,"duration":87906593},"status":"passed","severity":"normal"},{"uid":"91c990966f26e92c","name":"testRebootGnbAndPing[200]","time":{"start":1676286433401,"stop":1676374375136,"duration":87941735},"status":"passed","severity":"normal"}]

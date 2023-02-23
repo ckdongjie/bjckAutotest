@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Jan 20 14:59:36 CST 2023","Fri Jan 20 15:03:29 CST 2023","232797","TestCase.hms","test_xml","TestXml","","","testDownloadXmlAndUploadXml[1]",""
+"passed","Fri Jan 20 15:04:31 CST 2023","Fri Jan 20 15:05:02 CST 2023","30853","TestCase.hms","test_xml","TestXml","","","testUploadXmlSnIsLong",""
+"passed","Fri Jan 20 15:05:02 CST 2023","Fri Jan 20 15:05:32 CST 2023","30702","TestCase.hms","test_xml","TestXml","","","testUploadXmlSnIsAbnormal",""
+"passed","Fri Jan 20 15:04:00 CST 2023","Fri Jan 20 15:04:31 CST 2023","30838","TestCase.hms","test_xml","TestXml","","","testUploadXmlSnIsShort",""
+"passed","Fri Jan 20 15:05:32 CST 2023","Fri Jan 20 15:06:03 CST 2023","30707","TestCase.hms","test_xml","TestXml","","","testUploadXmlTacIsAbnormal",""
+"passed","Fri Jan 20 15:03:29 CST 2023","Fri Jan 20 15:04:00 CST 2023","30717","TestCase.hms","test_xml","TestXml","","","testUploadXmlSnIsNone",""

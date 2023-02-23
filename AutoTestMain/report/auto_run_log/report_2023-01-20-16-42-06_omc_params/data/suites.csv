@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Jan 20 16:41:27 CST 2023","Fri Jan 20 16:42:06 CST 2023","39302","TestCase.hms","test_config","TestConfig","","","testSctpRemotePortConfig",""
+"passed","Fri Jan 20 16:36:48 CST 2023","Fri Jan 20 16:36:54 CST 2023","5833","TestCase.hms","test_config","TestConfig","","","testModifyDuCellEpre[-5]",""
+"passed","Fri Jan 20 16:36:54 CST 2023","Fri Jan 20 16:41:27 CST 2023","272694","TestCase.hms","test_config","TestConfig","","","testClockSourceConfig",""

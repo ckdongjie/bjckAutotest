@@ -1,0 +1,1976 @@
+INFO     root:HmsManager.py:28 2023-02-17 09:36:39: login HMS, ip: 172.16.2.220,username: root
+INFO     root:HmsManager.py:30 2023-02-17 09:36:39: login HMS success!
+INFO     root:HmsManager.py:46 2023-02-17 09:36:39: query gnb info
+INFO     root:HmsManager.py:48 2023-02-17 09:36:39: enbId/enbName:18/Automatic-18
+INFO     root:test_xml.py:46 2023-02-17 09:36:39: run the test <1> times
+INFO     root:VersionManager.py:315 2023-02-17 09:36:39: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 09:36:39: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 09:36:39: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 09:36:39: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 09:36:39: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 09:36:40: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 09:36:41: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 09:36:41: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 09:36:41: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 09:39:41: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:39:42: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:39:47: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:39:52: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:39:57: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 09:40:02: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 09:40:02: gnb is online
+INFO     root:basic.py:30 2023-02-17 09:40:02: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 09:40:32: run the test <2> times
+INFO     root:VersionManager.py:315 2023-02-17 09:40:32: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 09:40:32: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 09:40:32: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 09:40:32: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 09:40:32: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 09:40:33: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 09:40:34: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 09:40:34: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 09:40:34: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 09:43:34: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:43:34: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:43:40: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:43:45: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:43:50: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 09:43:55: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 09:43:55: gnb is online
+INFO     root:basic.py:30 2023-02-17 09:43:55: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 09:44:25: run the test <3> times
+INFO     root:VersionManager.py:315 2023-02-17 09:44:25: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 09:44:25: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 09:44:25: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 09:44:25: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 09:44:25: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 09:44:25: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 09:44:27: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 09:44:27: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 09:44:27: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 09:47:27: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:47:27: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:47:32: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:47:38: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:47:43: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 09:47:48: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 09:47:48: gnb is online
+INFO     root:basic.py:30 2023-02-17 09:47:48: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 09:48:18: run the test <4> times
+INFO     root:VersionManager.py:315 2023-02-17 09:48:18: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 09:48:18: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 09:48:18: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 09:48:18: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 09:48:18: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 09:48:18: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 09:48:20: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 09:48:20: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 09:48:20: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 09:51:20: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:51:20: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:51:25: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:51:30: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:51:35: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 09:51:41: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 09:51:41: gnb is online
+INFO     root:basic.py:30 2023-02-17 09:51:41: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 09:52:11: run the test <5> times
+INFO     root:VersionManager.py:315 2023-02-17 09:52:11: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 09:52:11: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 09:52:11: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 09:52:11: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 09:52:11: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 09:52:11: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 09:52:13: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 09:52:13: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 09:52:13: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 09:55:13: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:55:13: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:55:18: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:55:23: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:55:28: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:55:33: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 09:55:38: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 09:55:38: gnb is online
+INFO     root:basic.py:30 2023-02-17 09:55:38: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 09:56:08: run the test <6> times
+INFO     root:VersionManager.py:315 2023-02-17 09:56:08: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 09:56:09: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 09:56:09: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 09:56:09: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 09:56:09: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 09:56:09: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 09:56:11: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 09:56:11: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 09:56:11: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 09:59:11: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:59:11: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:59:16: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:59:21: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 09:59:26: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 09:59:31: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 09:59:31: gnb is online
+INFO     root:basic.py:30 2023-02-17 09:59:31: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:00:01: run the test <7> times
+INFO     root:VersionManager.py:315 2023-02-17 10:00:01: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:00:02: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:00:02: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:00:02: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:00:02: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:00:03: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 10:00:04: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 10:00:04: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:00:04: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:03:04: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:03:04: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:03:09: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:03:14: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:03:19: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 10:03:24: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:03:24: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:03:24: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:03:54: run the test <8> times
+INFO     root:VersionManager.py:315 2023-02-17 10:03:54: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:03:55: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:03:55: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:03:55: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:03:55: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:03:55: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 10:03:57: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 10:03:57: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:03:57: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:06:57: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:06:57: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:07:02: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:07:07: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:07:12: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:07:17: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 10:07:22: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:07:22: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:07:22: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:07:52: run the test <9> times
+INFO     root:VersionManager.py:315 2023-02-17 10:07:52: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:07:53: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:07:53: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:07:53: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:07:53: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:07:53: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 10:07:55: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 10:07:55: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:07:55: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:10:55: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:10:55: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:00: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:05: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:10: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:15: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:20: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:25: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:30: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:35: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:40: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:45: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:51: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:11:56: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:01: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:06: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:11: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:16: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:21: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:26: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:31: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:36: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:41: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:46: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:51: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:12:56: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:01: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:06: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:11: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:16: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:21: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:26: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:31: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:36: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:41: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:46: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:51: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:13:56: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:14:01: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:14:07: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 10:14:12: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:14:12: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:14:12: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:14:42: run the test <10> times
+INFO     root:VersionManager.py:315 2023-02-17 10:14:42: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:14:42: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:14:42: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:14:42: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:14:42: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:14:42: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 10:14:44: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 10:14:44: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:14:44: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:17:44: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:17:44: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:17:49: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:17:54: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:17:59: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 10:18:04: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:18:04: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:18:04: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:18:34: run the test <11> times
+INFO     root:VersionManager.py:315 2023-02-17 10:18:34: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:18:35: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:18:35: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:18:35: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:18:35: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:18:35: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 10:18:37: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 10:18:37: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:18:37: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:21:37: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:21:37: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:21:42: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:21:47: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:21:52: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:21:57: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:02: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:08: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:13: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:18: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:23: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:28: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:33: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:38: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:43: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:48: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:53: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:22:58: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:03: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:08: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:13: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:18: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:23: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:28: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:33: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:38: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:43: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:48: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:53: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:23:58: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:03: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:08: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:13: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:18: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:24: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:29: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:34: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:39: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:44: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:49: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:54: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:24:59: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:25:04: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:25:09: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:25:14: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:25:19: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 10:25:24: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:25:24: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:25:24: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:25:54: run the test <12> times
+INFO     root:VersionManager.py:315 2023-02-17 10:25:54: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:25:54: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:25:54: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:25:55: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:25:55: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:25:55: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 10:25:57: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 10:25:57: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:25:57: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:28:57: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:28:57: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:29:02: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:29:07: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:29:12: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 10:29:17: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:29:17: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:29:17: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:29:47: run the test <13> times
+INFO     root:VersionManager.py:315 2023-02-17 10:29:47: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:29:47: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:29:47: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:29:47: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:29:47: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:29:48: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 10:29:49: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 10:29:49: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:29:49: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:32:49: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:32:50: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:32:55: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:33:00: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:33:05: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 10:33:10: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:33:10: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:33:10: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:33:40: run the test <14> times
+INFO     root:VersionManager.py:315 2023-02-17 10:33:40: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:33:40: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:33:40: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:33:40: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:33:40: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:33:41: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 10:33:42: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 10:33:42: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:33:42: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:36:42: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:36:42: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:36:48: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 10:36:53: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:36:53: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:36:53: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:37:23: run the test <15> times
+INFO     root:VersionManager.py:315 2023-02-17 10:37:23: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:37:23: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:37:23: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:37:23: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:37:23: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:37:23: syn xml file to gnb.
+INFO     root:VersionManager.py:389 2023-02-17 10:37:25: synchronization xml file success!
+INFO     root:test_xml.py:57 2023-02-17 10:37:25: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:37:25: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:40:25: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:40:25: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:40:30: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:40:35: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-17 10:40:40: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-17 10:40:46: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:40:46: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:40:46: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:41:16: run the test <16> times
+INFO     root:VersionManager.py:315 2023-02-17 10:41:16: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:41:16: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:41:16: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:41:16: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:41:16: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:41:16: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 10:41:16: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 10:41:16: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:41:16: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:44:16: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 10:44:16: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:44:16: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:44:16: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:44:46: run the test <17> times
+INFO     root:VersionManager.py:315 2023-02-17 10:44:46: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:44:47: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:44:47: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:44:47: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:44:47: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:44:47: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 10:44:47: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 10:44:47: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:44:47: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:47:47: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 10:47:47: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:47:47: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:47:47: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:48:17: run the test <18> times
+INFO     root:VersionManager.py:315 2023-02-17 10:48:17: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:48:18: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:48:18: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:48:18: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:48:18: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:48:18: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 10:48:18: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 10:48:18: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:48:18: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:51:18: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 10:51:18: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:51:18: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:51:18: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:51:48: run the test <19> times
+INFO     root:VersionManager.py:315 2023-02-17 10:51:48: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:51:48: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:51:48: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:51:49: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:51:49: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:51:49: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 10:51:49: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 10:51:49: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:51:49: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:54:49: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 10:54:49: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:54:49: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:54:49: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:55:19: run the test <20> times
+INFO     root:VersionManager.py:315 2023-02-17 10:55:19: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:55:19: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:55:19: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:55:19: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:55:19: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:55:19: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 10:55:19: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 10:55:19: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:55:19: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 10:58:20: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 10:58:20: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 10:58:20: gnb is online
+INFO     root:basic.py:30 2023-02-17 10:58:20: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 10:58:50: run the test <21> times
+INFO     root:VersionManager.py:315 2023-02-17 10:58:50: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 10:58:50: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 10:58:50: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 10:58:50: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 10:58:50: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 10:58:50: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 10:58:50: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 10:58:50: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 10:58:50: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:01:50: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:01:50: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:01:50: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:01:50: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:02:20: run the test <22> times
+INFO     root:VersionManager.py:315 2023-02-17 11:02:20: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:02:21: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:02:21: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:02:21: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:02:21: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:02:21: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:02:21: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:02:21: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:02:21: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:05:21: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:05:21: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:05:21: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:05:21: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:05:51: run the test <23> times
+INFO     root:VersionManager.py:315 2023-02-17 11:05:51: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:05:51: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:05:51: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:05:52: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:05:52: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:05:52: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:05:52: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:05:52: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:05:52: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:08:52: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:08:52: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:08:52: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:08:52: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:09:22: run the test <24> times
+INFO     root:VersionManager.py:315 2023-02-17 11:09:22: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:09:23: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:09:23: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:09:23: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:09:23: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:09:23: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:09:23: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:09:23: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:09:23: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:12:23: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:12:23: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:12:23: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:12:23: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:12:53: run the test <25> times
+INFO     root:VersionManager.py:315 2023-02-17 11:12:53: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:12:53: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:12:53: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:12:54: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:12:54: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:12:54: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:12:54: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:12:54: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:12:54: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:15:54: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:15:54: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:15:54: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:15:54: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:16:24: run the test <26> times
+INFO     root:VersionManager.py:315 2023-02-17 11:16:24: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:16:24: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:16:24: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:16:25: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:16:25: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:16:25: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:16:25: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:16:25: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:16:25: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:19:25: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:19:25: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:19:25: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:19:25: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:19:55: run the test <27> times
+INFO     root:VersionManager.py:315 2023-02-17 11:19:55: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:19:55: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:19:55: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:19:55: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:19:55: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:19:55: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:19:55: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:19:55: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:19:55: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:22:55: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:22:55: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:22:55: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:22:55: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:23:25: run the test <28> times
+INFO     root:VersionManager.py:315 2023-02-17 11:23:25: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:23:26: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:23:26: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:23:26: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:23:26: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:23:26: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:23:26: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:23:26: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:23:26: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:26:26: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:26:26: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:26:26: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:26:26: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:26:56: run the test <29> times
+INFO     root:VersionManager.py:315 2023-02-17 11:26:56: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:26:57: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:26:57: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:26:57: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:26:57: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:26:57: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:26:57: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:26:57: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:26:57: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:29:57: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:29:57: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:29:57: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:29:57: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:30:27: run the test <30> times
+INFO     root:VersionManager.py:315 2023-02-17 11:30:27: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:30:27: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:30:27: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:30:28: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:30:28: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:30:28: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:30:28: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:30:28: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:30:28: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:33:28: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:33:28: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:33:28: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:33:28: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:33:58: run the test <31> times
+INFO     root:VersionManager.py:315 2023-02-17 11:33:58: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:33:58: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:33:58: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:33:59: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:33:59: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:33:59: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:33:59: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:33:59: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:33:59: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:36:59: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:36:59: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:36:59: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:36:59: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:37:29: run the test <32> times
+INFO     root:VersionManager.py:315 2023-02-17 11:37:29: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:37:29: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:37:29: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:37:30: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:37:30: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:37:30: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:37:30: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:37:30: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:37:30: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:40:30: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:40:30: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:40:30: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:40:30: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:41:00: run the test <33> times
+INFO     root:VersionManager.py:315 2023-02-17 11:41:00: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:41:00: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:41:00: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:41:00: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:41:00: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:41:00: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:41:00: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:41:00: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:41:00: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:44:00: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:44:00: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:44:00: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:44:00: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:44:30: run the test <34> times
+INFO     root:VersionManager.py:315 2023-02-17 11:44:30: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:44:31: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:44:31: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:44:31: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:44:31: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:44:31: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:44:31: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:44:31: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:44:31: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:47:31: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:47:31: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:47:31: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:47:31: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:48:01: run the test <35> times
+INFO     root:VersionManager.py:315 2023-02-17 11:48:01: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:48:02: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:48:02: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:48:02: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:48:02: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:48:02: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:48:02: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:48:02: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:48:02: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:51:02: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:51:02: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:51:02: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:51:02: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:51:32: run the test <36> times
+INFO     root:VersionManager.py:315 2023-02-17 11:51:32: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:51:32: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:51:32: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:51:33: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:51:33: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:51:33: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:51:33: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:51:33: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:51:33: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:54:33: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:54:33: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:54:33: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:54:33: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:55:03: run the test <37> times
+INFO     root:VersionManager.py:315 2023-02-17 11:55:03: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:55:03: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:55:03: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:55:03: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:55:03: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:55:03: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:55:04: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:55:04: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:55:04: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 11:58:04: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 11:58:04: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 11:58:04: gnb is online
+INFO     root:basic.py:30 2023-02-17 11:58:04: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 11:58:34: run the test <38> times
+INFO     root:VersionManager.py:315 2023-02-17 11:58:34: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 11:58:34: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 11:58:34: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 11:58:34: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 11:58:34: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 11:58:34: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 11:58:34: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 11:58:34: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 11:58:34: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:01:34: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:01:34: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:01:34: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:01:34: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:02:04: run the test <39> times
+INFO     root:VersionManager.py:315 2023-02-17 12:02:04: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:02:05: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:02:05: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:02:05: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:02:05: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:02:05: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:02:05: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:02:05: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:02:05: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:05:05: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:05:05: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:05:05: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:05:05: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:05:35: run the test <40> times
+INFO     root:VersionManager.py:315 2023-02-17 12:05:35: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:05:36: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:05:36: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:05:36: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:05:36: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:05:36: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:05:36: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:05:36: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:05:36: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:08:36: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:08:36: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:08:36: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:08:36: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:09:06: run the test <41> times
+INFO     root:VersionManager.py:315 2023-02-17 12:09:06: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:09:06: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:09:06: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:09:07: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:09:07: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:09:07: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:09:07: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:09:07: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:09:07: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:12:07: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:12:07: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:12:07: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:12:07: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:12:37: run the test <42> times
+INFO     root:VersionManager.py:315 2023-02-17 12:12:37: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:12:37: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:12:37: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:12:38: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:12:38: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:12:38: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:12:38: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:12:38: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:12:38: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:15:38: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:15:38: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:15:38: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:15:38: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:16:08: run the test <43> times
+INFO     root:VersionManager.py:315 2023-02-17 12:16:08: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:16:08: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:16:08: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:16:09: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:16:09: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:16:09: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:16:09: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:16:09: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:16:09: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:19:09: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:19:09: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:19:09: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:19:09: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:19:39: run the test <44> times
+INFO     root:VersionManager.py:315 2023-02-17 12:19:39: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:19:39: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:19:39: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:19:39: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:19:39: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:19:40: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:19:40: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:19:40: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:19:40: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:22:40: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:22:40: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:22:40: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:22:40: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:23:10: run the test <45> times
+INFO     root:VersionManager.py:315 2023-02-17 12:23:10: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:23:10: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:23:10: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:23:10: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:23:10: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:23:10: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:23:10: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:23:10: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:23:10: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:26:10: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:26:10: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:26:10: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:26:10: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:26:40: run the test <46> times
+INFO     root:VersionManager.py:315 2023-02-17 12:26:40: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:26:41: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:26:41: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:26:41: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:26:41: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:26:41: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:26:41: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:26:41: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:26:41: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:29:41: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:29:41: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:29:41: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:29:41: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:30:11: run the test <47> times
+INFO     root:VersionManager.py:315 2023-02-17 12:30:11: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:30:12: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:30:12: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:30:12: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:30:12: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:30:12: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:30:12: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:30:12: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:30:12: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:33:12: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:33:12: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:33:12: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:33:12: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:33:42: run the test <48> times
+INFO     root:VersionManager.py:315 2023-02-17 12:33:42: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:33:43: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:33:43: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:33:43: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:33:43: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:33:43: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:33:43: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:33:43: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:33:43: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:36:43: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:36:43: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:36:43: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:36:43: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:37:13: run the test <49> times
+INFO     root:VersionManager.py:315 2023-02-17 12:37:13: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:37:13: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:37:13: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:37:14: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:37:14: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:37:14: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:37:14: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:37:14: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:37:14: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:40:14: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:40:14: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:40:14: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:40:14: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:40:44: run the test <50> times
+INFO     root:VersionManager.py:315 2023-02-17 12:40:44: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:40:44: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:40:44: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:40:44: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:40:44: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:40:44: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:40:44: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:40:44: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:40:44: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:43:44: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:43:44: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:43:44: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:43:44: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:44:15: run the test <51> times
+INFO     root:VersionManager.py:315 2023-02-17 12:44:15: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:44:15: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:44:15: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:44:15: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:44:15: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:44:15: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:44:15: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:44:15: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:44:15: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:47:15: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:47:15: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:47:15: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:47:15: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:47:45: run the test <52> times
+INFO     root:VersionManager.py:315 2023-02-17 12:47:45: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:47:46: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:47:46: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:47:46: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:47:46: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:47:46: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:47:46: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:47:46: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:47:46: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:50:46: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:50:46: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:50:46: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:50:46: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:51:16: run the test <53> times
+INFO     root:VersionManager.py:315 2023-02-17 12:51:16: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:51:16: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:51:16: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:51:17: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:51:17: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:51:17: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:51:17: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:51:17: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:51:17: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:54:17: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:54:17: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:54:17: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:54:17: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:54:47: run the test <54> times
+INFO     root:VersionManager.py:315 2023-02-17 12:54:47: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:54:47: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:54:47: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:54:48: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:54:48: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:54:48: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:54:48: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:54:48: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:54:48: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 12:57:48: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 12:57:48: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 12:57:48: gnb is online
+INFO     root:basic.py:30 2023-02-17 12:57:48: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 12:58:18: run the test <55> times
+INFO     root:VersionManager.py:315 2023-02-17 12:58:18: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 12:58:18: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 12:58:18: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 12:58:18: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 12:58:18: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 12:58:18: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 12:58:18: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 12:58:18: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 12:58:18: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:01:18: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:01:18: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:01:18: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:01:18: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:01:48: run the test <56> times
+INFO     root:VersionManager.py:315 2023-02-17 13:01:48: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:01:49: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:01:49: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:01:49: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:01:49: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:01:49: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:01:49: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:01:49: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:01:49: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:04:49: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:04:49: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:04:49: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:04:49: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:05:19: run the test <57> times
+INFO     root:VersionManager.py:315 2023-02-17 13:05:19: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:05:20: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:05:20: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:05:20: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:05:20: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:05:20: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:05:20: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:05:20: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:05:20: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:08:20: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:08:20: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:08:20: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:08:20: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:08:50: run the test <58> times
+INFO     root:VersionManager.py:315 2023-02-17 13:08:50: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:08:50: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:08:50: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:08:51: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:08:51: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:08:51: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:08:51: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:08:51: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:08:51: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:11:51: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:11:51: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:11:51: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:11:51: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:12:21: run the test <59> times
+INFO     root:VersionManager.py:315 2023-02-17 13:12:21: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:12:21: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:12:21: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:12:21: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:12:21: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:12:22: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:12:22: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:12:22: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:12:22: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:15:22: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:15:22: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:15:22: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:15:22: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:15:52: run the test <60> times
+INFO     root:VersionManager.py:315 2023-02-17 13:15:52: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:15:52: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:15:52: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:15:52: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:15:52: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:15:52: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:15:52: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:15:52: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:15:52: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:18:52: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:18:52: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:18:52: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:18:52: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:19:22: run the test <61> times
+INFO     root:VersionManager.py:315 2023-02-17 13:19:22: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:19:23: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:19:23: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:19:23: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:19:23: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:19:23: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:19:23: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:19:23: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:19:23: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:22:23: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:22:23: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:22:23: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:22:23: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:22:53: run the test <62> times
+INFO     root:VersionManager.py:315 2023-02-17 13:22:53: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:22:54: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:22:54: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:22:54: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:22:54: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:22:54: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:22:54: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:22:54: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:22:54: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:25:54: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:25:54: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:25:54: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:25:54: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:26:24: run the test <63> times
+INFO     root:VersionManager.py:315 2023-02-17 13:26:24: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:26:24: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:26:24: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:26:25: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:26:25: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:26:25: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:26:25: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:26:25: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:26:25: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:29:25: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:29:25: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:29:25: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:29:25: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:29:55: run the test <64> times
+INFO     root:VersionManager.py:315 2023-02-17 13:29:55: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:29:55: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:29:55: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:29:55: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:29:55: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:29:55: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:29:55: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:29:55: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:29:55: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:32:55: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:32:56: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:32:56: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:32:56: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:33:26: run the test <65> times
+INFO     root:VersionManager.py:315 2023-02-17 13:33:26: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:33:26: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:33:26: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:33:26: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:33:26: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:33:26: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:33:26: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:33:26: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:33:26: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:36:26: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:36:26: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:36:26: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:36:26: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:36:56: run the test <66> times
+INFO     root:VersionManager.py:315 2023-02-17 13:36:56: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:36:57: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:36:57: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:36:57: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:36:57: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:36:57: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:36:57: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:36:57: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:36:57: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:39:57: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:39:57: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:39:57: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:39:57: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:40:27: run the test <67> times
+INFO     root:VersionManager.py:315 2023-02-17 13:40:27: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:40:27: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:40:27: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:40:28: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:40:28: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:40:28: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:40:28: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:40:28: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:40:28: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:43:28: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:43:28: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:43:28: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:43:28: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:43:58: run the test <68> times
+INFO     root:VersionManager.py:315 2023-02-17 13:43:58: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:43:58: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:43:58: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:43:58: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:43:58: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:43:59: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:43:59: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:43:59: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:43:59: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:46:59: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:46:59: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:46:59: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:46:59: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:47:29: run the test <69> times
+INFO     root:VersionManager.py:315 2023-02-17 13:47:29: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:47:29: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:47:29: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:47:29: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:47:29: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:47:29: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:47:29: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:47:29: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:47:29: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:50:29: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:50:29: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:50:29: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:50:29: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:50:59: run the test <70> times
+INFO     root:VersionManager.py:315 2023-02-17 13:50:59: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:51:00: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:51:00: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:51:00: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:51:00: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:51:00: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:51:00: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:51:00: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:51:00: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:54:00: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:54:00: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:54:00: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:54:00: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:54:30: run the test <71> times
+INFO     root:VersionManager.py:315 2023-02-17 13:54:30: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:54:31: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:54:31: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:54:31: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:54:31: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:54:31: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:54:31: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:54:31: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:54:31: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 13:57:31: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 13:57:31: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 13:57:31: gnb is online
+INFO     root:basic.py:30 2023-02-17 13:57:31: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 13:58:01: run the test <72> times
+INFO     root:VersionManager.py:315 2023-02-17 13:58:01: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 13:58:01: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 13:58:01: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 13:58:01: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 13:58:01: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 13:58:02: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 13:58:02: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 13:58:02: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 13:58:02: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:01:02: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:01:02: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:01:02: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:01:02: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:01:32: run the test <73> times
+INFO     root:VersionManager.py:315 2023-02-17 14:01:32: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:01:32: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:01:32: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:01:32: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:01:32: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:01:33: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:01:33: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:01:33: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:01:33: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:04:33: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:04:33: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:04:33: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:04:33: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:05:03: run the test <74> times
+INFO     root:VersionManager.py:315 2023-02-17 14:05:03: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:05:03: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:05:03: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:05:03: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:05:03: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:05:03: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:05:03: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:05:03: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:05:03: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:08:03: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:08:03: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:08:03: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:08:03: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:08:33: run the test <75> times
+INFO     root:VersionManager.py:315 2023-02-17 14:08:33: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:08:34: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:08:34: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:08:35: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:08:35: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:08:35: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:08:35: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:08:35: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:08:35: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:11:35: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:11:35: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:11:35: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:11:35: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:12:05: run the test <76> times
+INFO     root:VersionManager.py:315 2023-02-17 14:12:05: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:12:05: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:12:05: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:12:05: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:12:05: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:12:05: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:12:05: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:12:05: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:12:05: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:15:05: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:15:05: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:15:05: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:15:05: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:15:35: run the test <77> times
+INFO     root:VersionManager.py:315 2023-02-17 14:15:35: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:15:36: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:15:36: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:15:36: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:15:36: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:15:36: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:15:36: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:15:36: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:15:36: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:18:36: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:18:36: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:18:36: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:18:36: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:19:06: run the test <78> times
+INFO     root:VersionManager.py:315 2023-02-17 14:19:06: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:19:07: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:19:07: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:19:07: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:19:07: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:19:07: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:19:07: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:19:07: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:19:07: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:22:07: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:22:07: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:22:07: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:22:07: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:22:37: run the test <79> times
+INFO     root:VersionManager.py:315 2023-02-17 14:22:37: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:22:37: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:22:37: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:22:38: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:22:38: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:22:38: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:22:38: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:22:38: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:22:38: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:25:38: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:25:38: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:25:38: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:25:38: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:26:08: run the test <80> times
+INFO     root:VersionManager.py:315 2023-02-17 14:26:08: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:26:08: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:26:08: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:26:09: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:26:09: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:26:09: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:26:09: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:26:09: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:26:09: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:29:09: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:29:09: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:29:09: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:29:09: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:29:39: run the test <81> times
+INFO     root:VersionManager.py:315 2023-02-17 14:29:39: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:29:39: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:29:39: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:29:39: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:29:39: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:29:39: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:29:39: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:29:39: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:29:39: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:32:39: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:32:39: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:32:39: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:32:39: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:33:09: run the test <82> times
+INFO     root:VersionManager.py:315 2023-02-17 14:33:09: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:33:10: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:33:10: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:33:10: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:33:10: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:33:10: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:33:10: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:33:10: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:33:10: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:36:10: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:36:10: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:36:10: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:36:10: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:36:40: run the test <83> times
+INFO     root:VersionManager.py:315 2023-02-17 14:36:40: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:36:41: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:36:41: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:36:41: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:36:41: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:36:41: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:36:41: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:36:41: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:36:41: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:39:41: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:39:41: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:39:41: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:39:41: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:40:11: run the test <84> times
+INFO     root:VersionManager.py:315 2023-02-17 14:40:11: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:40:12: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:40:12: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:40:12: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:40:12: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:40:12: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:40:12: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:40:12: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:40:12: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:43:12: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:43:12: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:43:12: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:43:12: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:43:42: run the test <85> times
+INFO     root:VersionManager.py:315 2023-02-17 14:43:42: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:43:42: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:43:42: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:43:43: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:43:43: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:43:43: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:43:43: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:43:43: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:43:43: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:46:43: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:46:43: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:46:43: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:46:43: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:47:13: run the test <86> times
+INFO     root:VersionManager.py:315 2023-02-17 14:47:13: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:47:13: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:47:13: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:47:13: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:47:13: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:47:13: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:47:13: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:47:13: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:47:13: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:50:13: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:50:13: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:50:13: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:50:13: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:50:43: run the test <87> times
+INFO     root:VersionManager.py:315 2023-02-17 14:50:43: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:50:44: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:50:44: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:50:44: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:50:44: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:50:44: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:50:44: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:50:44: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:50:44: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:53:44: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:53:44: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:53:44: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:53:44: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:54:14: run the test <88> times
+INFO     root:VersionManager.py:315 2023-02-17 14:54:14: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:54:15: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:54:15: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:54:15: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:54:15: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:54:15: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:54:15: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:54:15: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:54:15: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 14:57:15: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 14:57:16: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 14:57:16: gnb is online
+INFO     root:basic.py:30 2023-02-17 14:57:16: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 14:57:46: run the test <89> times
+INFO     root:VersionManager.py:315 2023-02-17 14:57:46: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 14:57:46: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 14:57:46: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 14:57:47: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 14:57:47: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 14:57:47: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 14:57:47: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 14:57:47: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 14:57:47: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:00:47: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:00:47: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:00:47: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:00:47: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:01:17: run the test <90> times
+INFO     root:VersionManager.py:315 2023-02-17 15:01:17: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:01:17: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:01:17: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:01:17: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:01:17: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:01:17: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:01:18: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:01:18: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:01:18: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:04:18: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:04:18: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:04:18: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:04:18: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:04:48: run the test <91> times
+INFO     root:VersionManager.py:315 2023-02-17 15:04:48: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:04:48: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:04:48: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:04:48: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:04:48: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:04:48: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:04:48: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:04:48: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:04:48: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:07:48: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:07:48: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:07:48: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:07:48: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:08:18: run the test <92> times
+INFO     root:VersionManager.py:315 2023-02-17 15:08:18: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:08:19: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:08:19: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:08:19: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:08:19: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:08:19: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:08:19: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:08:19: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:08:19: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:11:19: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:11:19: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:11:19: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:11:19: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:11:49: run the test <93> times
+INFO     root:VersionManager.py:315 2023-02-17 15:11:49: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:11:49: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:11:49: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:11:50: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:11:50: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:11:50: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:11:50: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:11:50: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:11:50: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:14:50: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:14:50: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:14:50: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:14:50: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:15:20: run the test <94> times
+INFO     root:VersionManager.py:315 2023-02-17 15:15:20: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:15:20: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:15:20: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:15:20: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:15:20: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:15:20: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:15:21: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:15:21: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:15:21: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:18:21: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:18:21: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:18:21: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:18:21: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:18:51: run the test <95> times
+INFO     root:VersionManager.py:315 2023-02-17 15:18:51: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:18:51: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:18:51: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:18:51: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:18:51: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:18:51: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:18:51: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:18:51: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:18:51: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:21:51: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:21:51: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:21:51: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:21:51: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:22:21: run the test <96> times
+INFO     root:VersionManager.py:315 2023-02-17 15:22:21: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:22:22: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:22:22: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:22:22: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:22:22: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:22:22: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:22:22: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:22:22: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:22:22: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:25:22: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:25:22: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:25:22: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:25:22: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:25:52: run the test <97> times
+INFO     root:VersionManager.py:315 2023-02-17 15:25:52: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:25:53: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:25:53: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:25:53: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:25:53: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:25:53: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:25:53: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:25:53: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:25:53: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:28:53: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:28:53: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:28:53: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:28:53: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:29:23: run the test <98> times
+INFO     root:VersionManager.py:315 2023-02-17 15:29:23: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:29:23: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:29:23: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:29:24: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:29:24: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:29:24: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:29:24: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:29:24: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:29:24: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:32:24: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:32:24: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:32:24: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:32:24: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:32:54: run the test <99> times
+INFO     root:VersionManager.py:315 2023-02-17 15:32:54: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:32:54: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:32:54: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:32:55: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:32:55: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:32:55: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:32:55: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:32:55: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:32:55: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:35:55: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:35:55: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:35:55: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:35:55: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:36:25: run the test <100> times
+INFO     root:VersionManager.py:315 2023-02-17 15:36:25: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:36:25: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:36:25: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:36:25: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:36:25: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:36:25: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:36:25: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:36:25: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:36:25: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:39:25: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:39:25: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:39:25: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:39:25: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:39:55: run the test <101> times
+INFO     root:VersionManager.py:315 2023-02-17 15:39:55: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:39:56: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:39:56: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:39:56: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:39:56: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:39:56: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:39:56: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:39:56: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:39:56: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:42:56: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:42:56: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:42:56: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:42:56: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:43:26: run the test <102> times
+INFO     root:VersionManager.py:315 2023-02-17 15:43:26: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:43:27: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:43:27: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:43:27: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:43:27: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:43:27: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:43:27: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:43:27: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:43:27: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:46:27: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:46:27: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:46:27: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:46:27: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:46:57: run the test <103> times
+INFO     root:VersionManager.py:315 2023-02-17 15:46:57: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:46:57: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:46:57: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:46:58: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:46:58: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:46:58: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:46:58: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:46:58: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:46:58: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:49:58: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:49:58: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:49:58: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:49:58: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:50:28: run the test <104> times
+INFO     root:VersionManager.py:315 2023-02-17 15:50:28: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:50:28: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:50:28: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:50:28: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:50:28: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:50:28: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:50:29: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:50:29: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:50:29: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:53:29: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:53:29: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:53:29: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:53:29: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:53:59: run the test <105> times
+INFO     root:VersionManager.py:315 2023-02-17 15:53:59: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:53:59: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:53:59: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:53:59: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:53:59: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:53:59: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:53:59: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:53:59: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:53:59: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 15:56:59: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 15:56:59: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 15:56:59: gnb is online
+INFO     root:basic.py:30 2023-02-17 15:56:59: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 15:57:29: run the test <106> times
+INFO     root:VersionManager.py:315 2023-02-17 15:57:29: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 15:57:30: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 15:57:30: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 15:57:30: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 15:57:30: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 15:57:30: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 15:57:30: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 15:57:30: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 15:57:30: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:00:30: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:00:30: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:00:30: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:00:30: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:01:00: run the test <107> times
+INFO     root:VersionManager.py:315 2023-02-17 16:01:00: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:01:00: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:01:00: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:01:01: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:01:01: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:01:01: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:01:01: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:01:01: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:01:01: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:04:01: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:04:01: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:04:01: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:04:01: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:04:31: run the test <108> times
+INFO     root:VersionManager.py:315 2023-02-17 16:04:31: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:04:31: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:04:31: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:04:32: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:04:32: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:04:32: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:04:32: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:04:32: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:04:32: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:07:32: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:07:32: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:07:32: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:07:32: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:08:02: run the test <109> times
+INFO     root:VersionManager.py:315 2023-02-17 16:08:02: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:08:02: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:08:02: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:08:02: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:08:02: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:08:02: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:08:02: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:08:02: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:08:02: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:11:02: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:11:03: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:11:03: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:11:03: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:11:33: run the test <110> times
+INFO     root:VersionManager.py:315 2023-02-17 16:11:33: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:11:33: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:11:33: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:11:33: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:11:33: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:11:33: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:11:33: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:11:33: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:11:33: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:14:33: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:14:33: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:14:33: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:14:33: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:15:03: run the test <111> times
+INFO     root:VersionManager.py:315 2023-02-17 16:15:03: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:15:04: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:15:04: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:15:04: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:15:04: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:15:04: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:15:04: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:15:04: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:15:04: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:18:04: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:18:04: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:18:04: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:18:04: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:18:34: run the test <112> times
+INFO     root:VersionManager.py:315 2023-02-17 16:18:34: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:18:35: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:18:35: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:18:35: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:18:35: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:18:35: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:18:35: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:18:35: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:18:35: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:21:35: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:21:35: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:21:35: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:21:35: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:22:05: run the test <113> times
+INFO     root:VersionManager.py:315 2023-02-17 16:22:05: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:22:06: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:22:06: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:22:06: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:22:06: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:22:06: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:22:06: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:22:06: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:22:06: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:25:06: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:25:06: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:25:06: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:25:06: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:25:36: run the test <114> times
+INFO     root:VersionManager.py:315 2023-02-17 16:25:36: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:25:36: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:25:36: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:25:37: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:25:37: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:25:37: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:25:37: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:25:37: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:25:37: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:28:37: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:28:37: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:28:37: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:28:37: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:29:07: run the test <115> times
+INFO     root:VersionManager.py:315 2023-02-17 16:29:07: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:29:07: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:29:07: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:29:08: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:29:08: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:29:08: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:29:08: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:29:08: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:29:08: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:32:08: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:32:08: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:32:08: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:32:08: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:32:38: run the test <116> times
+INFO     root:VersionManager.py:315 2023-02-17 16:32:38: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:32:38: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:32:38: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:32:38: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:32:38: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:32:38: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:32:38: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:32:38: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:32:38: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:35:38: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:35:38: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:35:38: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:35:38: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:36:08: run the test <117> times
+INFO     root:VersionManager.py:315 2023-02-17 16:36:08: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:36:09: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:36:09: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:36:09: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:36:09: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:36:09: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:36:09: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:36:09: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:36:09: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:39:09: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:39:09: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:39:09: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:39:09: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:39:39: run the test <118> times
+INFO     root:VersionManager.py:315 2023-02-17 16:39:39: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:39:40: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:39:40: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:39:40: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:39:40: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:39:40: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:39:40: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:39:40: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:39:40: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:42:40: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:42:40: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:42:40: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:42:40: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:43:10: run the test <119> times
+INFO     root:VersionManager.py:315 2023-02-17 16:43:10: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:43:10: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:43:10: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:43:10: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:43:10: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:43:11: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:43:11: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:43:11: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:43:11: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:46:11: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:46:11: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:46:11: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:46:11: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:46:41: run the test <120> times
+INFO     root:VersionManager.py:315 2023-02-17 16:46:41: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:46:41: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:46:41: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:46:41: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:46:41: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:46:41: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:46:41: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:46:41: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:46:41: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:49:41: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:49:41: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:49:41: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:49:41: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:50:11: run the test <121> times
+INFO     root:VersionManager.py:315 2023-02-17 16:50:11: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:50:12: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:50:12: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:50:12: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:50:12: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:50:12: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:50:12: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:50:12: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:50:12: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:53:12: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:53:12: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:53:12: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:53:12: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:53:42: run the test <122> times
+INFO     root:VersionManager.py:315 2023-02-17 16:53:42: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:53:43: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:53:43: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:53:43: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:53:43: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:53:43: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:53:43: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:53:43: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:53:43: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 16:56:43: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 16:56:43: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 16:56:43: gnb is online
+INFO     root:basic.py:30 2023-02-17 16:56:43: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 16:57:13: run the test <123> times
+INFO     root:VersionManager.py:315 2023-02-17 16:57:13: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 16:57:13: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 16:57:13: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 16:57:14: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 16:57:14: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 16:57:14: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 16:57:14: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 16:57:14: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 16:57:14: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 17:00:14: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 17:00:14: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 17:00:14: gnb is online
+INFO     root:basic.py:30 2023-02-17 17:00:14: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 17:00:44: run the test <124> times
+INFO     root:VersionManager.py:315 2023-02-17 17:00:44: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 17:00:44: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 17:00:44: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 17:00:44: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 17:00:44: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 17:00:44: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 17:00:44: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 17:00:44: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 17:00:44: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 17:03:44: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 17:03:45: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 17:03:45: gnb is online
+INFO     root:basic.py:30 2023-02-17 17:03:45: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 17:04:15: run the test <125> times
+INFO     root:VersionManager.py:315 2023-02-17 17:04:15: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 17:04:15: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 17:04:15: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 17:04:15: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 17:04:15: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 17:04:15: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 17:04:15: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 17:04:15: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 17:04:15: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 17:07:15: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 17:07:15: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 17:07:15: gnb is online
+INFO     root:basic.py:30 2023-02-17 17:07:15: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 17:07:45: run the test <126> times
+INFO     root:VersionManager.py:315 2023-02-17 17:07:45: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 17:07:46: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 17:07:46: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 17:07:46: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 17:07:46: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 17:07:46: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 17:07:46: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 17:07:46: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 17:07:46: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 17:10:46: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 17:10:46: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 17:10:46: gnb is online
+INFO     root:basic.py:30 2023-02-17 17:10:46: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 17:11:16: run the test <127> times
+INFO     root:VersionManager.py:315 2023-02-17 17:11:16: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 17:11:16: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 17:11:16: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 17:11:17: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 17:11:17: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 17:11:17: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 17:11:17: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 17:11:17: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 17:11:17: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 17:14:17: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 17:14:17: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 17:14:17: gnb is online
+INFO     root:basic.py:30 2023-02-17 17:14:17: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 17:14:47: run the test <128> times
+INFO     root:VersionManager.py:315 2023-02-17 17:14:47: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 17:14:47: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 17:14:47: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 17:14:47: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 17:14:47: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 17:14:48: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 17:14:48: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 17:14:48: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 17:14:48: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 17:17:48: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 17:17:48: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 17:17:48: gnb is online
+INFO     root:basic.py:30 2023-02-17 17:17:48: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 17:18:18: run the test <129> times
+INFO     root:VersionManager.py:315 2023-02-17 17:18:18: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 17:18:18: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 17:18:18: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 17:18:18: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 17:18:18: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 17:18:18: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 17:18:18: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 17:18:18: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 17:18:18: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 17:21:18: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 17:21:18: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 17:21:18: gnb is online
+INFO     root:basic.py:30 2023-02-17 17:21:18: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 17:21:48: run the test <130> times
+INFO     root:VersionManager.py:315 2023-02-17 17:21:48: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 17:21:49: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 17:21:49: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 17:21:49: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 17:21:49: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 17:21:49: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 17:21:49: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 17:21:49: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 17:21:49: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 17:24:49: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 17:24:49: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 17:24:49: gnb is online
+INFO     root:basic.py:30 2023-02-17 17:24:49: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 17:25:19: run the test <131> times
+INFO     root:VersionManager.py:315 2023-02-17 17:25:19: upload xml file from gnb to hms.
+INFO     root:VersionManager.py:319 2023-02-17 17:25:20: upload xml file from gnb to hms success.
+INFO     root:VersionManager.py:332 2023-02-17 17:25:20: download xml file to local.
+INFO     root:VersionManager.py:341 2023-02-17 17:25:20: download xml file success!
+INFO     root:VersionManager.py:355 2023-02-17 17:25:20: upload xml file to hms.
+INFO     root:VersionManager.py:385 2023-02-17 17:25:20: syn xml file to gnb.
+WARNING  root:VersionManager.py:392 2023-02-17 17:25:20: synchronization xml file failure!
+INFO     root:test_xml.py:57 2023-02-17 17:25:20: syn xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-02-17 17:25:20: wait for 180s......
+INFO     root:DeviceManager.py:21 2023-02-17 17:28:20: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-17 17:28:20: device is online!
+INFO     root:DeviceManager.py:24 2023-02-17 17:28:20: gnb is online
+INFO     root:basic.py:30 2023-02-17 17:28:20: wait for 30s......
+INFO     root:test_xml.py:46 2023-02-17 17:28:50: run the test <132> times
+INFO     root:VersionManager.py:315 2023-02-17 17:28:50: upload xml file from gnb to hms.

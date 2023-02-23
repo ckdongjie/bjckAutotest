@@ -1,0 +1,6 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Jan 20 15:49:32 CST 2023","Fri Jan 20 15:54:55 CST 2023","322767","TestCase.weblmt","test_lmt_xml","TestWeblmtXml","","","testDownloadXmlAndUploadXmlOnWeblmt[1]",""
+"failed","Fri Jan 20 15:54:55 CST 2023","Fri Jan 20 16:02:24 CST 2023","449716","TestCase.weblmt","test_lmt_xml","TestWeblmtXml","","","testImportXmlSnIsNone",""
+"passed","Fri Jan 20 16:07:47 CST 2023","Fri Jan 20 16:13:10 CST 2023","322732","TestCase.weblmt","test_lmt_xml","TestWeblmtXml","","","testImportXmlSnIsLong",""
+"passed","Fri Jan 20 16:13:10 CST 2023","Fri Jan 20 16:18:33 CST 2023","322733","TestCase.weblmt","test_lmt_xml","TestWeblmtXml","","","testImportXmlSnIsAbnormal",""
+"passed","Fri Jan 20 16:02:25 CST 2023","Fri Jan 20 16:07:47 CST 2023","322673","TestCase.weblmt","test_lmt_xml","TestWeblmtXml","","","testImportXmlSnIsShort",""

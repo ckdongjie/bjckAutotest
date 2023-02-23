@@ -1,0 +1,1 @@
+[{"uid":"d935aa8b1e35f8aa","name":"testRebootCpeAccessSuccRate[1]","time":{"start":1674205202518,"stop":1674205280859,"duration":78341},"status":"passed","severity":"normal"},{"uid":"d2417dc5bc7e6d77","name":"testDetachAndAttachAccessSuccRate[1]","time":{"start":1674205165157,"stop":1674205202514,"duration":37357},"status":"passed","severity":"normal"}]

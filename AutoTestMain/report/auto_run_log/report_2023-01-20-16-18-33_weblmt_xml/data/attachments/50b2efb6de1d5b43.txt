@@ -1,0 +1,94 @@
+INFO     root:WeblmtGnbManager.py:35 2023-01-20 16:02:25: login weblmt, ip: 172.16.2.240
+INFO     root:WeblmtXmlManager.py:25 2023-01-20 16:02:25: export xml file from weblmt.
+INFO     root:WeblmtXmlManager.py:29 2023-01-20 16:02:25: export xml file success!
+INFO     root:xmlManager.py:36 2023-01-20 16:02:25: modify xml file root note value.
+INFO     root:xmlModel.py:35 the old value:902272840007
+INFO     root:WeblmtXmlManager.py:42 2023-01-20 16:02:25: upload xml file to weblmt.
+INFO     root:WeblmtXmlManager.py:46 2023-01-20 16:02:25: upload xml file success!
+INFO     root:WeblmtXmlManager.py:60 2023-01-20 16:02:25: import xml file to gnb.
+INFO     root:WeblmtXmlManager.py:64 2023-01-20 16:02:29: import xml file success!
+INFO     root:test_lmt_xml.py:104 2023-01-20 16:02:29: import xml success, wait for gnb reboot......
+INFO     root:basic.py:30 2023-01-20 16:02:29: wait for 180s......
+INFO     root:test_lmt_xml.py:107 2023-01-20 16:05:29: gnb reboot success, confirm cell status is available.
+INFO     root:WeblmtCellManager.py:46 2023-01-20 16:05:29: confirm if cell status is same as expect, expect status: available
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:05:29: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:05:29: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:05:29: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:05:34: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:05:35: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:05:35: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:05:40: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:05:40: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:05:40: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:05:45: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:05:45: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:05:45: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:05:50: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:05:51: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:05:51: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:05:56: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:05:56: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:05:56: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:01: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:01: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:01: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:06: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:06: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:06: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:11: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:12: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:12: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:17: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:17: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:17: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:22: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:22: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:22: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:27: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:28: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:28: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:33: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:33: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:33: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:38: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:38: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:38: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:43: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:44: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:44: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:49: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:49: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:49: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:54: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:54: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:54: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:06:59: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:06:59: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:06:59: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:07:04: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:07:05: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:07:05: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:07:10: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:07:10: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:07:10: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:07:15: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:07:15: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:07:15: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:07:20: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:07:21: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:07:21: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:07:26: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:07:26: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:07:26: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:07:31: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:07:31: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:07:31: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:07:36: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:07:37: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:07:37: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:07:42: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:33 2023-01-20 16:07:42: cell status is unavailable
+INFO     root:basic.py:30 2023-01-20 16:07:42: wait for 5s......
+INFO     root:WeblmtCellManager.py:25 2023-01-20 16:07:47: query cell status from weblmt
+INFO     root:WeblmtCellManager.py:29 2023-01-20 16:07:47: cell status is available
+INFO     root:WeblmtCellManager.py:54 2023-01-20 16:07:47: cell status is same as expect

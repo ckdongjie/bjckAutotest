@@ -1,0 +1,1 @@
+{"115a8fbbb937849b76f3d99cdc06b82b":{"statistic":{"failed":1,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":1},"items":[{"uid":"fb22d5dbcc50ccc4","status":"failed","statusDetails":"AssertionError: 小区解闭塞操作执行失败，请检查！","time":{"start":1676527869540,"stop":1676535296283,"duration":7426743}}]}}

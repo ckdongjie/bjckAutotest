@@ -1,0 +1,489 @@
+INFO     root:HmsManager.py:28 2023-02-09 00:27:26: login HMS, ip: 172.16.2.220,username: root
+INFO     root:HmsManager.py:30 2023-02-09 00:27:26: login HMS success!
+INFO     root:HmsManager.py:46 2023-02-09 00:27:26: query gnb info
+INFO     root:HmsManager.py:48 2023-02-09 00:27:26: enbId/enbName:15/Automatic-17
+INFO     root:test_version.py:959 2023-02-09 00:27:26:run the test <1> times
+INFO     root:VersionManager.py:279 2023-02-09 00:27:26: check version package is exist in HMS.
+INFO     root:VersionManager.py:233 2023-02-09 00:27:26: query package exist in version manager or not
+INFO     root:VersionManager.py:238 2023-02-09 00:27:26: the package has existed in version manager!
+INFO     root:VersionManager.py:287 2023-02-09 00:27:26: the version is exist, not need to download!
+INFO     root:VersionManager.py:25 2023-02-09 00:27:26: exec download task, version: BS5514_V1.30.20B3_JP_V2_V4_369aa3
+INFO     root:VersionManager.py:41 2023-02-09 00:27:30: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 00:27:30: query status of download task!
+INFO     root:basic.py:30 2023-02-09 00:27:30: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 00:28:00: download task exec success!
+INFO     root:VersionManager.py:89 2023-02-09 00:28:00: exec active task!
+INFO     root:VersionManager.py:102 2023-02-09 00:28:03: active exec success!
+INFO     root:test_version.py:970 2023-02-09 00:28:03: during the activing status, rollback version again
+INFO     root:VersionManager.py:144 2023-02-09 00:28:03: exec rollabck task
+WARNING  root:VersionManager.py:162 2023-02-09 00:28:10: rollback exec fail, fail info:{'enbUpgradeFailedInfoList': [{'enbInfo': {'additionalSoftwareVersion': 'NULL', 'alarmStatus': 0, 'connectionRequestUrl': 'http://[195:168:16:0:100:d00:0:1]:30005/', 'creatTime': '2023-02-07 11:11:35', 'delAccount': 2, 'enbId': 15, 'enbIp': '195:168:16:0:100:d00:0:1', 'enbLock': 0, 'enbName': 'Automatic-17', 'enbStatus': 0, 'fpgaVersion': '', 'hardVersion': '01.01.01.01.01', 'hardwarePlatform': 'NXP', 'manufacturer': 'CHANGKUN', 'modelName': 'BS5514', 'onLineTime': '2023-02-09 01:25:32', 'oui': '7C8334', 'phyVersion': '', 'placeId': 1, 'productClass': 'L5W6-BS', 'remark': 'System Domain', 'serialNumber': '902181800017', 'softVersion': 'BS5514_V1.10.80P1', 'threeGPPSpecVersion': 'TR181', 'upStatus': 0, 'wifiVersion': 'W6AP-1000_20220929_C00_V07'}, 'faultCode': 'BACKUP_VERSION_IS_EMPTY'}], 'result': 1, 'successEnbList': []}
+INFO     root:VersionManager.py:116 2023-02-09 00:28:10: query status of active task
+INFO     root:basic.py:30 2023-02-09 00:28:10: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:28:40: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:29:10: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:29:41: wait for 30s......
+INFO     root:VersionManager.py:124 2023-02-09 00:30:11: active task exec success!
+INFO     root:test_version.py:977 2023-02-09 00:30:11: active success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 00:30:11: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 00:35:11: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 00:35:11: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 00:35:11: gnb is online
+INFO     root:VersionManager.py:144 2023-02-09 00:35:11: exec rollabck task
+INFO     root:VersionManager.py:158 2023-02-09 00:35:13: rollback exec success!
+INFO     root:VersionManager.py:173 2023-02-09 00:35:13: query status of rollabck task
+INFO     root:basic.py:30 2023-02-09 00:35:13: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:35:43: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:36:13: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:36:43: wait for 30s......
+INFO     root:VersionManager.py:181 2023-02-09 00:37:14: rollabck task exec success!
+INFO     root:test_version.py:986 2023-02-09 00:37:14: rollback success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 00:37:14: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 00:42:14: confirm if gnb is online
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:42:14: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:42:19: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:42:24: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:42:29: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:42:34: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:42:39: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:42:44: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:42:49: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:42:54: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:42:59: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:04: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:09: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:14: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:19: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:24: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:29: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:34: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:39: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:44: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:49: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:54: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:43:59: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:44:04: device is offline, wait 5s try again!
+WARNING  root:deviceManagerService.py:40 2023-02-09 00:44:09: device is offline, wait 5s try again!
+INFO     root:deviceManagerService.py:36 2023-02-09 00:44:14: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 00:44:14: gnb is online
+INFO     root:VersionManager.py:25 2023-02-09 00:44:14: exec download task, version: BS5514_V1.10.80P3(1)
+INFO     root:VersionManager.py:41 2023-02-09 00:44:17: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 00:44:17: query status of download task!
+INFO     root:basic.py:30 2023-02-09 00:44:17: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 00:44:47: download task exec success!
+INFO     root:VersionManager.py:214 2023-02-09 00:44:47: query gnb version info from device
+INFO     root:VersionManager.py:199 2023-02-09 00:44:50: query gnb version info from device
+INFO     root:test_version.py:959 2023-02-09 00:44:50:run the test <2> times
+INFO     root:VersionManager.py:279 2023-02-09 00:44:50: check version package is exist in HMS.
+INFO     root:VersionManager.py:233 2023-02-09 00:44:50: query package exist in version manager or not
+INFO     root:VersionManager.py:238 2023-02-09 00:44:50: the package has existed in version manager!
+INFO     root:VersionManager.py:287 2023-02-09 00:44:50: the version is exist, not need to download!
+INFO     root:VersionManager.py:25 2023-02-09 00:44:50: exec download task, version: BS5514_V1.30.20B3_JP_V2_V4_369aa3
+INFO     root:VersionManager.py:41 2023-02-09 00:44:56: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 00:44:56: query status of download task!
+INFO     root:basic.py:30 2023-02-09 00:44:56: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:45:26: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 00:45:56: download task exec success!
+INFO     root:VersionManager.py:89 2023-02-09 00:45:56: exec active task!
+INFO     root:VersionManager.py:102 2023-02-09 00:45:58: active exec success!
+INFO     root:test_version.py:970 2023-02-09 00:45:58: during the activing status, rollback version again
+INFO     root:VersionManager.py:144 2023-02-09 00:45:58: exec rollabck task
+WARNING  root:VersionManager.py:162 2023-02-09 00:46:06: rollback exec fail, fail info:{'enbUpgradeFailedInfoList': [{'enbInfo': {'additionalSoftwareVersion': 'NULL', 'alarmStatus': 0, 'connectionRequestUrl': 'http://[195:168:16:0:100:d00:0:1]:30005/', 'creatTime': '2023-02-07 11:11:35', 'delAccount': 2, 'enbId': 15, 'enbIp': '195:168:16:0:100:d00:0:1', 'enbLock': 0, 'enbName': 'Automatic-17', 'enbStatus': 0, 'fpgaVersion': '', 'hardVersion': '01.01.01.01.01', 'hardwarePlatform': 'NXP', 'manufacturer': 'CHANGKUN', 'modelName': 'BS5514', 'onLineTime': '2023-02-09 01:44:12', 'oui': '7C8334', 'phyVersion': '', 'placeId': 1, 'productClass': 'L5W6-BS', 'remark': 'System Domain', 'serialNumber': '902181800017', 'softVersion': 'BS5514_V1.10.80P1', 'threeGPPSpecVersion': 'TR181', 'upStatus': 0, 'wifiVersion': 'W6AP-1000_20220929_C00_V07'}, 'faultCode': 'BACKUP_VERSION_IS_EMPTY'}], 'result': 1, 'successEnbList': []}
+INFO     root:VersionManager.py:116 2023-02-09 00:46:06: query status of active task
+INFO     root:basic.py:30 2023-02-09 00:46:06: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:46:36: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:47:06: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:47:36: wait for 30s......
+INFO     root:VersionManager.py:124 2023-02-09 00:48:06: active task exec success!
+INFO     root:test_version.py:977 2023-02-09 00:48:06: active success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 00:48:06: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 00:53:06: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 00:53:06: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 00:53:06: gnb is online
+INFO     root:VersionManager.py:144 2023-02-09 00:53:06: exec rollabck task
+INFO     root:VersionManager.py:158 2023-02-09 00:53:09: rollback exec success!
+INFO     root:VersionManager.py:173 2023-02-09 00:53:09: query status of rollabck task
+INFO     root:basic.py:30 2023-02-09 00:53:09: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:53:39: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:54:09: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 00:54:39: wait for 30s......
+INFO     root:VersionManager.py:181 2023-02-09 00:55:09: rollabck task exec success!
+INFO     root:test_version.py:986 2023-02-09 00:55:09: rollback success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 00:55:09: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 01:00:09: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 01:00:09: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 01:00:09: gnb is online
+INFO     root:VersionManager.py:25 2023-02-09 01:00:09: exec download task, version: BS5514_V1.10.80P3(1)
+INFO     root:VersionManager.py:41 2023-02-09 01:00:12: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 01:00:12: query status of download task!
+INFO     root:basic.py:30 2023-02-09 01:00:12: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 01:00:42: download task exec success!
+INFO     root:VersionManager.py:214 2023-02-09 01:00:42: query gnb version info from device
+INFO     root:VersionManager.py:199 2023-02-09 01:00:45: query gnb version info from device
+INFO     root:test_version.py:959 2023-02-09 01:00:45:run the test <3> times
+INFO     root:VersionManager.py:279 2023-02-09 01:00:45: check version package is exist in HMS.
+INFO     root:VersionManager.py:233 2023-02-09 01:00:45: query package exist in version manager or not
+INFO     root:VersionManager.py:238 2023-02-09 01:00:45: the package has existed in version manager!
+INFO     root:VersionManager.py:287 2023-02-09 01:00:45: the version is exist, not need to download!
+INFO     root:VersionManager.py:25 2023-02-09 01:00:45: exec download task, version: BS5514_V1.30.20B3_JP_V2_V4_369aa3
+INFO     root:VersionManager.py:41 2023-02-09 01:00:49: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 01:00:49: query status of download task!
+INFO     root:basic.py:30 2023-02-09 01:00:49: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 01:01:19: download task exec success!
+INFO     root:VersionManager.py:89 2023-02-09 01:01:19: exec active task!
+INFO     root:VersionManager.py:102 2023-02-09 01:01:24: active exec success!
+INFO     root:test_version.py:970 2023-02-09 01:01:24: during the activing status, rollback version again
+INFO     root:VersionManager.py:144 2023-02-09 01:01:24: exec rollabck task
+WARNING  root:VersionManager.py:162 2023-02-09 01:02:23: rollback exec fail, fail info:{'enbUpgradeFailedInfoList': [{'enbInfo': {'additionalSoftwareVersion': 'NULL', 'alarmStatus': 0, 'connectionRequestUrl': 'http://[195:168:16:0:100:d00:0:1]:30005/', 'creatTime': '2023-02-07 11:11:35', 'delAccount': 2, 'enbId': 15, 'enbIp': '195:168:16:0:100:d00:0:1', 'enbLock': 0, 'enbName': 'Automatic-17', 'enbStatus': 0, 'fpgaVersion': '', 'hardVersion': '01.01.01.01.01', 'hardwarePlatform': 'NXP', 'manufacturer': 'CHANGKUN', 'modelName': 'BS5514', 'onLineTime': '2023-02-09 01:59:07', 'oui': '7C8334', 'phyVersion': '', 'placeId': 1, 'productClass': 'L5W6-BS', 'remark': 'System Domain', 'serialNumber': '902181800017', 'softVersion': 'BS5514_V1.10.80P1', 'threeGPPSpecVersion': 'TR181', 'upStatus': 0, 'wifiVersion': 'W6AP-1000_20220929_C00_V07'}, 'faultCode': 'BACKUP_VERSION_IS_EMPTY'}], 'result': 1, 'successEnbList': []}
+INFO     root:VersionManager.py:116 2023-02-09 01:02:23: query status of active task
+INFO     root:basic.py:30 2023-02-09 01:02:23: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:02:53: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:03:23: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:03:53: wait for 30s......
+INFO     root:VersionManager.py:124 2023-02-09 01:04:23: active task exec success!
+INFO     root:test_version.py:977 2023-02-09 01:04:23: active success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 01:04:23: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 01:09:23: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 01:09:23: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 01:09:23: gnb is online
+INFO     root:VersionManager.py:144 2023-02-09 01:09:23: exec rollabck task
+INFO     root:VersionManager.py:158 2023-02-09 01:09:26: rollback exec success!
+INFO     root:VersionManager.py:173 2023-02-09 01:09:26: query status of rollabck task
+INFO     root:basic.py:30 2023-02-09 01:09:26: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:09:56: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:10:26: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:10:56: wait for 30s......
+INFO     root:VersionManager.py:181 2023-02-09 01:11:26: rollabck task exec success!
+INFO     root:test_version.py:986 2023-02-09 01:11:26: rollback success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 01:11:26: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 01:16:26: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 01:16:26: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 01:16:26: gnb is online
+INFO     root:VersionManager.py:25 2023-02-09 01:16:26: exec download task, version: BS5514_V1.10.80P3(1)
+INFO     root:VersionManager.py:41 2023-02-09 01:16:29: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 01:16:29: query status of download task!
+INFO     root:basic.py:30 2023-02-09 01:16:29: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 01:16:59: download task exec success!
+INFO     root:VersionManager.py:214 2023-02-09 01:16:59: query gnb version info from device
+INFO     root:VersionManager.py:199 2023-02-09 01:17:00: query gnb version info from device
+INFO     root:test_version.py:959 2023-02-09 01:17:00:run the test <4> times
+INFO     root:VersionManager.py:279 2023-02-09 01:17:00: check version package is exist in HMS.
+INFO     root:VersionManager.py:233 2023-02-09 01:17:00: query package exist in version manager or not
+INFO     root:VersionManager.py:238 2023-02-09 01:17:00: the package has existed in version manager!
+INFO     root:VersionManager.py:287 2023-02-09 01:17:00: the version is exist, not need to download!
+INFO     root:VersionManager.py:25 2023-02-09 01:17:00: exec download task, version: BS5514_V1.30.20B3_JP_V2_V4_369aa3
+INFO     root:VersionManager.py:41 2023-02-09 01:17:04: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 01:17:04: query status of download task!
+INFO     root:basic.py:30 2023-02-09 01:17:04: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 01:17:34: download task exec success!
+INFO     root:VersionManager.py:89 2023-02-09 01:17:34: exec active task!
+INFO     root:VersionManager.py:102 2023-02-09 01:17:37: active exec success!
+INFO     root:test_version.py:970 2023-02-09 01:17:37: during the activing status, rollback version again
+INFO     root:VersionManager.py:144 2023-02-09 01:17:37: exec rollabck task
+WARNING  root:VersionManager.py:162 2023-02-09 01:17:42: rollback exec fail, fail info:{'enbUpgradeFailedInfoList': [{'enbInfo': {'additionalSoftwareVersion': 'NULL', 'alarmStatus': 0, 'connectionRequestUrl': 'http://[195:168:16:0:100:d00:0:1]:30005/', 'creatTime': '2023-02-07 11:11:35', 'delAccount': 2, 'enbId': 15, 'enbIp': '195:168:16:0:100:d00:0:1', 'enbLock': 0, 'enbName': 'Automatic-17', 'enbStatus': 0, 'fpgaVersion': '', 'hardVersion': '01.01.01.01.01', 'hardwarePlatform': 'NXP', 'manufacturer': 'CHANGKUN', 'modelName': 'BS5514', 'onLineTime': '2023-02-09 02:15:05', 'oui': '7C8334', 'phyVersion': '', 'placeId': 1, 'productClass': 'L5W6-BS', 'remark': 'System Domain', 'serialNumber': '902181800017', 'softVersion': 'BS5514_V1.10.80P1', 'threeGPPSpecVersion': 'TR181', 'upStatus': 0, 'wifiVersion': 'W6AP-1000_20220929_C00_V07'}, 'faultCode': 'BACKUP_VERSION_IS_EMPTY'}], 'result': 1, 'successEnbList': []}
+INFO     root:VersionManager.py:116 2023-02-09 01:17:42: query status of active task
+INFO     root:basic.py:30 2023-02-09 01:17:42: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:18:13: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:18:43: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:19:13: wait for 30s......
+INFO     root:VersionManager.py:124 2023-02-09 01:19:43: active task exec success!
+INFO     root:test_version.py:977 2023-02-09 01:19:43: active success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 01:19:43: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 01:24:43: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 01:24:43: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 01:24:43: gnb is online
+INFO     root:VersionManager.py:144 2023-02-09 01:24:43: exec rollabck task
+INFO     root:VersionManager.py:158 2023-02-09 01:24:45: rollback exec success!
+INFO     root:VersionManager.py:173 2023-02-09 01:24:45: query status of rollabck task
+INFO     root:basic.py:30 2023-02-09 01:24:45: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:25:15: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:25:46: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:26:16: wait for 30s......
+INFO     root:VersionManager.py:181 2023-02-09 01:26:46: rollabck task exec success!
+INFO     root:test_version.py:986 2023-02-09 01:26:46: rollback success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 01:26:46: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 01:31:46: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 01:31:46: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 01:31:46: gnb is online
+INFO     root:VersionManager.py:25 2023-02-09 01:31:46: exec download task, version: BS5514_V1.10.80P3(1)
+INFO     root:VersionManager.py:41 2023-02-09 01:31:48: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 01:31:48: query status of download task!
+INFO     root:basic.py:30 2023-02-09 01:31:48: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 01:32:18: download task exec success!
+INFO     root:VersionManager.py:214 2023-02-09 01:32:18: query gnb version info from device
+INFO     root:VersionManager.py:199 2023-02-09 01:32:20: query gnb version info from device
+INFO     root:test_version.py:959 2023-02-09 01:32:20:run the test <5> times
+INFO     root:VersionManager.py:279 2023-02-09 01:32:20: check version package is exist in HMS.
+INFO     root:VersionManager.py:233 2023-02-09 01:32:20: query package exist in version manager or not
+INFO     root:VersionManager.py:238 2023-02-09 01:32:20: the package has existed in version manager!
+INFO     root:VersionManager.py:287 2023-02-09 01:32:20: the version is exist, not need to download!
+INFO     root:VersionManager.py:25 2023-02-09 01:32:20: exec download task, version: BS5514_V1.30.20B3_JP_V2_V4_369aa3
+INFO     root:VersionManager.py:41 2023-02-09 01:32:23: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 01:32:23: query status of download task!
+INFO     root:basic.py:30 2023-02-09 01:32:23: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 01:32:54: download task exec success!
+INFO     root:VersionManager.py:89 2023-02-09 01:32:54: exec active task!
+INFO     root:VersionManager.py:102 2023-02-09 01:32:58: active exec success!
+INFO     root:test_version.py:970 2023-02-09 01:32:58: during the activing status, rollback version again
+INFO     root:VersionManager.py:144 2023-02-09 01:32:58: exec rollabck task
+WARNING  root:VersionManager.py:162 2023-02-09 01:33:05: rollback exec fail, fail info:{'enbUpgradeFailedInfoList': [{'enbInfo': {'additionalSoftwareVersion': 'NULL', 'alarmStatus': 0, 'connectionRequestUrl': 'http://[195:168:16:0:100:d00:0:1]:30005/', 'creatTime': '2023-02-07 11:11:35', 'delAccount': 2, 'enbId': 15, 'enbIp': '195:168:16:0:100:d00:0:1', 'enbLock': 0, 'enbName': 'Automatic-17', 'enbStatus': 0, 'fpgaVersion': '', 'hardVersion': '01.01.01.01.01', 'hardwarePlatform': 'NXP', 'manufacturer': 'CHANGKUN', 'modelName': 'BS5514', 'onLineTime': '2023-02-09 02:29:53', 'oui': '7C8334', 'phyVersion': '', 'placeId': 1, 'productClass': 'L5W6-BS', 'remark': 'System Domain', 'serialNumber': '902181800017', 'softVersion': 'BS5514_V1.10.80P1', 'threeGPPSpecVersion': 'TR181', 'upStatus': 0, 'wifiVersion': 'W6AP-1000_20220929_C00_V07'}, 'faultCode': 'BACKUP_VERSION_IS_EMPTY'}], 'result': 1, 'successEnbList': []}
+INFO     root:VersionManager.py:116 2023-02-09 01:33:05: query status of active task
+INFO     root:basic.py:30 2023-02-09 01:33:05: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:33:35: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:34:05: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:34:35: wait for 30s......
+INFO     root:VersionManager.py:124 2023-02-09 01:35:05: active task exec success!
+INFO     root:test_version.py:977 2023-02-09 01:35:05: active success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 01:35:05: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 01:40:05: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 01:40:05: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 01:40:05: gnb is online
+INFO     root:VersionManager.py:144 2023-02-09 01:40:05: exec rollabck task
+INFO     root:VersionManager.py:158 2023-02-09 01:40:08: rollback exec success!
+INFO     root:VersionManager.py:173 2023-02-09 01:40:08: query status of rollabck task
+INFO     root:basic.py:30 2023-02-09 01:40:08: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:40:38: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:41:08: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:41:38: wait for 30s......
+INFO     root:VersionManager.py:181 2023-02-09 01:42:08: rollabck task exec success!
+INFO     root:test_version.py:986 2023-02-09 01:42:08: rollback success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 01:42:08: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 01:47:08: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 01:47:09: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 01:47:09: gnb is online
+INFO     root:VersionManager.py:25 2023-02-09 01:47:09: exec download task, version: BS5514_V1.10.80P3(1)
+INFO     root:VersionManager.py:41 2023-02-09 01:47:11: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 01:47:11: query status of download task!
+INFO     root:basic.py:30 2023-02-09 01:47:11: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 01:47:41: download task exec success!
+INFO     root:VersionManager.py:214 2023-02-09 01:47:41: query gnb version info from device
+INFO     root:VersionManager.py:199 2023-02-09 01:47:42: query gnb version info from device
+INFO     root:test_version.py:959 2023-02-09 01:47:42:run the test <6> times
+INFO     root:VersionManager.py:279 2023-02-09 01:47:42: check version package is exist in HMS.
+INFO     root:VersionManager.py:233 2023-02-09 01:47:42: query package exist in version manager or not
+INFO     root:VersionManager.py:238 2023-02-09 01:47:42: the package has existed in version manager!
+INFO     root:VersionManager.py:287 2023-02-09 01:47:42: the version is exist, not need to download!
+INFO     root:VersionManager.py:25 2023-02-09 01:47:42: exec download task, version: BS5514_V1.30.20B3_JP_V2_V4_369aa3
+INFO     root:VersionManager.py:41 2023-02-09 01:47:46: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 01:47:46: query status of download task!
+INFO     root:basic.py:30 2023-02-09 01:47:46: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 01:48:16: download task exec success!
+INFO     root:VersionManager.py:89 2023-02-09 01:48:16: exec active task!
+INFO     root:VersionManager.py:102 2023-02-09 01:48:19: active exec success!
+INFO     root:test_version.py:970 2023-02-09 01:48:19: during the activing status, rollback version again
+INFO     root:VersionManager.py:144 2023-02-09 01:48:19: exec rollabck task
+WARNING  root:VersionManager.py:162 2023-02-09 01:48:26: rollback exec fail, fail info:{'enbUpgradeFailedInfoList': [{'enbInfo': {'additionalSoftwareVersion': 'NULL', 'alarmStatus': 0, 'connectionRequestUrl': 'http://[195:168:16:0:100:d00:0:1]:30005/', 'creatTime': '2023-02-07 11:11:35', 'delAccount': 2, 'enbId': 15, 'enbIp': '195:168:16:0:100:d00:0:1', 'enbLock': 0, 'enbName': 'Automatic-17', 'enbStatus': 0, 'fpgaVersion': '', 'hardVersion': '01.01.01.01.01', 'hardwarePlatform': 'NXP', 'manufacturer': 'CHANGKUN', 'modelName': 'BS5514', 'onLineTime': '2023-02-09 02:45:48', 'oui': '7C8334', 'phyVersion': '', 'placeId': 1, 'productClass': 'L5W6-BS', 'remark': 'System Domain', 'serialNumber': '902181800017', 'softVersion': 'BS5514_V1.10.80P1', 'threeGPPSpecVersion': 'TR181', 'upStatus': 0, 'wifiVersion': 'W6AP-1000_20220929_C00_V07'}, 'faultCode': 'BACKUP_VERSION_IS_EMPTY'}], 'result': 1, 'successEnbList': []}
+INFO     root:VersionManager.py:116 2023-02-09 01:48:26: query status of active task
+INFO     root:basic.py:30 2023-02-09 01:48:26: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:48:56: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:49:27: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:49:57: wait for 30s......
+INFO     root:VersionManager.py:124 2023-02-09 01:50:27: active task exec success!
+INFO     root:test_version.py:977 2023-02-09 01:50:27: active success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 01:50:27: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 01:55:27: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 01:55:27: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 01:55:27: gnb is online
+INFO     root:VersionManager.py:144 2023-02-09 01:55:27: exec rollabck task
+INFO     root:VersionManager.py:158 2023-02-09 01:55:30: rollback exec success!
+INFO     root:VersionManager.py:173 2023-02-09 01:55:30: query status of rollabck task
+INFO     root:basic.py:30 2023-02-09 01:55:30: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:56:00: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:56:30: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 01:57:00: wait for 30s......
+INFO     root:VersionManager.py:181 2023-02-09 01:57:30: rollabck task exec success!
+INFO     root:test_version.py:986 2023-02-09 01:57:30: rollback success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 01:57:30: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 02:02:30: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 02:02:30: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 02:02:30: gnb is online
+INFO     root:VersionManager.py:25 2023-02-09 02:02:30: exec download task, version: BS5514_V1.10.80P3(1)
+INFO     root:VersionManager.py:41 2023-02-09 02:02:32: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 02:02:32: query status of download task!
+INFO     root:basic.py:30 2023-02-09 02:02:33: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 02:03:03: download task exec success!
+INFO     root:VersionManager.py:214 2023-02-09 02:03:03: query gnb version info from device
+INFO     root:VersionManager.py:199 2023-02-09 02:03:05: query gnb version info from device
+INFO     root:test_version.py:959 2023-02-09 02:03:05:run the test <7> times
+INFO     root:VersionManager.py:279 2023-02-09 02:03:05: check version package is exist in HMS.
+INFO     root:VersionManager.py:233 2023-02-09 02:03:05: query package exist in version manager or not
+INFO     root:VersionManager.py:238 2023-02-09 02:03:05: the package has existed in version manager!
+INFO     root:VersionManager.py:287 2023-02-09 02:03:05: the version is exist, not need to download!
+INFO     root:VersionManager.py:25 2023-02-09 02:03:05: exec download task, version: BS5514_V1.30.20B3_JP_V2_V4_369aa3
+INFO     root:VersionManager.py:41 2023-02-09 02:03:09: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 02:03:09: query status of download task!
+INFO     root:basic.py:30 2023-02-09 02:03:09: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 02:03:39: download task exec success!
+INFO     root:VersionManager.py:89 2023-02-09 02:03:39: exec active task!
+INFO     root:VersionManager.py:102 2023-02-09 02:03:44: active exec success!
+INFO     root:test_version.py:970 2023-02-09 02:03:44: during the activing status, rollback version again
+INFO     root:VersionManager.py:144 2023-02-09 02:03:44: exec rollabck task
+WARNING  root:VersionManager.py:162 2023-02-09 02:03:52: rollback exec fail, fail info:{'enbUpgradeFailedInfoList': [{'enbInfo': {'additionalSoftwareVersion': 'NULL', 'alarmStatus': 0, 'connectionRequestUrl': 'http://[195:168:16:0:100:d00:0:1]:30005/', 'creatTime': '2023-02-07 11:11:35', 'delAccount': 2, 'enbId': 15, 'enbIp': '195:168:16:0:100:d00:0:1', 'enbLock': 0, 'enbName': 'Automatic-17', 'enbStatus': 0, 'fpgaVersion': '', 'hardVersion': '01.01.01.01.01', 'hardwarePlatform': 'NXP', 'manufacturer': 'CHANGKUN', 'modelName': 'BS5514', 'onLineTime': '2023-02-09 03:01:07', 'oui': '7C8334', 'phyVersion': '', 'placeId': 1, 'productClass': 'L5W6-BS', 'remark': 'System Domain', 'serialNumber': '902181800017', 'softVersion': 'BS5514_V1.10.80P1', 'threeGPPSpecVersion': 'TR181', 'upStatus': 0, 'wifiVersion': 'W6AP-1000_20220929_C00_V07'}, 'faultCode': 'BACKUP_VERSION_IS_EMPTY'}], 'result': 1, 'successEnbList': []}
+INFO     root:VersionManager.py:116 2023-02-09 02:03:52: query status of active task
+INFO     root:basic.py:30 2023-02-09 02:03:52: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:04:22: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:04:52: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:05:22: wait for 30s......
+INFO     root:VersionManager.py:124 2023-02-09 02:05:52: active task exec success!
+INFO     root:test_version.py:977 2023-02-09 02:05:52: active success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 02:05:52: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 02:10:52: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 02:10:52: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 02:10:52: gnb is online
+INFO     root:VersionManager.py:144 2023-02-09 02:10:52: exec rollabck task
+INFO     root:VersionManager.py:158 2023-02-09 02:10:55: rollback exec success!
+INFO     root:VersionManager.py:173 2023-02-09 02:10:55: query status of rollabck task
+INFO     root:basic.py:30 2023-02-09 02:10:55: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:11:25: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:11:55: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:12:25: wait for 30s......
+INFO     root:VersionManager.py:181 2023-02-09 02:12:55: rollabck task exec success!
+INFO     root:test_version.py:986 2023-02-09 02:12:55: rollback success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 02:12:55: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 02:17:55: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 02:17:55: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 02:17:55: gnb is online
+INFO     root:VersionManager.py:25 2023-02-09 02:17:55: exec download task, version: BS5514_V1.10.80P3(1)
+INFO     root:VersionManager.py:41 2023-02-09 02:17:58: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 02:17:58: query status of download task!
+INFO     root:basic.py:30 2023-02-09 02:17:58: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 02:18:28: download task exec success!
+INFO     root:VersionManager.py:214 2023-02-09 02:18:28: query gnb version info from device
+INFO     root:VersionManager.py:199 2023-02-09 02:18:29: query gnb version info from device
+INFO     root:test_version.py:959 2023-02-09 02:18:29:run the test <8> times
+INFO     root:VersionManager.py:279 2023-02-09 02:18:29: check version package is exist in HMS.
+INFO     root:VersionManager.py:233 2023-02-09 02:18:29: query package exist in version manager or not
+INFO     root:VersionManager.py:238 2023-02-09 02:18:29: the package has existed in version manager!
+INFO     root:VersionManager.py:287 2023-02-09 02:18:29: the version is exist, not need to download!
+INFO     root:VersionManager.py:25 2023-02-09 02:18:29: exec download task, version: BS5514_V1.30.20B3_JP_V2_V4_369aa3
+INFO     root:VersionManager.py:41 2023-02-09 02:18:33: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 02:18:33: query status of download task!
+INFO     root:basic.py:30 2023-02-09 02:18:33: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 02:19:03: download task exec success!
+INFO     root:VersionManager.py:89 2023-02-09 02:19:03: exec active task!
+INFO     root:VersionManager.py:102 2023-02-09 02:19:09: active exec success!
+INFO     root:test_version.py:970 2023-02-09 02:19:09: during the activing status, rollback version again
+INFO     root:VersionManager.py:144 2023-02-09 02:19:09: exec rollabck task
+WARNING  root:VersionManager.py:162 2023-02-09 02:19:15: rollback exec fail, fail info:{'enbUpgradeFailedInfoList': [{'enbInfo': {'additionalSoftwareVersion': 'NULL', 'alarmStatus': 0, 'connectionRequestUrl': 'http://[195:168:16:0:100:d00:0:1]:30005/', 'creatTime': '2023-02-07 11:11:35', 'delAccount': 2, 'enbId': 15, 'enbIp': '195:168:16:0:100:d00:0:1', 'enbLock': 0, 'enbName': 'Automatic-17', 'enbStatus': 0, 'fpgaVersion': '', 'hardVersion': '01.01.01.01.01', 'hardwarePlatform': 'NXP', 'manufacturer': 'CHANGKUN', 'modelName': 'BS5514', 'onLineTime': '2023-02-09 03:16:31', 'oui': '7C8334', 'phyVersion': '', 'placeId': 1, 'productClass': 'L5W6-BS', 'remark': 'System Domain', 'serialNumber': '902181800017', 'softVersion': 'BS5514_V1.10.80P1', 'threeGPPSpecVersion': 'TR181', 'upStatus': 0, 'wifiVersion': 'W6AP-1000_20220929_C00_V07'}, 'faultCode': 'BACKUP_VERSION_IS_EMPTY'}], 'result': 1, 'successEnbList': []}
+INFO     root:VersionManager.py:116 2023-02-09 02:19:15: query status of active task
+INFO     root:basic.py:30 2023-02-09 02:19:15: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:19:45: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:20:15: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:20:45: wait for 30s......
+INFO     root:VersionManager.py:124 2023-02-09 02:21:15: active task exec success!
+INFO     root:test_version.py:977 2023-02-09 02:21:15: active success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 02:21:15: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 02:26:15: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 02:26:15: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 02:26:15: gnb is online
+INFO     root:VersionManager.py:144 2023-02-09 02:26:15: exec rollabck task
+INFO     root:VersionManager.py:158 2023-02-09 02:26:18: rollback exec success!
+INFO     root:VersionManager.py:173 2023-02-09 02:26:18: query status of rollabck task
+INFO     root:basic.py:30 2023-02-09 02:26:18: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:26:48: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:27:18: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:27:48: wait for 30s......
+INFO     root:VersionManager.py:181 2023-02-09 02:28:18: rollabck task exec success!
+INFO     root:test_version.py:986 2023-02-09 02:28:18: rollback success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 02:28:18: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 02:33:18: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 02:33:18: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 02:33:18: gnb is online
+INFO     root:VersionManager.py:25 2023-02-09 02:33:18: exec download task, version: BS5514_V1.10.80P3(1)
+INFO     root:VersionManager.py:41 2023-02-09 02:33:21: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 02:33:21: query status of download task!
+INFO     root:basic.py:30 2023-02-09 02:33:21: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 02:33:51: download task exec success!
+INFO     root:VersionManager.py:214 2023-02-09 02:33:51: query gnb version info from device
+INFO     root:VersionManager.py:199 2023-02-09 02:33:52: query gnb version info from device
+INFO     root:test_version.py:959 2023-02-09 02:33:52:run the test <9> times
+INFO     root:VersionManager.py:279 2023-02-09 02:33:52: check version package is exist in HMS.
+INFO     root:VersionManager.py:233 2023-02-09 02:33:52: query package exist in version manager or not
+INFO     root:VersionManager.py:238 2023-02-09 02:33:52: the package has existed in version manager!
+INFO     root:VersionManager.py:287 2023-02-09 02:33:52: the version is exist, not need to download!
+INFO     root:VersionManager.py:25 2023-02-09 02:33:52: exec download task, version: BS5514_V1.30.20B3_JP_V2_V4_369aa3
+INFO     root:VersionManager.py:41 2023-02-09 02:33:56: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 02:33:56: query status of download task!
+INFO     root:basic.py:30 2023-02-09 02:33:56: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 02:34:26: download task exec success!
+INFO     root:VersionManager.py:89 2023-02-09 02:34:26: exec active task!
+INFO     root:VersionManager.py:102 2023-02-09 02:34:31: active exec success!
+INFO     root:test_version.py:970 2023-02-09 02:34:31: during the activing status, rollback version again
+INFO     root:VersionManager.py:144 2023-02-09 02:34:31: exec rollabck task
+WARNING  root:VersionManager.py:162 2023-02-09 02:34:38: rollback exec fail, fail info:{'enbUpgradeFailedInfoList': [{'enbInfo': {'additionalSoftwareVersion': 'NULL', 'alarmStatus': 0, 'connectionRequestUrl': 'http://[195:168:16:0:100:d00:0:1]:30005/', 'creatTime': '2023-02-07 11:11:35', 'delAccount': 2, 'enbId': 15, 'enbIp': '195:168:16:0:100:d00:0:1', 'enbLock': 0, 'enbName': 'Automatic-17', 'enbStatus': 0, 'fpgaVersion': '', 'hardVersion': '01.01.01.01.01', 'hardwarePlatform': 'NXP', 'manufacturer': 'CHANGKUN', 'modelName': 'BS5514', 'onLineTime': '2023-02-09 03:31:47', 'oui': '7C8334', 'phyVersion': '', 'placeId': 1, 'productClass': 'L5W6-BS', 'remark': 'System Domain', 'serialNumber': '902181800017', 'softVersion': 'BS5514_V1.10.80P1', 'threeGPPSpecVersion': 'TR181', 'upStatus': 0, 'wifiVersion': 'W6AP-1000_20220929_C00_V07'}, 'faultCode': 'BACKUP_VERSION_IS_EMPTY'}], 'result': 1, 'successEnbList': []}
+INFO     root:VersionManager.py:116 2023-02-09 02:34:38: query status of active task
+INFO     root:basic.py:30 2023-02-09 02:34:38: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:35:08: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:35:39: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:36:09: wait for 30s......
+INFO     root:VersionManager.py:124 2023-02-09 02:36:39: active task exec success!
+INFO     root:test_version.py:977 2023-02-09 02:36:39: active success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 02:36:39: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 02:41:39: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 02:41:39: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 02:41:39: gnb is online
+INFO     root:VersionManager.py:144 2023-02-09 02:41:39: exec rollabck task
+INFO     root:VersionManager.py:158 2023-02-09 02:41:41: rollback exec success!
+INFO     root:VersionManager.py:173 2023-02-09 02:41:41: query status of rollabck task
+INFO     root:basic.py:30 2023-02-09 02:41:41: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:42:11: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:42:41: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:43:12: wait for 30s......
+INFO     root:VersionManager.py:181 2023-02-09 02:43:42: rollabck task exec success!
+INFO     root:test_version.py:986 2023-02-09 02:43:42: rollback success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 02:43:42: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 02:48:42: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 02:48:42: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 02:48:42: gnb is online
+INFO     root:VersionManager.py:25 2023-02-09 02:48:42: exec download task, version: BS5514_V1.10.80P3(1)
+INFO     root:VersionManager.py:41 2023-02-09 02:48:44: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 02:48:44: query status of download task!
+INFO     root:basic.py:30 2023-02-09 02:48:44: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 02:49:15: download task exec success!
+INFO     root:VersionManager.py:214 2023-02-09 02:49:15: query gnb version info from device
+INFO     root:VersionManager.py:199 2023-02-09 02:49:15: query gnb version info from device
+INFO     root:test_version.py:959 2023-02-09 02:49:15:run the test <10> times
+INFO     root:VersionManager.py:279 2023-02-09 02:49:15: check version package is exist in HMS.
+INFO     root:VersionManager.py:233 2023-02-09 02:49:15: query package exist in version manager or not
+INFO     root:VersionManager.py:238 2023-02-09 02:49:16: the package has existed in version manager!
+INFO     root:VersionManager.py:287 2023-02-09 02:49:16: the version is exist, not need to download!
+INFO     root:VersionManager.py:25 2023-02-09 02:49:16: exec download task, version: BS5514_V1.30.20B3_JP_V2_V4_369aa3
+INFO     root:VersionManager.py:41 2023-02-09 02:49:19: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 02:49:19: query status of download task!
+INFO     root:basic.py:30 2023-02-09 02:49:19: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 02:49:49: download task exec success!
+INFO     root:VersionManager.py:89 2023-02-09 02:49:49: exec active task!
+INFO     root:VersionManager.py:102 2023-02-09 02:49:53: active exec success!
+INFO     root:test_version.py:970 2023-02-09 02:49:53: during the activing status, rollback version again
+INFO     root:VersionManager.py:144 2023-02-09 02:49:53: exec rollabck task
+WARNING  root:VersionManager.py:162 2023-02-09 02:50:01: rollback exec fail, fail info:{'enbUpgradeFailedInfoList': [{'enbInfo': {'additionalSoftwareVersion': 'NULL', 'alarmStatus': 0, 'connectionRequestUrl': 'http://[195:168:16:0:100:d00:0:1]:30005/', 'creatTime': '2023-02-07 11:11:35', 'delAccount': 2, 'enbId': 15, 'enbIp': '195:168:16:0:100:d00:0:1', 'enbLock': 0, 'enbName': 'Automatic-17', 'enbStatus': 0, 'fpgaVersion': '', 'hardVersion': '01.01.01.01.01', 'hardwarePlatform': 'NXP', 'manufacturer': 'CHANGKUN', 'modelName': 'BS5514', 'onLineTime': '2023-02-09 03:47:11', 'oui': '7C8334', 'phyVersion': '', 'placeId': 1, 'productClass': 'L5W6-BS', 'remark': 'System Domain', 'serialNumber': '902181800017', 'softVersion': 'BS5514_V1.10.80P1', 'threeGPPSpecVersion': 'TR181', 'upStatus': 0, 'wifiVersion': 'W6AP-1000_20220929_C00_V07'}, 'faultCode': 'BACKUP_VERSION_IS_EMPTY'}], 'result': 1, 'successEnbList': []}
+INFO     root:VersionManager.py:116 2023-02-09 02:50:01: query status of active task
+INFO     root:basic.py:30 2023-02-09 02:50:01: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:50:31: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:51:01: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:51:31: wait for 30s......
+INFO     root:VersionManager.py:124 2023-02-09 02:52:01: active task exec success!
+INFO     root:test_version.py:977 2023-02-09 02:52:01: active success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 02:52:01: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 02:57:01: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 02:57:01: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 02:57:01: gnb is online
+INFO     root:VersionManager.py:144 2023-02-09 02:57:01: exec rollabck task
+INFO     root:VersionManager.py:158 2023-02-09 02:57:04: rollback exec success!
+INFO     root:VersionManager.py:173 2023-02-09 02:57:04: query status of rollabck task
+INFO     root:basic.py:30 2023-02-09 02:57:04: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:57:34: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:58:04: wait for 30s......
+INFO     root:basic.py:30 2023-02-09 02:58:34: wait for 30s......
+INFO     root:VersionManager.py:181 2023-02-09 02:59:04: rollabck task exec success!
+INFO     root:test_version.py:986 2023-02-09 02:59:04: rollback success, wait for gnb online
+INFO     root:basic.py:30 2023-02-09 02:59:04: wait for 300s......
+INFO     root:DeviceManager.py:21 2023-02-09 03:04:04: confirm if gnb is online
+INFO     root:deviceManagerService.py:36 2023-02-09 03:04:04: device is online!
+INFO     root:DeviceManager.py:24 2023-02-09 03:04:04: gnb is online
+INFO     root:VersionManager.py:25 2023-02-09 03:04:04: exec download task, version: BS5514_V1.10.80P3(1)
+INFO     root:VersionManager.py:41 2023-02-09 03:04:07: download exec success!
+INFO     root:VersionManager.py:60 2023-02-09 03:04:07: query status of download task!
+INFO     root:basic.py:30 2023-02-09 03:04:07: wait for 30s......
+INFO     root:VersionManager.py:69 2023-02-09 03:04:37: download task exec success!
+INFO     root:VersionManager.py:214 2023-02-09 03:04:37: query gnb version info from device
+INFO     root:VersionManager.py:199 2023-02-09 03:04:38: query gnb version info from device

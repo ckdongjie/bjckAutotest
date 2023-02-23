@@ -1,0 +1,1 @@
+{"9a1a3d4014b18e30d98294dd716b13be":{"statistic":{"failed":1,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":1},"items":[{"uid":"322767018fde0af4","status":"failed","statusDetails":"AssertionError: 回退任务失败，请检查！\nassert 'rollbacking' == 'success'\n  - success\n  + rollbacking","time":{"start":1676014679100,"stop":1676023065531,"duration":8386431}}]}}

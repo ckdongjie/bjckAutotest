@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Jan 20 16:26:53 CST 2023","Fri Jan 20 16:34:21 CST 2023","447397","TestCase.hms","test_power","TestPower","","","testGnbPowerOnAndPowerOff[1]",""
