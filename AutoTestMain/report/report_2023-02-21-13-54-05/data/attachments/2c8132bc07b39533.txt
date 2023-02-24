@@ -1,5 +1,0 @@
-INFO     root:CpeManager.py:28 2023-02-21 13:48:53: login cpe command model
-WARNING  root:cpeModel.py:38 login cpe failure, wait for 5s try again!
-WARNING  root:cpeModel.py:38 login cpe failure, wait for 5s try again!
-WARNING  root:cpeModel.py:38 login cpe failure, wait for 5s try again!
-WARNING  root:cpeModel.py:38 login cpe failure, wait for 5s try again!

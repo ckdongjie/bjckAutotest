@@ -1,7 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Tue Feb 21 15:14:40 CST 2023","Tue Feb 21 15:14:45 CST 2023","4699","TestCase.hms","test_version","","","","testVersionSmoke",""
-"failed","Tue Feb 21 15:21:32 CST 2023","Tue Feb 21 15:23:16 CST 2023","104196","TestCase.ue","test_cpe","","","","testRebootGnbAccessSuccRate[1]",""
-"failed","Tue Feb 21 15:23:16 CST 2023","Tue Feb 21 15:25:00 CST 2023","104210","TestCase.ue","test_cpe","","","","testDeactiveAndActiveCellAccessSuccRate[1]",""
-"passed","Tue Feb 21 15:14:45 CST 2023","Tue Feb 21 15:14:45 CST 2023","145","TestCase.hms","test_alarm","","","","testQueryActiveAlarm",""
-"failed","Tue Feb 21 15:14:45 CST 2023","Tue Feb 21 15:21:31 CST 2023","406457","TestCase.hms","test_gnb","","","","testRebootGnbAndPing[1]",""
-"failed","Tue Feb 21 15:25:00 CST 2023","Tue Feb 21 15:26:44 CST 2023","104216","TestCase.ue","test_cpe","","","","testBlockAndUnblockCellAccessSuccRate[1]",""

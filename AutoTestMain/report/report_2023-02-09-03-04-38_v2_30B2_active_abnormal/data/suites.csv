@@ -1,4 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Wed Feb 08 19:03:46 CST 2023","Wed Feb 08 21:42:56 CST 2023","9549689","TestCase.hms","test_version","TestVersion","","","testDownloadDuringActiveVersion[10]",""
-"passed","Thu Feb 09 00:27:26 CST 2023","Thu Feb 09 03:04:38 CST 2023","9431507","TestCase.hms","test_version","TestVersion","","","testRollbackDuringActiveVersion[10]",""
-"passed","Wed Feb 08 21:42:56 CST 2023","Thu Feb 09 00:27:26 CST 2023","9870115","TestCase.hms","test_version","TestVersion","","","testActiveDuringActiveVersion[10]",""

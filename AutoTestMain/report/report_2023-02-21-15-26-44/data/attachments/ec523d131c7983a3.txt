@@ -1,9 +1,0 @@
-INFO     root:HmsManager.py:28 2023-02-21 15:14:40: login HMS, ip: 172.16.2.220,username: root
-INFO     root:HmsManager.py:30 2023-02-21 15:14:40: login HMS success!
-INFO     root:HmsManager.py:46 2023-02-21 15:14:40: query gnb info
-INFO     root:HmsManager.py:48 2023-02-21 15:14:40: enbId/enbName:18/Automatic-18
-INFO     root:VersionManager.py:214 2023-02-21 15:14:40: query gnb version info from device
-INFO     root:VersionManager.py:199 2023-02-21 15:14:42: query gnb version info from device
-INFO     root:test_version.py:73 2023-02-21 15:14:42: current version: BS5514_V1.30.20B3_JP_V2_V4_2c0291
-INFO     root:VersionManager.py:297 2023-02-21 15:14:42: check if has newest version in TVersion
-INFO     root:VersionManager.py:301 2023-02-21 15:14:45: there has not newest version in TVersion.

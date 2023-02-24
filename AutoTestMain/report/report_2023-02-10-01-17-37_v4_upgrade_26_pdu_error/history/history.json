@@ -1,1 +1,0 @@
-{"9a1a3d4014b18e30d98294dd716b13be":{"statistic":{"failed":1,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":1},"items":[{"uid":"8dd64cc45771135a","status":"failed","statusDetails":"AssertionError: cpe接入失败，请检查！\nassert 'failure' == 'success'\n  - success\n  + failure","time":{"start":1675928946858,"stop":1675963056450,"duration":34109592}}]}}

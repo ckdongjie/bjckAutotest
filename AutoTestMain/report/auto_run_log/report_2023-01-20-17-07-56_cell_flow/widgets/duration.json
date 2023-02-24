@@ -1,1 +1,0 @@
-[{"uid":"25f4a2cc3dcc7a5c","name":"testDlUdpFlowTest","time":{"start":1674205350845,"stop":1674205507768,"duration":156923},"status":"passed","severity":"normal"},{"uid":"7f955d81a2390724","name":"testUlTcpFlowTest","time":{"start":1674205507790,"stop":1674205676100,"duration":168310},"status":"passed","severity":"normal"}]
