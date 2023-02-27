@@ -25,6 +25,35 @@ URL_DICT={
             "limit":15
         }
     },
-    
+
+    'findPageGNodeBFunctionByEnbId':
+    {
+        'action':'/api/hmsCfg/v1/findPageGNodeBFunctionByEnbId',
+        'method':'GET',
+        'header':{
+            'content-type': "application/json; charset=UTF-8",
+            'Cookie':'lang=en-US; warningFlag=false; BAYEUX_BROWSER=as0hxfztixv81uxu; sessioncode=yd97jwdao3; username=root'
+        },
+    },
+
+    'setAutoTestMode':
+    {
+        'action':'/api/hmsCfg/v1/updateGNodeBFunction',
+        'method':'POST',
+        'header':{
+            'content-type': "application/json; charset=UTF-8",
+            'Cookie':'lang=en-US; warningFlag=false; BAYEUX_BROWSER=as0hxfztixv81uxu; sessioncode=yd97jwdao3; username=root'
+        },
+        'body':{
+            'enbId': 30,
+            'gNBId': "23450",
+            'gNBIdLength': "32",
+            'gNBName': "lh-test-3.5",
+            'gNodeBFunctionId': "1672734484998-2134776560",
+            'gNodeBFunctionInstanceId': "1",
+            'selfTestSwitch': "0",
+            'userLabel': "hlt"
+        }
+    },
         
 }

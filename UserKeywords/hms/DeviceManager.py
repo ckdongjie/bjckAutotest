@@ -42,3 +42,17 @@ def key_confirm_device_status_same_as_expect(hmsObj, serialNumber, expectStatus=
         else:
             logging.warning(key_get_time()+': gnb status is not same as expect!')
         assert isSame == True,key_get_time()+':基站在线状态与预期不一致，请检查！'
+
+'''
+    说明：设置基站自测模式
+    参数：
+        hmsObj:hms对象
+        serialNumber:基站序列号
+        testMode:自测模式0：关闭，1：打开
+    返回：
+'''
+def key_confirm_device_status_same_as_expect(hmsObj, serialNumber, testMode=1):
+    with allure.step(key_get_time()+": 设置基站自测模式\n"):
+        logging.warning(key_get_time()+': set auto test mode: ' + "open" if testMode==1 else "close")
+        resInfo = deviceManagerService().set_auto_test_mode(hmsObj, serialNumber, testMode)
+        return resInfo

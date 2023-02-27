@@ -62,4 +62,20 @@ class deviceManagerService():
         if isOnline == status:
             return True
         else:
-            return False 
+            return False
+
+    '''
+    说明：设置基站自测模式
+    参数：
+        hmsObj:hms对象
+        serialNumber:基站sn号
+        testMode:自测模式0：关闭，1：打开
+    '''
+    def set_auto_test_mode(self, hmsObj, serialNumber, testMode):
+        resCode, resInfo = DeviceManagerModel(hmsObj).set_auto_test_mode(serialNumber, testMode)
+        if resCode == 200:
+            logging.warning(key_get_time() + ': OMC set auto test mode success')
+            return resInfo
+        else:
+            logging.warning(key_get_time() + ': OMC set auto test mode fail')
+            return False
