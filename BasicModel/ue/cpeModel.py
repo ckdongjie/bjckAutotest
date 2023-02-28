@@ -22,6 +22,7 @@ class CpeModel(object):
         '''
         Constructor
         '''
+        self.ip = None
         self._ssh = ssh
         self._channel = channel
     
@@ -32,6 +33,7 @@ class CpeModel(object):
                 self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
                 self._ssh.connect(hostname=cpeIp, username=username, password=password)
                 self._channel = self._ssh.invoke_shell()
+                self.ip = cpeIp
                 logging.info('login cpe success!')
                 return self
             except:
@@ -77,7 +79,7 @@ class CpeModel(object):
             logging.warning('rece error!')
     
     def at_result_mattch(self, str):
-        pattern = '.*\s*(.*)\r\s*.*AT:'
+        pattern = r'.*\s*(.*)\r\s*.*AT:'
         result = re.findall(pattern, str)
         logging.info('mattch result is:{0}'.format(result))
         if len(result)==1:
@@ -86,7 +88,7 @@ class CpeModel(object):
             return result[1]
         
     def at_cell_info_mattch(self, str):
-        pattern = '.*\s*\+C5GREG:\s*(.*)\r\r\s*(.*)\r\s*AT:'
+        pattern = r'.*\s*\+C5GREG:\s*(.*)\r\r\s*(.*)\r\s*AT:'
         result = re.findall(pattern, str)
         logging.info('cell info mattch result is:{0}'.format(result))
         if result != []:
@@ -149,7 +151,7 @@ class CpeModel(object):
         return -1, -1, -1    
     
     def ping_result_mattch_transmitted(self, str):
-        pattern = '.*\s*(.*) packets transmitted'
+        pattern = r'.*\s*(.*) packets transmitted'
         result = re.findall(pattern, str)
         logging.info('packets transmitted:{0}'.format(result))
         if result:

@@ -22,7 +22,7 @@ class DuModel(HMS):
         '''
         if hmsObj:
             self.baseUrl = hmsObj.baseUrl
-    
+    #刷新DUCellBaseInformation信息
     def realtime_query_du_cell_info(self, enbId, tryNum=3):
         header = URL_DICT['realtimeQueryDuCellBasicByEnbId']['header']
         url = self.baseUrl+URL_DICT['realtimeQueryDuCellBasicByEnbId']['action']+str(enbId)
@@ -38,40 +38,40 @@ class DuModel(HMS):
             else:
                 sleep(3)
         return result
-            
+    #查询DUCellBaseInformation信息
     def query_du_cell_info(self, enbId):
-        header = URL_DICT['findDuCellBasicByEnbId']['header']
-        url = self.baseUrl+URL_DICT['findDuCellBasicByEnbId']['action']+str(enbId)
-        body = URL_DICT['findDuCellBasicByEnbId']['body']
-        response = self.get_request(url, json=body, headers = header)
-        resCode = response.status_code 
-        infoDict = {}
-        if resCode == 200:
-            resInfo = response.json()
-            if resInfo['rows']!=[]:
-                infoDict = resInfo['rows'][0]
-        return infoDict
-        
-    def update_du_cell_para(self, enbId, params, tryNum=5):
         if self.realtime_query_du_cell_info(enbId):
-            duCellInfo = self.query_du_cell_info(enbId)
-            duCellInfo.update(params)
-            header = URL_DICT['updateDUCellBasic']['header']
-            url = self.baseUrl+URL_DICT['updateDUCellBasic']['action']
-            body = URL_DICT['updateDUCellBasic']['body']
-            body.update(duCellInfo) #更新body参数
-            for i in range (tryNum):
-                response = self.post_request(url, json=body, headers = header)
-                resCode = response.status_code
-                resInfo = response.json() 
-                if resInfo.get('socketTimeout'):
-                    continue
-                if resCode == 200 and resInfo['result']=='0':
-                    return True
-                else:           
-                    return False
+            header = URL_DICT['findDuCellBasicByEnbId']['header']
+            url = self.baseUrl+URL_DICT['findDuCellBasicByEnbId']['action']+str(enbId)
+            body = URL_DICT['findDuCellBasicByEnbId']['body']
+            response = self.get_request(url, json=body, headers = header)
+            resCode = response.status_code
+            infoDict = {}
+            if resCode == 200:
+                resInfo = response.json()
+                if resInfo['rows']!=[]:
+                    infoDict = resInfo['rows'][0]
+            return infoDict
         else:
             return False
+    #修改DUCellBaseInformation参数
+    def update_du_cell_para(self, enbId, params, tryNum=5):
+        duCellInfo = self.query_du_cell_info(enbId)
+        duCellInfo.update(params)
+        header = URL_DICT['updateDUCellBasic']['header']
+        url = self.baseUrl+URL_DICT['updateDUCellBasic']['action']
+        body = URL_DICT['updateDUCellBasic']['body']
+        body.update(duCellInfo) #更新body参数
+        for i in range (tryNum):
+            response = self.post_request(url, json=body, headers = header)
+            resCode = response.status_code
+            resInfo = response.json()
+            if resInfo.get('socketTimeout'):
+                continue
+            if resCode == 200:
+                return resInfo
+            else:
+                return False
     
     def realtime_Query_Dl_Schedule(self, enbId, tryNum=3):
         header = DL_SCHEDULE_URL_DICT['realtimeQueryDlScheduleInfo']['header']

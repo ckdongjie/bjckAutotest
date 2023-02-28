@@ -14,6 +14,7 @@ from BasicService.ue.qutsService import QutsService
 from UserKeywords.basic.basic import key_get_time, key_wait
 from UserKeywords.pdn.pndManager import key_start_listen_port, \
     key_stop_listen_port
+from TestCaseData.basicConfig import BASIC_DATA
 
 '''
     SSH登录CPE
@@ -21,9 +22,11 @@ from UserKeywords.pdn.pndManager import key_start_listen_port, \
     cpeIp:cpe ip地址
     username:cpe前台登录用户名
     passward:cpe前台登录密码
-    
 '''
-def key_cpe_login(cpeIp, username="root", password="snc123..."):
+def key_cpe_login(cpeIp=None, username=None, password=None):
+    cpeIp = BASIC_DATA['cpe']['cpeSshIp'] if not cpeIp else cpeIp
+    username = BASIC_DATA['cpe']['username'] if not username else username
+    password = BASIC_DATA['cpe']['cpeSshIp'] if not password else password
     with allure.step(key_get_time() +": 登录CPE前台\n"):
         logging.info(key_get_time()+': login cpe command model')
         cpe = CpeService().cpe_login(cpeIp, username, password)
@@ -66,16 +69,15 @@ def key_cpe_detach(cpe):
         return result
 
 '''
-        查询CPE接入小区信息
-        参数： 
-    cpeIp:cpeIp地址，用于log记录   
+    查询CPE接入小区信息
+    参数：  cpe对象  
 '''    
-def key_cpe_attach_cell_info(cpe, cpeIp='192.168.1.1'):
+def key_cpe_attach_cell_info(cpe):
     with allure.step(key_get_time() +": 查询cpe驻留状态及小区信息\n"):
         logging.info(key_get_time()+': exec c5greg command, query cpe\'s cell info')
         ueAttach, cellId = CpeService().query_cpe_access_cell_info(cpe)
-        with allure.step(key_get_time()+': ['+cpeIp+'] cpe attach status is[1:attach;2:not attach]: '+str(ueAttach)+'\n'):
-            logging.info(key_get_time()+': ['+cpeIp+'] cpe attach status is: '+str(ueAttach))
+        with allure.step(key_get_time()+': ['+cpe.ip+'] cpe attach status is[1:attach;2:not attach]: '+str(ueAttach)+'\n'):
+            logging.info(key_get_time()+': ['+cpe.ip+'] cpe attach status is: '+str(ueAttach))
         if ueAttach == '1':
             return cellId
         else:
@@ -88,16 +90,15 @@ def key_cpe_attach_cell_info(cpe, cpeIp='192.168.1.1'):
     pdnIp:pdn ip地址
     pingNum:ping包测试次数
     tryNum:链路不稳定时，ping包尝试次数
-    cpeIp:cpe ip地址
     ping_interface:cpe ping包网卡
     log_save_path:ping包log记得路径
 '''      
-def key_cpe_ping(cpe, pdnIp, pingNum=20, cpeIp = '192.168.1.1', username='root', password='', pingInterface = 'rmnet_data0', log_save_path='C:\\', tryNum =5, pingSize=32):
+def key_cpe_ping(cpe, pdnIp, pingNum=20, pingInterface = 'rmnet_data0', log_save_path='C:\\', tryNum =5, pingSize=32):
     with allure.step(key_get_time() +": 执行ping包命令, 端口："+pingInterface):
         logging.info(key_get_time()+': exec ping command, interface: '+pingInterface)
         min, avg, max, transmitted, received, lossrate = CpeService().cpe_ping_test(cpe, pdnIp, pingNum, pingInterface, pingSize)
-        with allure.step(key_get_time()+': Cpe['+cpeIp+'_'+pingInterface+'] ping result[max/avg/min/transmitted/received/loss rate] = '+str(max)+"/"+str(avg)+"/"+str(min)+"/"+str(transmitted)+"/"+str(received)+"/"+str(lossrate)+"\n"):
-            logging.info(key_get_time()+': Cpe['+cpeIp+'_'+pingInterface+'] ping result[max/avg/min/transmitted/received/loss rate] = '+str(max)+"/"+str(avg)+"/"+str(min)+"/"+str(transmitted)+"/"+str(received)+"/"+str(lossrate))
+        with allure.step(key_get_time()+': Cpe['+cpe.ip+'_'+pingInterface+'] ping result[max/avg/min/transmitted/received/loss rate] = '+str(max)+"/"+str(avg)+"/"+str(min)+"/"+str(transmitted)+"/"+str(received)+"/"+str(lossrate)+"\n"):
+            logging.info(key_get_time()+': Cpe['+cpe.ip+'_'+pingInterface+'] ping result[max/avg/min/transmitted/received/loss rate] = '+str(max)+"/"+str(avg)+"/"+str(min)+"/"+str(transmitted)+"/"+str(received)+"/"+str(lossrate))
         #assert avg != -1,'ping包测试不通过，请检查'
 
 '''
