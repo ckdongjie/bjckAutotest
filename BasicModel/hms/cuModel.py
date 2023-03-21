@@ -18,11 +18,11 @@ class CuModel(HMS):
         '''
         self.baseUrl = hmsObj.baseUrl
         
-    def batchRealTimeQueryCuCellStatus(self, enbId):
+    def batchRealTimeQueryCuCellStatus(self, enbId, cellId=1):
         header = URL_DICT['batchRealTimeQueryCuCellStatus']['header']
         url = self.baseUrl+URL_DICT['batchRealTimeQueryCuCellStatus']['action']
         body = URL_DICT['batchRealTimeQueryCuCellStatus']['body']
-        params = {"cuCellIdentifierList":[{"enbId":enbId,"cuCellInstanceId":1}]}
+        params = {"cuCellIdentifierList":[{"enbId":enbId,"cuCellInstanceId":cellId}]}
         body.update(params) #更新body参数
         response = self.post_request(url, json=body, headers = header)
         resCode = response.status_code 

@@ -100,7 +100,7 @@ def testVersionSmoke():
         endTime = key_get_time()
         #check cell status 
         if isCheckCell:
-            key_confirm_cell_status(hmsObj, enbId, 'available')
+            key_confirm_cell_status(hmsObj, enbId, expectStatus='available')
         #gnb alarm
         logging.info('--------------------------------------------------')
         logging.info('              new version alarm test              ')
@@ -273,7 +273,7 @@ def VersionManager(isDownAgain=False, isRollCpld=False, isXmlTest=False):
         if isCheckVerDetail == True:
             checkUpgradeVersionInfo(hmsObj)
     if isCheckCell:
-        key_confirm_cell_status(hmsObj, enbId, 'available')
+        key_confirm_cell_status(hmsObj, enbId, expectStatus='available')
     key_wait(60)
     #业务测试
     CellBusinessManager(isAttach, isPing, isFlow)     
@@ -346,7 +346,7 @@ def exportAndImportXml(hmsObj):
             logging.info(key_get_time()+': syn xml success, wait for gnb reboot......')
             key_wait(180)
         key_confirm_device_online(hmsObj)
-        key_confirm_cell_status(hmsObj, enbId, 'available')          
+        key_confirm_cell_status(hmsObj, enbId, expectStatus='available')          
             
 '''
                 检查升级后小版本信息是否正确
@@ -1135,7 +1135,7 @@ def testModifyParasDuringDownloadVersion(testNum):
                     #执行参数修改
                     key_block_cell(hmsObj, enbId)
                     #确认参数修改生效
-                    key_confirm_cell_status(hmsObj, enbId,'unavailable')
+                    key_confirm_cell_status(hmsObj, enbId, expectStatus='available')
                     #版本下载状态查询
                     downStatus = key_query_download_status(hmsObj, enbName)
                     assert downStatus == 'success','基站版本下载状态与预期不一致，请检查！'
@@ -1143,7 +1143,7 @@ def testModifyParasDuringDownloadVersion(testNum):
                         #执行参数修改
                         key_unblock_cell(hmsObj, enbId)
                         #确认参数修改生效
-                        key_confirm_cell_status(hmsObj, enbId,'available')
+                        key_confirm_cell_status(hmsObj, enbId, expectStatus='available')
                         downloadRes = key_download_version(hmsObj, softVersion=recoverVersion)
                         assert downloadRes == 'success','版本下载执行失败，请检查！'
                         downStatus = key_query_download_status(hmsObj, enbName)
@@ -1160,7 +1160,7 @@ def testModifyParasDuringDownloadVersion(testNum):
                     #执行参数修改
                     key_unblock_cell(hmsObj, enbId)
                     #确认参数修改生效
-                    key_confirm_cell_status(hmsObj, enbId,'available')
+                    key_confirm_cell_status(hmsObj, enbId, expectStatus='available')
                     downloadRes = key_download_version(hmsObj, softVersion=recoverVersion)
                     assert downloadRes == 'success','版本下载执行失败，请检查！'
                     downStatus = key_query_download_status(hmsObj, enbName)
@@ -1205,7 +1205,7 @@ def testModifyParamDuringActiveVersion(testNum, waitTime):
                     key_confirm_device_online(hmsObj)
                     #确认参数修改生效
                     with allure.step(key_get_time()+':确认参数修改生效'):
-                        key_confirm_cell_status(hmsObj, enbId,'unavailable')
+                        key_confirm_cell_status(hmsObj, enbId, expectStatus='available')
                     with allure.step(key_get_time()+':基站版本恢复'):
                         rollRes = key_rollback_version(hmsObj)
                         assert rollRes == 'success','版本回退执行失败，请检查！'
@@ -1218,7 +1218,7 @@ def testModifyParamDuringActiveVersion(testNum, waitTime):
                         #执行参数修改
                         key_unblock_cell(hmsObj, enbId)
                         #确认参数修改生效
-                        key_confirm_cell_status(hmsObj, enbId,'available')
+                        key_confirm_cell_status(hmsObj, enbId, expectStatus='available')
                         downloadRes = key_download_version(hmsObj, softVersion=recoverVersion)
                         assert downloadRes == 'success','版本下载执行失败，请检查！'
                         downStatus = key_query_download_status(hmsObj, enbName)
@@ -1283,7 +1283,7 @@ def testModifyParamDuringRollbackVersion(testNum, waitTime):
                         key_wait(300)
                     key_confirm_device_online(hmsObj)
                     #确认参数修改生效
-                    key_confirm_cell_status(hmsObj, enbId,'available')
+                    key_confirm_cell_status(hmsObj, enbId, expectStatus='available')
                     with allure.step(key_get_time()+':恢复基站版本'):
                         downloadRes = key_download_version(hmsObj, softVersion=recoverVersion)
                         assert downloadRes == 'success','版本下载执行失败，请检查！'
@@ -1355,7 +1355,7 @@ def testDiffUserVersionUpgradeAndRollback(testNum):
                     #确认基站在线
                     key_confirm_device_online(hmsObj)
                     #确认参数修改生效
-                    key_confirm_cell_status(hmsObj, enbId,'available')
+                    key_confirm_cell_status(hmsObj, enbId, expectStatus='available')
             abnormal = False
         finally:
             if abnormal == True:

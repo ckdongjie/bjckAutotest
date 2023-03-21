@@ -27,6 +27,6 @@ class CuService():
         hmsObj:hms对象
         enbId:基站enbId
     '''
-    def real_query_cu_cell_status(self, hmsObj, enbId):
-        resCode, resInfo = CuModel(hmsObj).batchRealTimeQueryCuCellStatus(enbId)
+    def real_query_cu_cell_status(self, hmsObj, enbId, cellId=1):
+        resCode, resInfo = CuModel(hmsObj).batchRealTimeQueryCuCellStatus(enbId, cellId)
         return resCode, resInfo

@@ -93,10 +93,13 @@ def key_cpe_attach_cell_info(cpe):
 def key_cpe_ping(cpe, pdnIp=BASIC_DATA['pdn']['pdnIp'], pingNum=BASIC_DATA['ping']['pingNum'], pingInterface = BASIC_DATA['cpe']['pingNrInterface'], log_save_path=BASIC_DATA['ping']['logSavePath'], tryNum =5, pingSize=BASIC_DATA['ping']['pingSize']):
     with allure.step(key_get_time() +": 执行ping包命令, 端口："+pingInterface):
         logging.info(key_get_time()+': exec ping command, interface: '+pingInterface)
-        min, avg, max, transmitted, received, lossrate = CpeService().cpe_ping_test(cpe, pdnIp, pingNum, pingInterface, pingSize)
+        for i in range (1, tryNum+1):
+            min, avg, max, transmitted, received, lossrate = CpeService().cpe_ping_test(cpe, pdnIp, pingNum, pingInterface, pingSize)
+            if avg != -1:
+                break
         with allure.step(key_get_time()+': Cpe['+cpe.ip+'_'+pingInterface+'] ping result[max/avg/min/transmitted/received/loss rate] = '+str(max)+"/"+str(avg)+"/"+str(min)+"/"+str(transmitted)+"/"+str(received)+"/"+str(lossrate)+"\n"):
             logging.info(key_get_time()+': Cpe['+cpe.ip+'_'+pingInterface+'] ping result[max/avg/min/transmitted/received/loss rate] = '+str(max)+"/"+str(avg)+"/"+str(min)+"/"+str(transmitted)+"/"+str(received)+"/"+str(lossrate))
-        #assert avg != -1,'ping包测试不通过，请检查'
+        assert avg != -1,'ping包测试不通过，请检查'
 
 '''
     复位cpe
