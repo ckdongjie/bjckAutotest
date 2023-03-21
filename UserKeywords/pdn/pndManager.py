@@ -5,15 +5,6 @@ Created on 2022年11月25日
 @author: dj
 
 '''
-
-
-import logging
-
-import allure
-
-from BasicService.pdn.pdnService import PdnService
-from UserKeywords.basic.basic import key_get_time
-
 '''
     说明：登录pdn
     参数：
@@ -21,7 +12,17 @@ from UserKeywords.basic.basic import key_get_time
     username:pdn ssh登录用户名
     password:pdn ssh登录密码
 '''
-def key_pdn_login(pdnIp, username="root", password="ck2022..."):
+
+import logging
+
+import allure
+
+from BasicService.pdn.pdnService import PdnService
+from TestCaseData.basicConfig import BASIC_DATA
+from UserKeywords.basic.basic import key_get_time
+
+
+def key_pdn_login(pdnIp=BASIC_DATA['pdn']['pdnSshIp'], username=BASIC_DATA['pdn']['pdnUsername'], password=BASIC_DATA['pdn']['pdnPassword']):
     with allure.step(key_get_time() +": 登录pdn服务器: "+pdnIp):
         logging.info(key_get_time()+': login pdn server: '+pdnIp)
         pdn = PdnService().pdn_login(pdnIp, username, password)

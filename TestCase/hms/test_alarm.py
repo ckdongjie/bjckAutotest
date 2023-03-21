@@ -30,9 +30,8 @@ globalPara.init()
 @pytest.mark.run(order=2)
 @pytest.mark.skipif(globalPara.get_upgrade_status()==True, reason='No Newest Version Upgrade')  
 def testQueryActiveAlarm():
-    serialNumber=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    alarmList = key_query_active_alarm(hmsObj, serialNumber)
+    hmsObj = key_login_hms()
+    alarmList = key_query_active_alarm(hmsObj)
     with allure.step(key_get_time()+':基站当前告警:'+str(alarmList)):
         logging.info(key_get_time()+': active alarm info:'+str(alarmList))
     
@@ -40,9 +39,8 @@ def testQueryActiveAlarm():
 @pytest.mark.历史告警查询
 @pytest.mark.parametrize("startTime, endTime",RUN_TESTCASE['历史告警查询'] if RUN_TESTCASE.get('历史告警查询') else [])
 def testQueryHistoryAlarm(startTime, endTime):
-    serialNumber=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    alarmList = key_query_history_alarm(hmsObj, serialNumber, alarmRaisedStartTime=startTime, alarmRaisedEndTime=endTime)
+    hmsObj = key_login_hms()
+    alarmList = key_query_history_alarm(hmsObj, alarmRaisedStartTime=startTime, alarmRaisedEndTime=endTime)
     with allure.step(key_get_time()+':基站历史告警:'+str(alarmList)):
         logging.info(key_get_time()+': history alarm info:'+str(alarmList))
             

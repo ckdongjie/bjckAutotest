@@ -56,15 +56,10 @@ from UserKeywords.ue.CpeManager import key_cpe_login, key_cpe_attach, \
 @pytest.mark.支持每个时隙配置PDCCH符号数
 @pytest.mark.parametrize("symbolNumber",RUN_TESTCASE['支持每个时隙配置PDCCH符号数'] if RUN_TESTCASE.get('支持每个时隙配置PDCCH符号数') else [])
 def testModifyPdcchSymbolNum(symbolNumber):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList= BASIC_DATA['gnb']['serialNumberList']
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
     try:
         #修改pdcch符号数
         key_modify_pdcch_symbol_number(hmsObj, enbId, symbolNumber)
@@ -76,7 +71,7 @@ def testModifyPdcchSymbolNum(symbolNumber):
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
             checkRes = key_pdcch_symbol_number_analyze(ueLogFilePath, symbolNumber)
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
@@ -95,15 +90,10 @@ def testModifyPdcchSymbolNum(symbolNumber):
 @pytest.mark.支持PDCCH_CCE聚合度配置
 @pytest.mark.parametrize("cceLevel",RUN_TESTCASE['支持PDCCH_CCE聚合度配置'] if RUN_TESTCASE.get('支持PDCCH_CCE聚合度配置') else [])
 def testModifyPdcchCceLevel(cceLevel):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
     try:
         #修改pdcch cce聚合度配置
         key_modify_pdcch_cce_level(hmsObj, enbId, cceLevel)
@@ -115,7 +105,7 @@ def testModifyPdcchCceLevel(cceLevel):
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
             checkRes = key_pdcch_cce_level_analyze(ueLogFilePath, cceLevel)
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
@@ -134,41 +124,26 @@ def testModifyPdcchCceLevel(cceLevel):
 @pytest.mark.支持PDCCH的传输格式
 @pytest.mark.parametrize("transferFormat, cceLevel",RUN_TESTCASE['支持PDCCH的传输格式'] if RUN_TESTCASE.get('支持PDCCH的传输格式') else [])
 def testConfirmPdcchSupportTransferFormate(transferFormat, cceLevel):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnSshIp = BASIC_DATA['pdn']['pdnSshIp']
-    pdnSshUser = BASIC_DATA['pdn']['pdnUsername']
-    pdnSshPass = BASIC_DATA['pdn']['pdnPassword']
-    nrPort = BASIC_DATA['flow']['nrPort']
-    spanTime = BASIC_DATA['flow']['spanTime']
-    cpePcIp = BASIC_DATA['flow']['cpePcIp']
-    iperfPath = BASIC_DATA['flow']['iperfLocalPath']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
-    enbDebugIp = BASIC_DATA['weblmt']['ip']
-    pcIp = BASIC_DATA['flow']['localPcIp']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
     try:
         with allure.step(key_get_time() +": 确认支持PDCCH的传输格式,传输格式:"+transferFormat+'\n'):
             logging.info(key_get_time()+': confirm support PDCCH transfer format,transfer format:'+transferFormat)
         #确认小区状态正常
         key_confirm_cell_status(hmsObj, enbId, 'available')
         dev_manager, qxdm_window, diagService = key_start_ue_log_trace()
-        pdn = key_pdn_login(pdnSshIp,pdnSshUser,pdnSshPass)
+        pdn = key_pdn_login()
         #cpe接入小区，确认pdu建立成功
         key_cpe_attach(cpe)
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_dl_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, monitorPort=nrPort, spanTime=spanTime)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
-            transferFormateRes = key_pdcch_transfer_formate_analyze(ueLogFilePath, transferFormat)
-            cceLevelRes = key_pdcch_cce_level_analyze(ueLogFilePath, cceLevel)
+            key_dl_udp_nr_flow_test(cpe, pdn)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
+            transferFormateRes = key_pdcch_transfer_formate_analyze(transferFormat)
+            cceLevelRes = key_pdcch_cce_level_analyze(cceLevel)
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
         assert transferFormateRes == True and cceLevelRes == True, '参数校验失败，请检查！'
@@ -186,26 +161,11 @@ def testConfirmPdcchSupportTransferFormate(transferFormat, cceLevel):
 @pytest.mark.支持PDSCH_调制解调方式配置
 @pytest.mark.parametrize("switch, mcs",RUN_TESTCASE['支持PDSCH_调制解调方式配置'] if RUN_TESTCASE.get('支持PDSCH_调制解调方式配置') else [])
 def testModifyPdschMcs(switch, mcs):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnSshIp = BASIC_DATA['pdn']['pdnSshIp']
-    pdnSshUser = BASIC_DATA['pdn']['pdnUsername']
-    pdnSshPass = BASIC_DATA['pdn']['pdnPassword']
-    nrPort = BASIC_DATA['flow']['nrPort']
-    spanTime = BASIC_DATA['flow']['spanTime']
-    cpePcIp = BASIC_DATA['flow']['cpePcIp']
-    iperfPath = BASIC_DATA['flow']['iperfLocalPath']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
-    enbDebugIp = BASIC_DATA['weblmt']['ip']
-    pcIp = BASIC_DATA['flow']['localPcIp']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
-    pdn = key_pdn_login(pdnSshIp,pdnSshUser,pdnSshPass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
+    pdn = key_pdn_login()
     ueLogFilePath = ''
     try:
         with allure.step(key_get_time() +": 确认支持PDSCH的调制解调方式,mcs值:"+str(mcs)+'\n'):
@@ -220,9 +180,9 @@ def testModifyPdschMcs(switch, mcs):
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_dl_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, monitorPort=nrPort, spanTime=spanTime)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
-            mcsRes = key_pdsch_mcs_analyze(ueLogFilePath, mcs)
+            key_dl_udp_nr_flow_test(cpe, pdn)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
+            mcsRes = key_pdsch_mcs_analyze(mcs)
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
         assert mcsRes == True, '参数校验失败，请检查！'
@@ -240,15 +200,10 @@ def testModifyPdschMcs(switch, mcs):
 @pytest.mark.支持随机接入PRACH格式
 @pytest.mark.parametrize("configIndex",RUN_TESTCASE['支持随机接入PRACH格式'] if RUN_TESTCASE.get('支持随机接入PRACH格式') else [])
 def testModifyPrachConfigurationIndex(configIndex):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
     ueLogFilePath = ''
     try:
         with allure.step(key_get_time() +": 检查是否随机接入PRACH格式，配置索引:"+str(configIndex)+'\n'):
@@ -263,8 +218,8 @@ def testModifyPrachConfigurationIndex(configIndex):
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
-            indexRes = key_prach_config_index_analyze(ueLogFilePath, configIndex)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
+            indexRes = key_prach_config_index_analyze(configIndex)
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
         assert indexRes == True, '参数校验失败，请检查！'
@@ -283,17 +238,11 @@ def testModifyPrachConfigurationIndex(configIndex):
 @pytest.mark.支持PUCCH传输格式_Format1
 @pytest.mark.parametrize("format1RbNumber",RUN_TESTCASE['支持PUCCH传输格式_Format1'] if RUN_TESTCASE.get('支持PUCCH传输格式_Format1') else [])
 def testPucchSupportTransferFormat1(format1RbNumber):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
     ueLogFilePath = ''
     try:
         with allure.step(key_get_time() +": 检查是否支持PUCCH传输格式Format1，RB数:"+str(format1RbNumber)+'\n'):
@@ -308,8 +257,8 @@ def testPucchSupportTransferFormat1(format1RbNumber):
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_cpe_ping(cpe, pdnIp, cpeIp = cpeIp, username=cpeUser, password=cpePass, pingInterface = pingNrInterface)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
+            key_cpe_ping(cpe, pingInterface = pingNrInterface)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
             indexRes = key_pucch_support_format_analyze(ueLogFilePath, 'format1')
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
@@ -328,17 +277,11 @@ def testPucchSupportTransferFormat1(format1RbNumber):
 @pytest.mark.支持PUCCH传输格式_Format3
 @pytest.mark.parametrize("format3RbNumber",RUN_TESTCASE['支持PUCCH传输格式_Format3'] if RUN_TESTCASE.get('支持PUCCH传输格式_Format3') else [])
 def testPucchSupportTransferFormat3(format3RbNumber):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
     ueLogFilePath = ''
     try:
         with allure.step(key_get_time() +": 检查是否支持PUCCH传输格式Format1，RB数:"+str(format3RbNumber)+'\n'):
@@ -354,9 +297,9 @@ def testPucchSupportTransferFormat3(format3RbNumber):
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_cpe_ping(cpe, pdnIp, cpeIp = cpeIp, username=cpeUser, password=cpePass, pingInterface = pingNrInterface)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
-            indexRes = key_pucch_support_format_analyze(ueLogFilePath, 'format3')
+            key_cpe_ping(cpe, pingInterface = pingNrInterface)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
+            indexRes = key_pucch_support_format_analyze('format3')
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
         assert indexRes == True, '参数校验失败，请检查！'
@@ -373,17 +316,11 @@ def testPucchSupportTransferFormat3(format3RbNumber):
 @allure.story("支持PUCCH format1和format3时隙内跳频")
 @pytest.mark.支持PUCCH_format1和format3时隙内跳频
 def testPucchSupportFormat1HopAndFormat3Hop():
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
     ueLogFilePath = ''
     try:
         #确认小区状态正常
@@ -394,9 +331,9 @@ def testPucchSupportFormat1HopAndFormat3Hop():
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_cpe_ping(cpe, pdnIp, cpeIp = cpeIp, username=cpeUser, password=cpePass, pingInterface = pingNrInterface)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
-            indexRes = key_pucch_support_format1_format3_hop_analyze(ueLogFilePath)
+            key_cpe_ping(cpe, pingInterface = pingNrInterface)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
+            indexRes = key_pucch_support_format1_format3_hop_analyze()
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
         assert indexRes == True, '参数校验失败，请检查！'
@@ -413,17 +350,11 @@ def testPucchSupportFormat1HopAndFormat3Hop():
 @allure.story("支持DMRS Mapping Type A")
 @pytest.mark.支持DMRS_Mapping_Type_A
 def testSupportDmrsMappingTypeA():
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
     ueLogFilePath = ''
     try:
         #确认小区状态正常
@@ -434,9 +365,9 @@ def testSupportDmrsMappingTypeA():
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_cpe_ping(cpe, pdnIp, cpeIp = cpeIp, username=cpeUser, password=cpePass, pingInterface = pingNrInterface)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
-            checkRes = key_support_dmrs_mapping_type_a(ueLogFilePath)
+            key_cpe_ping(cpe, pingInterface = pingNrInterface)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
+            checkRes = key_support_dmrs_mapping_type_a()
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
         assert checkRes == True, '参数校验失败，请检查！'
@@ -453,17 +384,11 @@ def testSupportDmrsMappingTypeA():
 @allure.story("支持DL DMRS Type 1")
 @pytest.mark.支持DL_DMRS_Type1
 def testSupportDLDmrsType1():
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
     ueLogFilePath = ''
     try:
         #确认小区状态正常
@@ -474,9 +399,9 @@ def testSupportDLDmrsType1():
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_cpe_ping(cpe, pdnIp, cpeIp = cpeIp, username=cpeUser, password=cpePass, pingInterface = pingNrInterface)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
-            checkRes = key_support_dl_dmrs_type1(ueLogFilePath)
+            key_cpe_ping(cpe, pingInterface = pingNrInterface)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
+            checkRes = key_support_dl_dmrs_type1()
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
         assert checkRes == True, '参数校验失败，请检查！'
@@ -493,17 +418,11 @@ def testSupportDLDmrsType1():
 @allure.story("支持UL DMRS Type 1")
 @pytest.mark.支持UL_DMRS_Type1
 def testSupportULDmrsType1():
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
     ueLogFilePath = ''
     try:
         #确认小区状态正常
@@ -514,9 +433,9 @@ def testSupportULDmrsType1():
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_cpe_ping(cpe, pdnIp, cpeIp = cpeIp, username=cpeUser, password=cpePass, pingInterface = pingNrInterface)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
-            checkRes = key_support_ul_dmrs_type1(ueLogFilePath)
+            key_cpe_ping(cpe, pingInterface = pingNrInterface)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
+            checkRes = key_support_ul_dmrs_type1()
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
         assert checkRes == True, '参数校验失败，请检查！'
@@ -534,26 +453,11 @@ def testSupportULDmrsType1():
 @pytest.mark.支持PDSCH_上行调制解调方式配置
 @pytest.mark.parametrize("switch, mcs",RUN_TESTCASE['支持PDSCH_上行调制解调方式配置'] if RUN_TESTCASE.get('支持PDSCH_上行调制解调方式配置') else [])
 def testModifyPdschUlMcs(switch, mcs):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnSshIp = BASIC_DATA['pdn']['pdnSshIp']
-    pdnSshUser = BASIC_DATA['pdn']['pdnUsername']
-    pdnSshPass = BASIC_DATA['pdn']['pdnPassword']
-    nrPort = BASIC_DATA['flow']['nrPort']
-    spanTime = BASIC_DATA['flow']['spanTime']
-    cpePcIp = BASIC_DATA['flow']['cpePcIp']
-    iperfPath = BASIC_DATA['flow']['iperfLocalPath']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
-    enbDebugIp = BASIC_DATA['weblmt']['ip']
-    pcIp = BASIC_DATA['flow']['localPcIp']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
-    pdn = key_pdn_login(pdnSshIp,pdnSshUser,pdnSshPass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
+    pdn = key_pdn_login()
     ueLogFilePath = ''
     try:
         with allure.step(key_get_time() +": 确认支持PDSCH的上行调制解调方式,mcs值:"+str(mcs)+'\n'):
@@ -568,9 +472,9 @@ def testModifyPdschUlMcs(switch, mcs):
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, monitorPort=nrPort, spanTime=spanTime)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
-            mcsRes = key_pdsch_mcs_analyze(ueLogFilePath, mcs)
+            key_ul_udp_nr_flow_test(cpe, pdn)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
+            mcsRes = key_pdsch_mcs_analyze(mcs)
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
         assert mcsRes == True, '参数校验失败，请检查！'
@@ -588,26 +492,11 @@ def testModifyPdschUlMcs(switch, mcs):
 @pytest.mark.支持单端口CSI_RS配置用于时频同步
 @pytest.mark.parametrize("trsPeriod, csiReportQuantiry",RUN_TESTCASE['支持单端口CSI_RS配置用于时频同步'] if RUN_TESTCASE.get('支持单端口CSI_RS配置用于时频同步') else [])
 def testSupportCsiRsConfig(trsPeriod, csiReportQuantiry):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnSshIp = BASIC_DATA['pdn']['pdnSshIp']
-    pdnSshUser = BASIC_DATA['pdn']['pdnUsername']
-    pdnSshPass = BASIC_DATA['pdn']['pdnPassword']
-    nrPort = BASIC_DATA['flow']['nrPort']
-    spanTime = BASIC_DATA['flow']['spanTime']
-    cpePcIp = BASIC_DATA['flow']['cpePcIp']
-    iperfPath = BASIC_DATA['flow']['iperfLocalPath']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
-    enbDebugIp = BASIC_DATA['weblmt']['ip']
-    pcIp = BASIC_DATA['flow']['localPcIp']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
-    pdn = key_pdn_login(pdnSshIp,pdnSshUser,pdnSshPass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
+    pdn = key_pdn_login()
     ueLogFilePath = ''
     try:
         with allure.step(key_get_time() +": 支持单端口CSI-RS配置用于时频同步'\n"):
@@ -623,9 +512,9 @@ def testSupportCsiRsConfig(trsPeriod, csiReportQuantiry):
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, monitorPort=nrPort, spanTime=spanTime)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
-            checkRes = key_support_csi_rs(ueLogFilePath, trsPeriod)
+            key_ul_udp_nr_flow_test(cpe, pdn)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
+            checkRes = key_support_csi_rs(trsPeriod)
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
         assert checkRes == True, '参数校验失败，请检查！'
@@ -643,26 +532,11 @@ def testSupportCsiRsConfig(trsPeriod, csiReportQuantiry):
 @pytest.mark.支持配置PRACH功率初始值和功率调整步长
 @pytest.mark.parametrize("preambleInitRxTargetPwr, pwrRampingStep",RUN_TESTCASE['支持配置PRACH功率初始值和功率调整步长'] if RUN_TESTCASE.get('支持配置PRACH功率初始值和功率调整步长') else [])
 def testConfigPreambleInitRxTargetPwrAndPwrRampingStep(preambleInitRxTargetPwr, pwrRampingStep):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnSshIp = BASIC_DATA['pdn']['pdnSshIp']
-    pdnSshUser = BASIC_DATA['pdn']['pdnUsername']
-    pdnSshPass = BASIC_DATA['pdn']['pdnPassword']
-    nrPort = BASIC_DATA['flow']['nrPort']
-    spanTime = BASIC_DATA['flow']['spanTime']
-    cpePcIp = BASIC_DATA['flow']['cpePcIp']
-    iperfPath = BASIC_DATA['flow']['iperfLocalPath']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
-    enbDebugIp = BASIC_DATA['weblmt']['ip']
-    pcIp = BASIC_DATA['flow']['localPcIp']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
-    pdn = key_pdn_login(pdnSshIp,pdnSshUser,pdnSshPass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
+    pdn = key_pdn_login()
     ueLogFilePath = ''
     try:
         #修改pdsch调度参数
@@ -675,8 +549,8 @@ def testConfigPreambleInitRxTargetPwrAndPwrRampingStep(preambleInitRxTargetPwr, 
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, monitorPort=nrPort, spanTime=spanTime)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
+            key_ul_udp_nr_flow_test(cpe, pdn)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
             checkRes = key_pre_rx_power_and_power_ramp_analyze(ueLogFilePath, preambleInitRxTargetPwr, pwrRampingStep)
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
@@ -695,26 +569,11 @@ def testConfigPreambleInitRxTargetPwrAndPwrRampingStep(preambleInitRxTargetPwr, 
 @pytest.mark.支持CSI_RS发射功率可配置
 @pytest.mark.parametrize("powerOffset",RUN_TESTCASE['支持CSI_RS发射功率可配置'] if RUN_TESTCASE.get('支持CSI_RS发射功率可配置') else [])
 def testConfigCSIRSPowerOffset(powerOffset):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnSshIp = BASIC_DATA['pdn']['pdnSshIp']
-    pdnSshUser = BASIC_DATA['pdn']['pdnUsername']
-    pdnSshPass = BASIC_DATA['pdn']['pdnPassword']
-    nrPort = BASIC_DATA['flow']['nrPort']
-    spanTime = BASIC_DATA['flow']['spanTime']
-    cpePcIp = BASIC_DATA['flow']['cpePcIp']
-    iperfPath = BASIC_DATA['flow']['iperfLocalPath']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
-    enbDebugIp = BASIC_DATA['weblmt']['ip']
-    pcIp = BASIC_DATA['flow']['localPcIp']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
-    pdn = key_pdn_login(pdnSshIp,pdnSshUser,pdnSshPass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
+    pdn = key_pdn_login()
     ueLogFilePath = ''
     try:
         #修改CSI-RS发射功率参数
@@ -727,8 +586,8 @@ def testConfigCSIRSPowerOffset(powerOffset):
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, monitorPort=nrPort, spanTime=spanTime)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
+            key_ul_udp_nr_flow_test(cpe, pdn)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
             checkRes = key_csi_rs_power_analyze(ueLogFilePath, powerOffset)
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')
@@ -747,26 +606,11 @@ def testConfigCSIRSPowerOffset(powerOffset):
 @pytest.mark.支持PUSCH资源分配方式type1
 @pytest.mark.parametrize("puschAllocType",RUN_TESTCASE['支持PUSCH资源分配方式type1'] if RUN_TESTCASE.get('支持PUSCH资源分配方式type1') else [])
 def testPuschResourceAllocationType(puschAllocType):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnSshIp = BASIC_DATA['pdn']['pdnSshIp']
-    pdnSshUser = BASIC_DATA['pdn']['pdnUsername']
-    pdnSshPass = BASIC_DATA['pdn']['pdnPassword']
-    nrPort = BASIC_DATA['flow']['nrPort']
-    spanTime = BASIC_DATA['flow']['spanTime']
-    cpePcIp = BASIC_DATA['flow']['cpePcIp']
-    iperfPath = BASIC_DATA['flow']['iperfLocalPath']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
-    enbDebugIp = BASIC_DATA['weblmt']['ip']
-    pcIp = BASIC_DATA['flow']['localPcIp']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
-    pdn = key_pdn_login(pdnSshIp,pdnSshUser,pdnSshPass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
+    pdn = key_pdn_login()
     ueLogFilePath = ''
     try:
         #修改PUSCH资源分配类型参数
@@ -779,8 +623,8 @@ def testPuschResourceAllocationType(puschAllocType):
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, monitorPort=nrPort, spanTime=spanTime)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
+            key_ul_udp_nr_flow_test(cpe, pdn)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
             checkRes = key_pusch_resource_allocation_type_analyze(ueLogFilePath, puschAllocType)
             assert checkRes == True, '参数校验失败，请检查！'
         else:
@@ -795,35 +639,16 @@ def testPuschResourceAllocationType(puschAllocType):
             os.remove(ueLogFilePath)
         else:
             shutil.move(ueLogFilePath, ueLogBackup)
-setup
-
-teardown
 
 @allure.story("支持PDSCH资源分配方式type1")
 @pytest.mark.支持PDSCH资源分配方式type1
 @pytest.mark.parametrize("pdschAllocType",RUN_TESTCASE['支持PDSCH资源分配方式type1'] if RUN_TESTCASE.get('支持PDSCH资源分配方式type1') else [])
 def testPdschResourceAllocationType(pdschAllocType):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnSshIp = BASIC_DATA['pdn']['pdnSshIp']
-    pdnSshUser = BASIC_DATA['pdn']['pdnUsername']
-    pdnSshPass = BASIC_DATA['pdn']['pdnPassword']
-    nrPort = BASIC_DATA['flow']['nrPort']
-    spanTime = BASIC_DATA['flow']['spanTime']
-    cpePcIp = BASIC_DATA['flow']['cpePcIp']
-    iperfPath = BASIC_DATA['flow']['iperfLocalPath']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
-    enbDebugIp = BASIC_DATA['weblmt']['ip']
-    pcIp = BASIC_DATA['flow']['localPcIp']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-#     cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
+    enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
-    pdn = key_pdn_login(pdnSshIp,pdnSshUser,pdnSshPass)
+    pdn = key_pdn_login()
     ueLogFilePath = ''
     try:
         #修改PDSCH资源分配类型参数
@@ -836,8 +661,8 @@ def testPdschResourceAllocationType(pdschAllocType):
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, monitorPort=nrPort, spanTime=spanTime)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
+            key_ul_udp_nr_flow_test(cpe, pdn)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
             checkRes = key_pdsch_resource_allocation_type_analyze(ueLogFilePath, pdschAllocType)
             assert checkRes == True, '参数校验失败，请检查！'
         else:
@@ -856,26 +681,11 @@ def testPdschResourceAllocationType(pdschAllocType):
 @allure.story("支持在PUCCH信道反馈周期性宽带CQI/PMI/RI")
 @pytest.mark.支持在PUCCH信道反馈周期性宽带
 def testPucchChannelFeedbackPerBandwith():
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    serialNumberList=BASIC_DATA['gnb']['serialNumberList']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    logSavePath = BASIC_DATA['cpe']['ueLogSavePath']
+    hmsObj = key_login_hms()
     ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
-    pdnSshIp = BASIC_DATA['pdn']['pdnSshIp']
-    pdnSshUser = BASIC_DATA['pdn']['pdnUsername']
-    pdnSshPass = BASIC_DATA['pdn']['pdnPassword']
-    nrPort = BASIC_DATA['flow']['nrPort']
-    spanTime = BASIC_DATA['flow']['spanTime']
-    cpePcIp = BASIC_DATA['flow']['cpePcIp']
-    iperfPath = BASIC_DATA['flow']['iperfLocalPath']
-    pdnIp = BASIC_DATA['pdn']['pdnIp']
-    enbDebugIp = BASIC_DATA['weblmt']['ip']
-    pcIp = BASIC_DATA['flow']['localPcIp']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumberList)
-    cpe = key_cpe_login(cpeIp,cpeUser,cpePass)
-    pdn = key_pdn_login(pdnSshIp,pdnSshUser,pdnSshPass)
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
+    pdn = key_pdn_login()
     ueLogFilePath = ''
     try:
         #确认小区状态正常
@@ -886,9 +696,10 @@ def testPucchChannelFeedbackPerBandwith():
         setupRes = key_confirm_pdu_setup_succ(cpe)
         if setupRes == 'success':
             key_wait(10)
-            key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, monitorPort=nrPort, spanTime=spanTime)
-            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath)
-            checkRes = key_pdsch_resource_allocation_type_analyze(ueLogFilePath, pdschAllocType)
+            key_ul_udp_nr_flow_test(cpe, pdn)
+            ueLogFilePath = key_stop_ue_log_trace(dev_manager, qxdm_window, diagService)
+            pdschAllocType = ''  #---------
+            checkRes = key_pdsch_resource_allocation_type_analyze(pdschAllocType)
             assert checkRes == True, '参数校验失败，请检查！'
         else:
             logging.info(key_get_time()+': ue attach failure, please check!')

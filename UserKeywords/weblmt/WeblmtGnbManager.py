@@ -1,23 +1,25 @@
 # coding = 'utf-8'
-from BasicModel.weblmt.weblmt import WebLmt
 '''
 Created on 2022年10月27日
 
 @author: dj
+
 '''
-
-import logging
-
-import allure
-
-from BasicService.weblmt.lmtGnbService import LmtGnbService
-from UserKeywords.basic.basic import key_get_time
-
 '''
         说明：weblmt上复位基站
         参数：
     lmtObj:weblmt对象
 '''
+
+import logging
+
+import allure
+from TestCaseData.basicConfig import BASIC_DATA
+from BasicModel.weblmt.weblmt import WebLmt
+from BasicService.weblmt.lmtGnbService import LmtGnbService
+from UserKeywords.basic.basic import key_get_time
+
+
 def key_weblmt_reboot_gnb(lmtObj):
     with allure.step(key_get_time() +": weblmt上复位基站："+lmtObj.ip+'\n'):
         logging.info(key_get_time()+': weblmt reboot gnb: '+lmtObj.ip)
@@ -30,7 +32,7 @@ def key_weblmt_reboot_gnb(lmtObj):
     lmtIp:weblmt ip地址
     lmtPort:weblmt端口号
 '''        
-def key_weblmt_login(lmtIp, lmtPort='8090'):
+def key_weblmt_login(lmtIp=BASIC_DATA['weblmt']['ip'], lmtPort=BASIC_DATA['weblmt']['port']):
     with allure.step(key_get_time()+': 登录weblmt, ip:'+lmtIp):
         logging.info(key_get_time()+': login weblmt, ip: '+lmtIp)
         lmt = LmtGnbService().lmtLogin(lmtIp, lmtPort)

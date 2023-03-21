@@ -20,7 +20,7 @@ from UserKeywords.basic.basic import key_get_time, key_wait
     serialNumberList:基站序列号列表
     softVersion:版本号
 ''' 
-def key_download_version(hmsObj, serialNumberList, softVersion, user='root', tryNum=5):
+def key_download_version(hmsObj, serialNumberList=BASIC_DATA['gnb']['serialNumberList'], softVersion=BASIC_DATA['version']['upgradeVersion'], user='root', tryNum=5):
     with allure.step(key_get_time()+": 执行版本下载，下载版本："+ softVersion+'\n'):
         logging.info(key_get_time()+': exec download task, version: '+softVersion)
         isDu = BASIC_DATA['version']['isDu2.0']
@@ -84,7 +84,7 @@ def key_query_download_status(hmsObj, enbName, tryNum=10):
         返回：
     activeRes:版本激活操作结果
 '''        
-def key_active_version(hmsObj, serialNumberList, tryNum=20):
+def key_active_version(hmsObj, serialNumberList=BASIC_DATA['gnb']['serialNumberList'], tryNum=20):
     with allure.step(key_get_time()+": 版本激活\n"):
         logging.info(key_get_time()+': exec active task!')
         for i in range (1, tryNum):
@@ -139,7 +139,7 @@ def key_query_active_status(hmsObj, enbName, tryNum=10):
         返回
     rollbackRes:版本回退操作执行结果
 '''
-def key_rollback_version(hmsObj, serialNumberList, tryNum=20):
+def key_rollback_version(hmsObj, serialNumberList=BASIC_DATA['gnb']['serialNumberList'], tryNum=20):
     with allure.step(key_get_time()+": 执行版本回退\n"):
         logging.info(key_get_time()+': exec rollabck task')
         serialNumberList = serialNumberList.split(',')
@@ -194,7 +194,7 @@ def key_query_rollback_status(hmsObj, enbName, tryNum=10):
         参数：
     serialNumberList:基站序列号列表
 '''
-def key_query_version_info(hmsObj, serialNumber):
+def key_query_version_info(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNumberList']):
     with allure.step(key_get_time()+": 版本信息查询\n"):
         logging.info(key_get_time()+': query gnb version info from device')
         resCode, resInfo = VersionService().query_gnb_version_info(hmsObj, serialNumber)
@@ -209,7 +209,7 @@ def key_query_version_info(hmsObj, serialNumber):
         参数：
     serialNumberList:基站序列号列表
 '''
-def key_query_version_info_from_device(hmsObj, serialNumber, tryNum=20):
+def key_query_version_info_from_device(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNumberList'], tryNum=20):
     with allure.step(key_get_time()+": 同步获取基站版本信息\n"):
         logging.info(key_get_time()+': query gnb version info from device')
         for i in range (1, tryNum):
@@ -228,7 +228,7 @@ def key_query_version_info_from_device(hmsObj, serialNumber, tryNum=20):
         参数：
     softVersion:版本号
 '''
-def key_query_package_exist(hmsObj, softVersion=None):
+def key_query_package_exist(hmsObj, softVersion=BASIC_DATA['version']['upgradeVersion']):
     with allure.step(key_get_time()+": 版本库中查询版本包是否存在\n"):
         logging.info(key_get_time()+': query package exist in version manager or not')
         isExist = VersionService().exist_in_version_management(hmsObj, softVersion)
@@ -243,7 +243,7 @@ def key_query_package_exist(hmsObj, softVersion=None):
         参数：
     softVersion:版本号
 '''
-def key_upload_version_to_hms(hmsObj, fileSize, version, localPath):
+def key_upload_version_to_hms(hmsObj, fileSize, version=BASIC_DATA['version']['upgradeVersion'], localPath=BASIC_DATA['version']['versionSavePath']):
     with allure.step(key_get_time()+": 上传版本包到版本库\n"):
         logging.info(key_get_time()+': upload package to HMS')
         resCode, resInfo = VersionService().upload_version_to_hms(hmsObj, fileSize, version, localPath)
@@ -259,7 +259,7 @@ def key_upload_version_to_hms(hmsObj, fileSize, version, localPath):
         参数：
     softVersion:版本号
 '''
-def key_download_gkg_to_local(verNum, savePath):
+def key_download_gkg_to_local(verNum=BASIC_DATA['version']['upgradeVersion'], savePath=BASIC_DATA['version']['versionSavePath']):
     with allure.step(key_get_time()+": 下载版本包到本地\n"):
         logging.info(key_get_time()+': the version is not exist, download package to local path!')
         fileSize = TversionService().download_gkg_to_local(verNum, savePath)
@@ -274,7 +274,7 @@ def key_download_gkg_to_local(verNum, savePath):
     softVersion:升级版本号
     savePath:版本包保存路径
 '''
-def key_upload_version_to_hms_if_version_no_exit(hmsObj, softVersion, savePath):
+def key_upload_version_to_hms_if_version_no_exit(hmsObj, softVersion=BASIC_DATA['version']['upgradeVersion'], savePath=BASIC_DATA['version']['versionSavePath']):
     with allure.step(key_get_time()+": 检查版本包是否存在，不存在则从版本库下载并上传。\n"):
         logging.info(key_get_time()+': check version package is exist in HMS.')
     isExist = key_query_package_exist(hmsObj, softVersion)
@@ -292,7 +292,7 @@ def key_upload_version_to_hms_if_version_no_exit(hmsObj, softVersion, savePath):
     verBranch:版本分支名
     curVersionNum:当前版本号
 '''         
-def key_get_newest_version(verBranch, curVersionNum):
+def key_get_newest_version(curVersionNum, verBranch=BASIC_DATA['version']['verBranch']):
     with allure.step(key_get_time()+": 查询版本库中是否有最新版本发布\n"):
         logging.info(key_get_time()+': check if has newest version in TVersion')
         newestVer = TversionService().get_newest_version(verBranch, curVersionNum)
@@ -310,7 +310,7 @@ def key_get_newest_version(verBranch, curVersionNum):
     参数：
     serialNumber:基站sn号
 '''
-def key_upload_xml_file_from_gnb_to_hms(hmsObj, serialNumber):
+def key_upload_xml_file_from_gnb_to_hms(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNumberList']):
     with allure.step(key_get_time()+": 配置文件上载。\n"):
         logging.info(key_get_time()+': upload xml file from gnb to hms.')
         dataDir = VersionService().query_gnb_info_xml(hmsObj, serialNumber)
@@ -327,7 +327,7 @@ def key_upload_xml_file_from_gnb_to_hms(hmsObj, serialNumber):
     enbId:基站enbId
     savePath:xml文件存在路径
 '''    
-def key_download_xml_file_to_local(hmsObj, enbId, savePath, tryNum=5):
+def key_download_xml_file_to_local(hmsObj, enbId, savePath=BASIC_DATA['version']['xmlSavePath'], tryNum=5):
     with allure.step(key_get_time()+": 下载配置文件到本地。\n"):
         logging.info(key_get_time()+': download xml file to local.')
         for i in range (1, tryNum):
@@ -350,7 +350,7 @@ def key_download_xml_file_to_local(hmsObj, enbId, savePath, tryNum=5):
     enbId:基站enbId
     savePath:xml文件存在路径
 '''     
-def key_upload_xml_from_local_to_hms(hmsObj, localPath, filename, fileSize, isCheckData='true'):
+def key_upload_xml_from_local_to_hms(hmsObj, filename, fileSize, isCheckData=BASIC_DATA['version']['isCheckData'], localPath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+": 上传配置文件到网管。\n"):
         logging.info(key_get_time()+': upload xml file to hms.')    
         uploadRes = VersionService().upload_xml_from_local_to_hms(hmsObj, localPath, filename, fileSize, isCheckData)
@@ -361,7 +361,7 @@ def key_upload_xml_from_local_to_hms(hmsObj, localPath, filename, fileSize, isCh
     参数：
     serialNumber:基站sn号
 '''      
-def key_delete_xml_file_by_ids(hmsObj, serialNumber):
+def key_delete_xml_file_by_ids(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNumberList']):
     with allure.step(key_get_time()+": 删除网管上的配置文件。\n"):
         logging.info(key_get_time()+': delete xml file on hms.')       
         dataId = VersionService().query_xml_data_file_info(hmsObj, serialNumber)
@@ -380,7 +380,7 @@ def key_delete_xml_file_by_ids(hmsObj, serialNumber):
     serialNumber:基站sn号
     fileName:xml文件名
 '''    
-def key_download_xml_from_hms_to_gnb(hmsObj, serialNumber, fileName):
+def key_download_xml_from_hms_to_gnb(hmsObj, fileName, serialNumber=BASIC_DATA['gnb']['serialNumberList']):
     with allure.step(key_get_time()+": 同步配置文件到基站。\n"):
         logging.info(key_get_time()+': syn xml file to gnb.')  
         dataId = VersionService().query_xml_data_file_info(hmsObj, serialNumber)     

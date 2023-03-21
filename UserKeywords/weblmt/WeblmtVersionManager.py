@@ -4,15 +4,6 @@ Created on 2022年12月27日
 
 @author: autotest
 '''
-
-
-import logging
-
-import allure
-
-from BasicService.weblmt.lmtVersionService import LmtVersionService
-from UserKeywords.basic.basic import key_get_time
-
 '''
         说明：weblmt上传版本
         参数：
@@ -20,7 +11,17 @@ from UserKeywords.basic.basic import key_get_time
     version:版本包名称
     localPath:版本包存储的本地路径
 '''
-def key_weblmt_upload_version(lmtObj, version, localPath):
+
+import logging
+
+import allure
+
+from BasicService.weblmt.lmtVersionService import LmtVersionService
+from TestCaseData.basicConfig import BASIC_DATA
+from UserKeywords.basic.basic import key_get_time
+
+
+def key_weblmt_upload_version(lmtObj, version=BASIC_DATA['version']['upgradeVersion'], localPath=BASIC_DATA['version']['versionSavePath']):
     with allure.step(key_get_time() +": weblmt上传基站版本包："+version+'\n'):
         logging.info(key_get_time()+': weblmt upload gnb version package: '+version)
         uploadRes = LmtVersionService().lmtUploadVersionPkg(lmtObj, version, localPath)
@@ -32,7 +33,7 @@ def key_weblmt_upload_version(lmtObj, version, localPath):
     lmtObj:weblmt对象
     version:版本包名称
 '''
-def key_weblmt_query_upload_result(lmtObj, version):
+def key_weblmt_query_upload_result(lmtObj, version=BASIC_DATA['version']['upgradeVersion']):
     with allure.step(key_get_time() +": weblmt上查询版本包上传结果，版本："+version+'\n'):
         logging.info(key_get_time()+': weblmt query upload result, version: '+version)
         queryUploadRes = LmtVersionService().lmtQueryUploadProcess(lmtObj, version)
@@ -44,7 +45,7 @@ def key_weblmt_query_upload_result(lmtObj, version):
     lmtObj:weblmt对象
     version:版本包名称
 '''
-def key_weblmt_active_version(lmtObj, version):
+def key_weblmt_active_version(lmtObj, version=BASIC_DATA['version']['upgradeVersion']):
     with allure.step(key_get_time() +": weblmt上激活版本包："+version+'\n'):
         logging.info(key_get_time()+': weblmt active version package: '+version)
         activeRes = LmtVersionService().lmtActiveVersion(lmtObj, version)

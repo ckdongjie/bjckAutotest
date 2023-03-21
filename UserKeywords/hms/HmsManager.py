@@ -24,11 +24,7 @@ from TestCaseData.basicConfig import BASIC_DATA
         返回：
     hmsObj:hms对象
 '''
-def key_login_hms(hmsIp='172.16.2.159', hmsPort='18088', username='root', password='hms123...'):
-    hmsIp = BASIC_DATA['hms']['ip'] if not hmsIp else hmsIp
-    hmsPort = BASIC_DATA['hms']['port'] if not hmsPort else hmsPort
-    username = BASIC_DATA['hms']['username'] if not username else username
-    password = BASIC_DATA['hms']['password'] if not password else password
+def key_login_hms(hmsIp=BASIC_DATA['hms']['ip'], hmsPort=BASIC_DATA['hms']['port'], username=BASIC_DATA['hms']['username'], password=BASIC_DATA['hms']['password']):
     with allure.step(key_get_time() +": 登录网管\n"):
         logging.info(key_get_time() +": login HMS, ip: "+hmsIp+",username: "+username)
         hmsObj = hmsService(hmsIp, hmsPort).login_hms(username, password)
@@ -44,7 +40,7 @@ def key_login_hms(hmsIp='172.16.2.159', hmsPort='18088', username='root', passwo
     enbId:基站id
     enbName:基站名称
 '''
-def key_get_enb_info(hmsObj, serialNumber):
+def key_get_enb_info(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNumberList']):
     if hmsObj==None:
         hmsObj = HMS()
     with allure.step(key_get_time() +": 查询基站信息\n"):

@@ -84,10 +84,10 @@ BASIC_DATA = {
         },
     'flow':{
             'type':'TCP',#UDP/TCP
-            'nrPort':5579, #nr灌包端口号
-            'wifiPort':5599,#wifi灌包端口号
+            'nrPort':'5579', #nr灌包端口号
+            'wifiPort':'5599',#wifi灌包端口号
             'size':'500m', #灌包流量
-            'processNum':3, #进程个数据
+            'processNum':'3', #进程个数据
             'dir':'DL', #DL--下行，UL--上行，UDL--上下行
             'iperfLocalPath':'D:\iperf-3.1.3-win64',
             'scrapFileName':'autotest.pcap',
@@ -121,6 +121,8 @@ BASIC_DATA = {
         },
     'alarm':{
             'activeBlackList':['gNodeB NG Fault'],
-            'historyBlackList':['gNodeB NG Fault']
+            'activeWhiteList':[],
+            'historyBlackList':['gNodeB NG Fault'],
+            'historyWhiteList':[]
         }
     }

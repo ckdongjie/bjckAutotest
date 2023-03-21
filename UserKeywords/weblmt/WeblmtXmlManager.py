@@ -5,14 +5,14 @@ Created on 2022年11月11日
 @author: dj
 '''
 
+
 import logging
 
 import allure
 
-from BasicService.weblmt.lmtCellService import LmtCellService
 from BasicService.weblmt.lmtXmlService import LmtXmlService
-from UserKeywords.basic.basic import key_get_time, key_wait
-from UserKeywords.weblmt.WeblmtGnbManager import key_weblmt_login
+from TestCaseData.basicConfig import BASIC_DATA
+from UserKeywords.basic.basic import key_get_time
 
 '''
             说明：下载xml文件到本地目录
@@ -20,7 +20,7 @@ from UserKeywords.weblmt.WeblmtGnbManager import key_weblmt_login
     xmlFilename:xml文件名,默认是BntCfgFile
     savePath:保存xml文件的本地路径
 '''   
-def key_export_xml_file(weblmt, savePath, xmlFilename='BntCfgFile'):
+def key_export_xml_file(weblmt, savePath=BASIC_DATA['version']['xmlSavePath'], xmlFilename='BntCfgFile'):
     with allure.step(key_get_time() +": 从weblmt上导出配置数据。\n"):
         logging.info(key_get_time()+': export xml file from weblmt.')
         exportRes = LmtXmlService().export_xml_file_to_local(weblmt, savePath, xmlFilename)
@@ -37,7 +37,7 @@ def key_export_xml_file(weblmt, savePath, xmlFilename='BntCfgFile'):
     filename:xml文件名,默认是BntCfgFile
     localPath:保存xml文件的本地路径
 '''         
-def key_upload_xml_to_weblmt(weblmt, localPath, filename='BntCfgFile'):
+def key_upload_xml_to_weblmt(weblmt, localPath=BASIC_DATA['version']['xmlSavePath'], filename='BntCfgFile'):
     with allure.step(key_get_time() +": 上传配置文件到weblmt。\n"):
         logging.info(key_get_time()+': upload xml file to weblmt.')
         uploadRes = LmtXmlService().upload_xml_file_to_lmt(weblmt, localPath, filename)

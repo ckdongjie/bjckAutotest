@@ -17,10 +17,11 @@ import logging
 import allure
 
 from BasicService.ue.mate30Service import mate30Service
+from TestCaseData.basicConfig import BASIC_DATA
 from UserKeywords.basic.basic import key_get_time
 
 
-def key_login_serial(serialPort='COM9', serialRate=115200, timeout = 30):
+def key_login_serial(serialPort=BASIC_DATA['mate30']['serialPort'], serialRate=BASIC_DATA['mate30']['serialRate'], timeout = 30):
     with allure.step(key_get_time()+": 登录mate30串口\n"):
         logging.warning(key_get_time()+': login mate30')
         mate30 = mate30Service().login_serial(serialPort, serialRate, timeout)
@@ -73,7 +74,7 @@ def key_query_attach_info(mate30):
     ueIp:ue ip地址，从pdn上执行ping命令
     pingNum:ping包次数
 '''       
-def key_mate30_ping_test(mate30, pdn, ueIp='190.1.169.96', pingNum=20):
+def key_mate30_ping_test(mate30, pdn, ueIp=BASIC_DATA['mate30']['ueIp'], pingNum=BASIC_DATA['ping']['pingNum']):
     with allure.step(key_get_time()+": mate30执行ping包测试\n"):
         logging.warning(key_get_time()+': exec ping test on mate30')
         pingRes = mate30Service.mate30_ping_test(mate30, pdn, ueIp, pingNum)
@@ -88,7 +89,7 @@ def key_mate30_ping_test(mate30, pdn, ueIp='190.1.169.96', pingNum=20):
     processNum:进程个数
 '''     
 #PDN Send UDP Package To Ue(DL)
-def key_send_udp_package_DL(mate30, pdnIp, packageSize='500m', monitorPort='5555', processNum = '3'):
+def key_send_udp_package_DL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum = BASIC_DATA['flow']['processNum']):
     with allure.step(key_get_time()+": mate30执行下行udp灌包测试\n"):
         logging.warning(key_get_time()+': exec DL udp test on mate30')
         updDlRes = mate30Service().send_udp_package_DL(mate30, pdnIp, packageSize, monitorPort, processNum)
@@ -103,7 +104,7 @@ def key_send_udp_package_DL(mate30, pdnIp, packageSize='500m', monitorPort='5555
     processNum:进程个数
 '''
 #Ue Send UDP Package To PDN(UL)
-def key_send_udp_package_UL(mate30, pdnIp, packageSize='300m', monitorPort='5555', processNum = '3'):
+def key_send_udp_package_UL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum = BASIC_DATA['flow']['processNum']):
     with allure.step(key_get_time()+": mate30执行上行udp灌包测试\n"):
         logging.warning(key_get_time()+': exec UL udp test on mate30')
         udpUlRes = mate30Service().send_udp_package_UL(mate30, pdnIp, packageSize, monitorPort, processNum)
@@ -118,7 +119,7 @@ def key_send_udp_package_UL(mate30, pdnIp, packageSize='300m', monitorPort='5555
     processNum:进程个数
 '''        
 #PDN Send TCP Package To Ue(DL)
-def key_send_tcp_package_DL(mate30, pdnIp, packageSize='500m', monitorPort='5555', processNum = '3'):
+def key_send_tcp_package_DL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum = BASIC_DATA['flow']['processNum']):
     with allure.step(key_get_time()+": mate30执行下行tcp灌包测试\n"):
         logging.warning(key_get_time()+': exec DL tcp test on mate30')
         tcpDlRes = mate30Service().send_tcp_package_DL(mate30, pdnIp, packageSize, monitorPort, processNum)
@@ -133,7 +134,7 @@ def key_send_tcp_package_DL(mate30, pdnIp, packageSize='500m', monitorPort='5555
     processNum:进程个数
 '''    
 #Ue Send TCP Package To PDN(UL)
-def key_send_tcp_package_UL(mate30, pdnIp, packageSize='500m', monitorPort='5555', processNum = '3'):
+def key_send_tcp_package_UL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum = BASIC_DATA['flow']['processNum']):
     with allure.step(key_get_time()+": mate30执行上行tcp灌包测试\n"):
         logging.warning(key_get_time()+': exec UL tcp test on mate30')
         tcpUlRes = mate30Service().send_tcp_package_UL(mate30, pdnIp, packageSize, monitorPort, processNum)

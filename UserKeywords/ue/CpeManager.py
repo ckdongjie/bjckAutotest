@@ -23,10 +23,7 @@ from TestCaseData.basicConfig import BASIC_DATA
     username:cpe前台登录用户名
     passward:cpe前台登录密码
 '''
-def key_cpe_login(cpeIp=None, username=None, password=None):
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp'] if not cpeIp else cpeIp
-    username = BASIC_DATA['cpe']['username'] if not username else username
-    password = BASIC_DATA['cpe']['cpeSshIp'] if not password else password
+def key_cpe_login(cpeIp=BASIC_DATA['cpe']['cpeSshIp'], username=BASIC_DATA['cpe']['cpeUsername'], password=BASIC_DATA['cpe']['cpePassword']):
     with allure.step(key_get_time() +": 登录CPE前台\n"):
         logging.info(key_get_time()+': login cpe command model')
         cpe = CpeService().cpe_login(cpeIp, username, password)
@@ -93,7 +90,7 @@ def key_cpe_attach_cell_info(cpe):
     ping_interface:cpe ping包网卡
     log_save_path:ping包log记得路径
 '''      
-def key_cpe_ping(cpe, pdnIp, pingNum=20, pingInterface = 'rmnet_data0', log_save_path='C:\\', tryNum =5, pingSize=32):
+def key_cpe_ping(cpe, pdnIp=BASIC_DATA['pdn']['pdnIp'], pingNum=BASIC_DATA['ping']['pingNum'], pingInterface = BASIC_DATA['cpe']['pingNrInterface'], log_save_path=BASIC_DATA['ping']['logSavePath'], tryNum =5, pingSize=BASIC_DATA['ping']['pingSize']):
     with allure.step(key_get_time() +": 执行ping包命令, 端口："+pingInterface):
         logging.info(key_get_time()+': exec ping command, interface: '+pingInterface)
         min, avg, max, transmitted, received, lossrate = CpeService().cpe_ping_test(cpe, pdnIp, pingNum, pingInterface, pingSize)
@@ -158,7 +155,7 @@ def key_cpe_logout_at_model(cpe):
     monitorPort:使用端口
     processNum:进程个数  
 '''            
-def key_dl_udp_wifi_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, scrapFileName='autotest.pcap', packageSize= '500m', monitorPort=5559, processNum=3, spanTime=120):
+def key_dl_udp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 下行UDP流量测试"):
         logging.info(key_get_time()+': exec DL UDP flow test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
@@ -192,7 +189,7 @@ def key_dl_udp_wifi_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, p
     monitorPort:使用端口
     processNum:进程个数  
 '''            
-def key_dl_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, scrapFileName='autotest.pcap', packageSize= '500m', monitorPort=5559, processNum=3, spanTime=120):
+def key_dl_udp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 下行UDP流量测试"):
         logging.info(key_get_time()+': exec DL UDP flow test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
@@ -226,7 +223,7 @@ def key_dl_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcI
     monitorPort:使用端口
     processNum:进程个数  
 '''       
-def key_ul_udp_wifi_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, scrapFileName='autotest.pcap', packageSize= '500m',monitorPort=5559, processNum =3, spanTime=120):
+def key_ul_udp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum =BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 上行UDP流量测试"):
         logging.info(key_get_time()+': exec UL UDP flow test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
@@ -260,7 +257,7 @@ def key_ul_udp_wifi_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, p
     monitorPort:使用端口
     processNum:进程个数  
 '''       
-def key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, scrapFileName='autotest.pcap', packageSize= '500m',monitorPort=5559, processNum =3, spanTime=120):
+def key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum =BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 上行UDP流量测试"):
         logging.info(key_get_time()+': exec UL UDP flow test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
@@ -294,7 +291,7 @@ def key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcI
     monitorPort:使用端口
     processNum:进程个数  
 '''       
-def key_dl_tcp_wifi_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, scrapFileName='autotest.pcap', packageSize='500m',monitorPort=5559, processNum=3, spanTime=120):
+def key_dl_tcp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 下行TCP流量测试"):
         logging.info(key_get_time()+': exec DL WIFI TCP flow test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
@@ -330,7 +327,7 @@ def key_dl_tcp_wifi_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, p
     monitorPort:使用端口
     processNum:进程个数  
 '''       
-def key_dl_tcp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, scrapFileName='autotest.pcap', packageSize= '500m',monitorPort=5559, processNum=3, spanTime=120):
+def key_dl_tcp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 下行TCP流量测试"):
         logging.info(key_get_time()+': exec DL NR TCP flow test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
@@ -365,7 +362,7 @@ def key_dl_tcp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcI
     monitorPort:使用端口
     processNum:进程个数  
 '''        
-def key_ul_tcp_wifi_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, scrapFileName='autotest.pcap', packageSize= '500m',monitorPort=5559, processNum=3, spanTime=120):
+def key_ul_tcp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 上行TCP流量测试"):
         logging.info(key_get_time()+': exec UL TCP flow test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
@@ -400,7 +397,7 @@ def key_ul_tcp_wifi_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, p
     monitorPort:使用端口
     processNum:进程个数  
 '''        
-def key_ul_tcp_nr_flow_test(cpe, pdn, cpePcIp, iperfPath, pdnIp, enbDebugIp, pcIp, scrapFileName='autotest.pcap', packageSize= '500m',monitorPort=5559, processNum=3, spanTime=120):
+def key_ul_tcp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 上行TCP流量测试"):
         logging.info(key_get_time()+': exec UL TCP flow test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
@@ -438,7 +435,7 @@ def key_start_ue_log_trace():
            功能：停止ue log跟踪
            参数：
 '''
-def key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath):
+def key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': 停止ue log跟踪'):
         logging.info(key_get_time()+': stop ue log trace')
         logFilePath = QutsService().stopUeLogTrace(dev_manager, qxdm_window, diagService, logSavePath)
@@ -450,7 +447,7 @@ def key_stop_ue_log_trace(dev_manager, qxdm_window, diagService, logSavePath):
         logFilePath：ue log文件路径
         symbolNumber：时隙配置参数
 '''    
-def key_pdcch_symbol_number_analyze(ueLogFilePath, symbolNumber='Adaptive'):
+def key_pdcch_symbol_number_analyze(symbolNumber='Adaptive', ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': PDCCH时隙配置参数校验'):
         logging.info(key_get_time()+': PDCCH symbol number params analyze')
         attrDict = {
@@ -473,7 +470,7 @@ def key_pdcch_symbol_number_analyze(ueLogFilePath, symbolNumber='Adaptive'):
         logFilePath：ue log文件路径
         cceLevel：cce聚合等级
 '''     
-def key_pdcch_cce_level_analyze(ueLogFilePath, cceLevel):
+def key_pdcch_cce_level_analyze(cceLevel, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': PDCCH CCE等级参数检验'):
         logging.info(key_get_time()+': PDCCH CCE level params analyze')
         typeDict = {'CCE_4':'LEVEL_4', 'CCE_8':'LEVEL_8', 'CCE_16':'LEVEL_16'}
@@ -503,7 +500,7 @@ def key_pdcch_cce_level_analyze(ueLogFilePath, cceLevel):
         logFilePath：ue log文件路径
         transferFormat：传输格式
 '''     
-def key_pdcch_transfer_formate_analyze(ueLogFilePath, transferFormat):
+def key_pdcch_transfer_formate_analyze(transferFormat, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': PDCCH传输格式参数检验'):
         logging.info(key_get_time()+': PDCCH transfer format params analyze')
         transferFormatDict = {'Format0_0':'dci-Format0-0-AndFormat1-0',
@@ -529,7 +526,7 @@ def key_pdcch_transfer_formate_analyze(ueLogFilePath, transferFormat):
         logFilePath：ue log文件路径
         mcs：mcs值
 '''     
-def key_pdsch_mcs_analyze(ueLogFilePath, mcs):
+def key_pdsch_mcs_analyze(mcs, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': PDSCH调度参数校验，参数值：'+str(mcs)):
         logging.info(key_get_time()+': PDSCH mcs params analyze')
         if mcs>=0 and mcs <5:
@@ -561,7 +558,7 @@ def key_pdsch_mcs_analyze(ueLogFilePath, mcs):
         logFilePath：ue log文件路径
         index：索引值
 '''     
-def key_prach_config_index_analyze(ueLogFilePath, index):
+def key_prach_config_index_analyze(index, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': PRACH配置索引参数校验，参数值：'+str(index)):
         logging.info(key_get_time()+': PRACH config index params analyze, index:'+str(index))
         if index >= 145 and index <= 167 :
@@ -588,7 +585,7 @@ def key_prach_config_index_analyze(ueLogFilePath, index):
         logFilePath：ue log文件路径
         formatType：format类型--format1/format3
 '''     
-def key_pucch_support_format_analyze(ueLogFilePath, formatType):
+def key_pucch_support_format_analyze(formatType, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': PUCCH支持格式校验，格式值：'+formatType):
         logging.info(key_get_time()+': PUCCH support format, format:'+formatType)
         
@@ -607,7 +604,7 @@ def key_pucch_support_format_analyze(ueLogFilePath, formatType):
            参数：
         logFilePath：ue log文件路径
 '''     
-def key_pucch_support_format1_format3_hop_analyze(ueLogFilePath):
+def key_pucch_support_format1_format3_hop_analyze(ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': 支持PUCCH format1和format3时隙内跳频'):
         logging.info(key_get_time()+': support PUCCH format1 hop and format3 hop')
         resultDict = LogAnalyzeService().nr5g_mac_ul_physical_channel_schedule_analyze(ueLogFilePath)
@@ -625,7 +622,7 @@ def key_pucch_support_format1_format3_hop_analyze(ueLogFilePath):
            参数：
         logFilePath：ue log文件路径
 '''     
-def key_support_dmrs_mapping_type_a(ueLogFilePath):
+def key_support_dmrs_mapping_type_a(ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': 支持DMRS Mapping Type A'):
         logging.info(key_get_time()+': support DMRS mapping type A')
         resultDict = LogAnalyzeService().dl_ccch_rrc_setup_analyze(ueLogFilePath)
@@ -643,7 +640,7 @@ def key_support_dmrs_mapping_type_a(ueLogFilePath):
            参数：
         logFilePath：ue log文件路径
 '''     
-def key_support_dl_dmrs_type1(ueLogFilePath):
+def key_support_dl_dmrs_type1(ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': 支持DL DMRS Type1'):
         logging.info(key_get_time()+': support DL DMRS type1')
         resultDict = LogAnalyzeService().dl_ccch_rrc_setup_analyze(ueLogFilePath)
@@ -661,7 +658,7 @@ def key_support_dl_dmrs_type1(ueLogFilePath):
            参数：
         logFilePath：ue log文件路径
 '''     
-def key_support_ul_dmrs_type1(ueLogFilePath):
+def key_support_ul_dmrs_type1(ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': 支持UL DMRS Type1'):
         logging.info(key_get_time()+': support UL DMRS type1')
         resultDict = LogAnalyzeService().dl_ccch_rrc_setup_analyze(ueLogFilePath)
@@ -679,7 +676,7 @@ def key_support_ul_dmrs_type1(ueLogFilePath):
            参数：
         logFilePath：ue log文件路径
 '''     
-def key_support_csi_rs(ueLogFilePath, trsPeriod):
+def key_support_csi_rs(trsPeriod, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': 支持单端口CSI-RS配置用于时频同步'):
         logging.info(key_get_time()+': support CSI-RS config')
         attrDict = {
@@ -700,7 +697,7 @@ def key_support_csi_rs(ueLogFilePath, trsPeriod):
            参数：
         logFilePath：ue log文件路径
 '''     
-def key_sib2_smtc_analyze(ueLogFilePath, smtcPeriod):
+def key_sib2_smtc_analyze(smtcPeriod, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': 支持smtc周期配置'):
         logging.info(key_get_time()+': support smtc period config')
         analyRes = LogAnalyzeService().sib2_smtc_analyze(ueLogFilePath, smtcPeriod)
@@ -712,7 +709,7 @@ def key_sib2_smtc_analyze(ueLogFilePath, smtcPeriod):
            参数：
         logFilePath：ue log文件路径
 '''     
-def key_sib1_ssb_period_analyze(ueLogFilePath, ssbPeriod):
+def key_sib1_ssb_period_analyze(ssbPeriod, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+': 支持ssb周期配置'):
         logging.info(key_get_time()+': support ssb period config')
         analyRes = LogAnalyzeService().sib1_ssb_period_analyze(ueLogFilePath, ssbPeriod)
@@ -724,7 +721,7 @@ def key_sib1_ssb_period_analyze(ueLogFilePath, ssbPeriod):
            参数：
         logFilePath：ue log文件路径
 '''     
-def key_ssb_frequenty_position_analyze(ueLogFilePath, ssbFreqPos):
+def key_ssb_frequenty_position_analyze(ssbFreqPos, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+':校验ssb频率位置配置'):
         logging.info(key_get_time()+':check ssb frequency position config')
         resultDict = LogAnalyzeService().nr5g_rrc_mib_info_analyze(ueLogFilePath, ssbFreqPos)
@@ -745,7 +742,7 @@ def key_ssb_frequenty_position_analyze(ueLogFilePath, ssbFreqPos):
         preambleReceivedTargetPower：功率初始值
         powerRampingStep：功率调整步长
 '''     
-def key_pre_rx_power_and_power_ramp_analyze(ueLogFilePath, preambleReceivedTargetPower, powerRampingStep):
+def key_pre_rx_power_and_power_ramp_analyze(preambleReceivedTargetPower, powerRampingStep, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+':校验功率初始值和功率调整步长参数是否生效'):
         logging.info(key_get_time()+':check pre rx power and power ramp')
         attrDict = {'preambleReceivedTargetPower':preambleReceivedTargetPower, 'powerRampingStep':powerRampingStep}
@@ -764,7 +761,7 @@ def key_pre_rx_power_and_power_ramp_analyze(ueLogFilePath, preambleReceivedTarge
            参数：
         logFilePath：ue log文件路径
 '''     
-def key_po_nominal_pusch_analyze(ueLogFilePath, poNominal):
+def key_po_nominal_pusch_analyze(poNominal, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+':校验p0 nominal配置参数'):
         logging.info(key_get_time()+':check po nominal config')
         attrDict = {'p0NominalPusch':poNominal}
@@ -783,7 +780,7 @@ def key_po_nominal_pusch_analyze(ueLogFilePath, poNominal):
            参数：
         logFilePath：ue log文件路径
 '''     
-def key_path_loss_coefficient_analyze(ueLogFilePath, alpha):
+def key_path_loss_coefficient_analyze(alpha, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+':校验Path Loss Coefficient参数'):
         logging.info(key_get_time()+':check path loss coefficient config')
         checkDict = {'alpha':alpha}
@@ -804,7 +801,7 @@ def key_path_loss_coefficient_analyze(ueLogFilePath, alpha):
         preambleReceivedTargetPower：功率初始值
         powerRampingStep：功率调整步长
 '''     
-def key_system_info_parameter_analyze(ueLogFilePath, subcarrierSpacing, nrofDownlinkSlots, nrofDownlinkSymbols):
+def key_system_info_parameter_analyze(subcarrierSpacing, nrofDownlinkSlots, nrofDownlinkSymbols, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+':校验功率初始值和功率调整步长参数是否生效'):
         logging.info(key_get_time()+':check pre rx power and power ramp')
         attrDict = {
@@ -828,7 +825,7 @@ def key_system_info_parameter_analyze(ueLogFilePath, subcarrierSpacing, nrofDown
         logFilePath：ue log文件路径
         csiRsPowerOffset：功率初始值
 '''     
-def key_csi_rs_power_analyze(ueLogFilePath, csiRsPowerOffset):
+def key_csi_rs_power_analyze(csiRsPowerOffset, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+':校验CSI-RS功率配置参数是否生效'):
         logging.info(key_get_time()+':check csi-rs power')
         result = LogAnalyzeService().csi_rs_power_analyze(ueLogFilePath, csiRsPowerOffset)
@@ -840,7 +837,7 @@ def key_csi_rs_power_analyze(ueLogFilePath, csiRsPowerOffset):
         logFilePath：ue log文件路径
         puschAllocType：pusch资源分配类型
 '''     
-def key_pusch_resource_allocation_type_analyze(ueLogFilePath, puschAllocType):
+def key_pusch_resource_allocation_type_analyze(puschAllocType, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+':校验pusch资源分配类型参数是否生效'):
         logging.info(key_get_time()+':check pusch resource allocation type')
         result = LogAnalyzeService().pusch_res_allocation_type_analyze(ueLogFilePath, puschAllocType)
@@ -852,7 +849,7 @@ def key_pusch_resource_allocation_type_analyze(ueLogFilePath, puschAllocType):
         logFilePath：ue log文件路径
         pdschAllocType：pdsch资源分配类型
 '''     
-def key_pdsch_resource_allocation_type_analyze(ueLogFilePath, pdschAllocType):
+def key_pdsch_resource_allocation_type_analyze(pdschAllocType, ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+':校验pdsch资源分配类型参数是否生效'):
         logging.info(key_get_time()+':check pdsch resource allocation type')
         result = LogAnalyzeService().pdsch_res_alloca_type_analyze(ueLogFilePath, pdschAllocType)
@@ -864,7 +861,7 @@ def key_pdsch_resource_allocation_type_analyze(ueLogFilePath, pdschAllocType):
         logFilePath：ue log文件路径
         pdschAllocType：pdsch资源分配类型
 '''     
-def key_pucch_channel_feedback_per_bandwith_analyze(ueLogFilePath):
+def key_pucch_channel_feedback_per_bandwith_analyze(ueLogFilePath=BASIC_DATA['version']['xmlSavePath']):
     with allure.step(key_get_time()+':校验pdsch资源分配类型参数是否生效'):
         logging.info(key_get_time()+':check pdsch resource allocation type')
         result = LogAnalyzeService().pucch_channel_feedback_per_bandwith_analyze(ueLogFilePath)

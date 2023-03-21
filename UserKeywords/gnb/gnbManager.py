@@ -9,7 +9,9 @@ Created on 2022年11月17日
 
 import logging
 import allure
+
 from BasicService.gnb.gnbService import gnbService
+from TestCaseData.basicConfig import BASIC_DATA
 from UserKeywords.basic.basic import key_get_time
 
 '''
@@ -19,7 +21,7 @@ from UserKeywords.basic.basic import key_get_time
     username:登录用户名
     password:登录密码
 ''' 
-def key_ssh_login_gnb(gnbIp, username, password):
+def key_ssh_login_gnb(gnbIp=BASIC_DATA['weblmt']['ip'], username=BASIC_DATA['gnb']['username'], password=BASIC_DATA['gnb']['password']):
     with allure.step(key_get_time() +": ssh登录基站\n"):
         logging.info(key_get_time()+': login gnb by ssh.')
         gnb = gnbService().ssh_login_gnb(gnbIp, username, password)

@@ -5,10 +5,13 @@ Created on 2023年2月7日
 @author: autotest
 
 '''
-import allure
-from UserKeywords.basic.basic import key_get_time
+
+
 import logging
+import allure
 from BasicService.attenuator.attenuatorService import AttenuatorService
+from TestCaseData.basicConfig import BASIC_DATA
+from UserKeywords.basic.basic import key_get_time
 
 '''
     说明：连接程控衰减
@@ -16,7 +19,7 @@ from BasicService.attenuator.attenuatorService import AttenuatorService
     serialPort:程控衰减虚拟串口号
     serialRate:程控衰减串口速率
 '''
-def key_connect_attenuator(serialPort='COM8', serialRate=9600):
+def key_connect_attenuator(serialPort=BASIC_DATA['attenuator']['serialPort'], serialRate=BASIC_DATA['attenuator']['serialRate']):
     with allure.step(key_get_time() +":串口连接可调衰减:"+serialPort+','+str(serialRate)):
         logging.info(key_get_time()+':connect attenuator by serial:'+serialPort+','+str(serialRate))
         attenuator = AttenuatorService().connect_attenuator(serialPort, serialRate)

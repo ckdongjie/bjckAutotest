@@ -29,16 +29,11 @@ sys.path.append(BASE_DIR)
 @pytest.mark.parametrize("testNum",RUN_TESTCASE['反复闭塞解闭塞小区并ping包测试'] if RUN_TESTCASE.get('反复闭塞解闭塞小区并ping包测试') else [])    
 @pytest.mark.反复闭塞解闭塞小区并ping包测试
 def testUnBlockAndBlockCellPingStatus(testNum):
-    serialNumber=BASIC_DATA['gnb']['serialNumberList']
-    pdnIp=BASIC_DATA['pdn']['pdnIp']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
     pingwifiInterface = BASIC_DATA['cpe']['pingWifiInterface']
-    hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
-    cpeIp = BASIC_DATA['cpe']['cpeSshIp']
-    cpeUser = BASIC_DATA['cpe']['cpeUsername']
-    cpePass = BASIC_DATA['cpe']['cpePassword']
-    enbId, enbName = key_get_enb_info(hmsObj, serialNumber)
-    cpe = key_cpe_login(cpeIp, cpeUser, cpePass)
+    hmsObj = key_login_hms()
+    enbId, enbName = key_get_enb_info(hmsObj)
+    cpe = key_cpe_login()
     for i in range (1, testNum+1):
         with allure.step(key_get_time()+':执行第 '+str(i)+'次测试'):
             logging.info(key_get_time()+':run the test <'+str(i)+'> times')
@@ -54,8 +49,8 @@ def testUnBlockAndBlockCellPingStatus(testNum):
         with allure.step('确认小区状态为可用状态'):
             key_confirm_cell_status(hmsObj, enbId, expectStatus='available') 
         with allure.step('cpe ping包测试'):
-            key_cpe_ping(cpe, pdnIp, cpeIp = cpeIp, username=cpeUser, password=cpePass, pingInterface = pingNrInterface)
-            key_cpe_ping(cpe, pdnIp, cpeIp = cpeIp, username=cpeUser, password=cpePass, pingInterface = pingwifiInterface)
+            key_cpe_ping(cpe, pingInterface = pingNrInterface)
+            key_cpe_ping(cpe, pingInterface = pingwifiInterface)
             
                           
 if __name__ == "__main__":
