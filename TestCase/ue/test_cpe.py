@@ -39,6 +39,7 @@ globalPara.init()
 def testDetachAndAttachAccessSuccRate(testNum):
     attachDelay=BASIC_DATA['attach']['attachDelay']
     detachDelay=BASIC_DATA['attach']['detachDelay']
+    exptSuccRate = BASIC_DATA['attach']['succRate']
     AccSuccNum = 0
     cpe = key_cpe_login()
     for i in range (1,testNum+1):
@@ -58,13 +59,13 @@ def testDetachAndAttachAccessSuccRate(testNum):
             AccSuccNum = AccSuccNum + 1
     with allure.step(key_get_time()+': CPE接入成功率:'+str(AccSuccNum)+'/'+str(testNum)):
         logging.warning(key_get_time()+': CPE access success rate:'+str(AccSuccNum)+'/'+str(testNum))
+    assert (AccSuccNum/testNum)*100 >= exptSuccRate, '接入成功率小于预期，请检查！'
         
 @allure.story("CPE复位后接入成功率测试")
 @pytest.mark.CPE复位后接入成功率测试
 @pytest.mark.parametrize("testNum",RUN_TESTCASE['CPE复位后接入成功率测试'] if RUN_TESTCASE.get('CPE复位后接入成功率测试') else [])
 def testRebootCpeAccessSuccRate(testNum):
-    attachDelay=BASIC_DATA['attach']['attachDelay']
-    detachDelay=BASIC_DATA['attach']['detachDelay']
+    exptSuccRate = BASIC_DATA['attach']['succRate']
     AccSuccNum = 0
     cpe = key_cpe_login()
     for i in range (1,testNum+1):
@@ -89,7 +90,7 @@ def testRebootCpeAccessSuccRate(testNum):
             AccSuccNum = AccSuccNum + 1
     with allure.step(key_get_time()+': CPE接入成功率:'+str(AccSuccNum)+'/'+str(testNum)):
         logging.warning(key_get_time()+': CPE access success rate:'+str(AccSuccNum)+'/'+str(testNum))
-
+    assert (AccSuccNum/testNum)*100 >= exptSuccRate, '接入成功率小于预期，请检查！'
       
 @allure.story("基站复位后接入成功率测试")
 @pytest.mark.run(order=4)
@@ -98,7 +99,7 @@ def testRebootCpeAccessSuccRate(testNum):
 @pytest.mark.parametrize("testNum",RUN_TESTCASE['基站复位后接入成功率测试'] if RUN_TESTCASE.get('基站复位后接入成功率测试') else [])
 def testRebootGnbAccessSuccRate(testNum):
     attachDelay=BASIC_DATA['attach']['attachDelay']
-    detachDelay=BASIC_DATA['attach']['detachDelay']
+    exptSuccRate = BASIC_DATA['attach']['succRate']
     AccSuccNum = 0
     cpe = key_cpe_login()
     key_cpe_attach(cpe)
@@ -125,6 +126,7 @@ def testRebootGnbAccessSuccRate(testNum):
             AccSuccNum = AccSuccNum + 1
     with allure.step(key_get_time()+': CPE接入成功率:'+str(AccSuccNum)+'/'+str(testNum)):
         logging.warning(key_get_time()+': CPE access success rate:'+str(AccSuccNum)+'/'+str(testNum))
+    assert (AccSuccNum/testNum)*100 >= exptSuccRate, '接入成功率小于预期，请检查！'
 
   
 @allure.story("去激活激活小区后接入成功率测试")
@@ -137,6 +139,7 @@ def testDeactiveAndActiveCellAccessSuccRate(testNum):
     cpe = key_cpe_login()
     hmsObj = key_login_hms()
     enbId, enbName = key_get_enb_info(hmsObj)
+    exptSuccRate = BASIC_DATA['attach']['succRate']
     for i in range (1,testNum+1):
         logging.warning(key_get_time()+':run the test <'+str(i)+'> times')
         with allure.step(key_get_time()+'执行第 '+str(i)+'次测试'):
@@ -155,7 +158,7 @@ def testDeactiveAndActiveCellAccessSuccRate(testNum):
             AccSuccNum = AccSuccNum + 1
     with allure.step(key_get_time()+': CPE接入成功率:'+str(AccSuccNum)+'/'+str(testNum)):
         logging.warning(key_get_time()+': CPE access success rate:'+str(AccSuccNum)+'/'+str(testNum))
-
+    assert (AccSuccNum/testNum)*100 >= exptSuccRate, '接入成功率小于预期，请检查！'
           
 @allure.story("闭塞解闭塞小区后接入成功率测试")
 @pytest.mark.闭塞解闭塞小区后接入成功率测试
@@ -163,6 +166,7 @@ def testDeactiveAndActiveCellAccessSuccRate(testNum):
 @pytest.mark.skipif(globalPara.get_upgrade_status()==True, reason='No Newest Version Upgrade')
 @pytest.mark.parametrize("testNum",RUN_TESTCASE['闭塞解闭塞小区后接入成功率测试'] if RUN_TESTCASE.get('闭塞解闭塞小区后接入成功率测试') else [])
 def testBlockAndUnblockCellAccessSuccRate(testNum):
+    exptSuccRate = BASIC_DATA['attach']['succRate']
     AccSuccNum = 0
     cpe = key_cpe_login()
     hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
@@ -184,6 +188,7 @@ def testBlockAndUnblockCellAccessSuccRate(testNum):
             AccSuccNum = AccSuccNum + 1
     with allure.step(key_get_time()+': CPE接入成功率:'+str(AccSuccNum)+'/'+str(testNum)):
         logging.warning(key_get_time()+': CPE access success rate:'+str(AccSuccNum)+'/'+str(testNum))
+    assert (AccSuccNum/testNum)*100 >= exptSuccRate, '接入成功率小于预期，请检查！'
 
 @allure.story("UDP下行流量测试")
 @pytest.mark.UDP下行流量测试

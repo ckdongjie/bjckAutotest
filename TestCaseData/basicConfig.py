@@ -6,7 +6,7 @@ Created on 2022年9月8日
 '''
 BASIC_DATA = {
     'hms':{
-            'ip':'172.16.2.159', #网管登录ip
+            'ip':'172.16.2.220', #网管登录ip
             'port':'18088', #网管登录端口号
             'username':'root', #网管登录用户名
             'password':'hms123...', #网管登录密码
@@ -19,7 +19,7 @@ BASIC_DATA = {
             'verBranch':'BS5514_V1.30.20B3_JP_V2_V4', #冒烟测试监测的版本分支号BS5514_V1.30.30_d82c68.zip
             'upgradeVersion':'BS5514_V1.20.00',#升级目标版本号BS5514_V1.10.60P1B2  BS5514_V1.10.60C0  BS5514_V1.10.80P2
             'upgradeVersion2':'BS5514_V1.10.80P2',#升级目标版本号BS5514_V1.10.80
-            'recoverVersion':'BS5514_V1.10.80P3(1)',#回退版本号，weblmt回退时使用
+            'recoverVersion':'BS5514_V1.10.80P3',#回退版本号，weblmt回退时使用
             'versionSavePath':'D:\\autotestPro\\AutoTestMain\\enbVersion',#版本包存在路径
             'xmlSavePath':'D:\\autotestPro\\AutoTestMain\\xmlFile',#配置文件存储目录
             'isCheckData':'true',#是否对配置文件进行检查
@@ -38,7 +38,7 @@ BASIC_DATA = {
             'checkGpsVer':'4bd9525882f473e5fadcf1f65639f9bc',#目标版本gps md5值
             'checkNrsysVer':'v21.04.01-306-g7f42f7235-8be957c',#目标版本nrsys版本号
             
-            'isCheckRollVerDetail':True,#是否检查版本回退后小版本信息
+            'isCheckRollVerDetail':False,#是否检查版本回退后小版本信息
             'checkRollWifiVer':'W6AP-1000_20220929_C00_V07',#目标版本wifi版本号
             'checkRollFpgaPlVer':'21120707',#目标版本fpga pl版本号
             'checkRollFpgaPsVer':'3a8a1f6875e4061942c082409b2c0d9ee0aebde8',#目标版本fpga ps版本号
@@ -62,11 +62,11 @@ BASIC_DATA = {
             'ueLogBackup':'D:\\autotestPro\\AutoTestMain\\qxdmLog\\backup',# ue log备份路径
         },
     'weblmt':{
-            'ip':'172.16.2.240',# weblmt登录ip地址
+            'ip':'172.16.2.252',# weblmt登录ip地址
             'port':'8090',#weblmt登录端口号
         },
     'gnb':{
-            'serialNumberList':'902272840007', #基站序列号902225200003-216;902272840007-240-auto18;902181800017-252-auto17
+            'serialNumberList':'902181800017', #基站序列号902225200003-216;902272840007-240-auto18;902181800017-252-auto17
             'cellIdList':0, #基站小区id列表
             'username':'root',#基站debug登录用户名
             'password':'Web2022@Nr5gTech',#基站debug登录密码
@@ -105,11 +105,13 @@ BASIC_DATA = {
             'pingNum':20, #ping包次数
             'pingSize':32,#ping包大小
             'logSavePath':'D:\log',#执行log保存路径【预留】
+            'loseRate':0,#ping包丢包率
         },
     'attach':{
             'testNum':20, #接入测试次数
             'attachDelay':3, #接入后等待时间（s）
-            'detachDelay':3  #去接入后等待时间（s）
+            'detachDelay':3,  #去接入后等待时间（s）
+            'succRate':100, #接入成功率
         },
     'aps7100':{
             'serialPort':'COM7', #程控电源串口号
