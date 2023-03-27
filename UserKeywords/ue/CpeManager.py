@@ -100,6 +100,7 @@ def key_cpe_ping(cpe, pdnIp=BASIC_DATA['pdn']['pdnIp'], pingNum=BASIC_DATA['ping
         with allure.step(key_get_time()+': Cpe['+cpe.ip+'_'+pingInterface+'] ping result[max/avg/min/transmitted/received/loss rate] = '+str(max)+"/"+str(avg)+"/"+str(min)+"/"+str(transmitted)+"/"+str(received)+"/"+str(lossrate)+"\n"):
             logging.info(key_get_time()+': Cpe['+cpe.ip+'_'+pingInterface+'] ping result[max/avg/min/transmitted/received/loss rate] = '+str(max)+"/"+str(avg)+"/"+str(min)+"/"+str(transmitted)+"/"+str(received)+"/"+str(lossrate))
         assert avg != -1,'ping包测试不通过，请检查'
+        return lossrate
 
 '''
     复位cpe
@@ -129,6 +130,23 @@ def key_confirm_pdu_setup_succ(cpe, tryNum = 50):
                 logging.warning('pdu setup failure, wait for 5s try again!')
                 key_wait(5)
         return setupRes
+  
+'''
+    确认pdu建立成功
+        参数：
+    cpe:cpe对象 
+''' 
+def key_confirm_pdu_setup_fail(cpe, tryNum = 80):
+    with allure.step(key_get_time()+': 确认pdu创建失败\n'):
+        logging.info(key_get_time()+': confirm if pdu setup failure')
+        for i in range (1, tryNum):
+            setupRes = CpeService().confirm_pdu_setup(cpe)
+            if setupRes == 'failure':
+                break
+            else:
+                logging.warning('pdu setup success, wait for 5s try again!')
+                key_wait(5)
+        return setupRes  
   
 '''
     CPE进入AT命令模式

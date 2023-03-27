@@ -1,12 +1,10 @@
 # coding = 'utf-8'
-from distutils.core import setup
 '''
 Created on 2022年11月1日
-
 @author: dj
-
 '''
 
+from distutils.core import setup
 import logging
 
 import allure
@@ -16,8 +14,11 @@ from TestCase import globalPara
 from TestCaseData.basicConfig import BASIC_DATA
 from TestCaseData.testcase import RUN_TESTCASE
 from UserKeywords.attenuator.Attenuator import key_connect_attenuator, \
-    key_send_multi_channel, key_read_multi_channel
+    key_send_multi_channel, key_read_multi_channel, key_disconnect_attenuator
 from UserKeywords.basic.basic import key_get_time, key_wait
+from UserKeywords.gnb.gnbManager import key_ssh_login_gnb, key_close_aip_channel, \
+    key_close_sub6g_channel, key_logout_gnb, key_open_aip_channel, \
+    key_open_sub6g_channel
 from UserKeywords.hms.CellManager import key_block_cell, key_unblock_cell, \
     key_confirm_cell_status, key_deactive_cell, key_active_cell
 from UserKeywords.hms.DiagnosticManager import key_reboot_enb
@@ -30,7 +31,10 @@ from UserKeywords.ue.CpeManager import key_cpe_detach, key_cpe_attach, \
     key_confirm_pdu_setup_succ, key_dl_udp_nr_flow_test, \
     key_dl_tcp_nr_flow_test, key_ul_tcp_nr_flow_test, key_dl_tcp_wifi_flow_test, \
     key_ul_tcp_wifi_flow_test, key_dl_udp_wifi_flow_test, \
-    key_ul_udp_nr_flow_test, key_ul_udp_wifi_flow_test, key_cpe_ping
+    key_ul_udp_nr_flow_test, key_ul_udp_wifi_flow_test, key_cpe_ping, \
+    key_confirm_pdu_setup_fail
+
+
 globalPara.init()
 
 @allure.story("CPE注册去注册后接入成功率测试")
@@ -189,6 +193,230 @@ def testBlockAndUnblockCellAccessSuccRate(testNum):
     with allure.step(key_get_time()+': CPE接入成功率:'+str(AccSuccNum)+'/'+str(testNum)):
         logging.warning(key_get_time()+': CPE access success rate:'+str(AccSuccNum)+'/'+str(testNum))
     assert (AccSuccNum/testNum)*100 >= exptSuccRate, '接入成功率小于预期，请检查！'
+
+@allure.story("关闭打开通道射频后CPE接入ping测试")
+@pytest.mark.关闭打开通道射频后CPE接入ping测试
+@pytest.mark.parametrize("testNum",RUN_TESTCASE['关闭打开通道射频后CPE接入ping测试'] if RUN_TESTCASE.get('关闭打开通道射频后CPE接入ping测试') else [])
+def testCloseChannelAndAttachAndPingTest(testNum):
+    attachDelay=BASIC_DATA['attach']['attachDelay']
+    detachDelay=BASIC_DATA['attach']['detachDelay']
+    exptSuccRate = BASIC_DATA['attach']['succRate']
+    exptLossRate = BASIC_DATA['ping']['loseRate']
+    AccSuccNum = 0
+    with allure.step(key_get_time()+'环境初始化'):
+        cpe = key_cpe_login()
+        key_cpe_detach(cpe)
+        key_wait(detachDelay)
+        key_cpe_attach(cpe)
+        key_wait(attachDelay)
+        setupRes = key_confirm_pdu_setup_succ(cpe)
+        assert setupRes == 'success','pdu建立失败，请检查 ！'
+    try:
+        for i in range (1,testNum+1):
+            logging.info(key_get_time()+':run the test <'+str(i)+'> times')
+            with allure.step(key_get_time()+'执行第 '+str(i)+'次测试'):
+                #close channel
+                with allure.step(key_get_time()+': 关闭通道信号，并确认终端掉线'):
+                    logging.info(key_get_time()+': close channel, make sure cpe is detached')
+                    gnb = key_ssh_login_gnb()
+                    key_close_aip_channel(gnb)
+                    key_close_sub6g_channel(gnb)
+                    key_logout_gnb(gnb)
+                    key_wait(60)
+                    setupRes = key_confirm_pdu_setup_fail(cpe)
+                    assert setupRes == 'failure','pdu建立未掉线，请检查 ！'
+                #open channel
+                with allure.step(key_get_time()+': 打开通道信号，并确认终端上线'):
+                    logging.info(key_get_time()+': open channel, make sure cpe is attached')
+                    gnb = key_ssh_login_gnb()
+                    key_open_aip_channel(gnb)
+                    key_open_sub6g_channel(gnb)
+                    key_logout_gnb(gnb)
+                    key_wait(60)
+                key_cpe_attach(cpe)
+                setupRes = key_confirm_pdu_setup_succ(cpe)
+                assert setupRes == 'success','pdu建立失败，请检查 ！'
+                if setupRes == 'success':
+                    cellId = key_cpe_attach_cell_info(cpe)
+                    assert cellId != -1,'CPE接入失败，请检查！'
+                    AccSuccNum = AccSuccNum + 1
+                    lossrate = key_cpe_ping(cpe, pingInterface = '')
+                    lossrate = lossrate.split('%')[0]
+                    assert int(lossrate) <= exptLossRate, 'ping包丢包率大于预期，请检查！'
+        with allure.step(key_get_time()+': CPE接入成功率:'+str(AccSuccNum)+'/'+str(testNum)):
+            logging.warning(key_get_time()+': CPE access success rate:'+str(AccSuccNum)+'/'+str(testNum))
+        assert (AccSuccNum/testNum)*100 >= exptSuccRate, '接入成功率小于预期，请检查！'
+    except:
+        gnb = key_ssh_login_gnb()
+        key_open_aip_channel(gnb)
+        key_open_sub6g_channel(gnb)
+        key_logout_gnb(gnb)
+        
+@allure.story("关闭2s后打开通道射频CPE接入ping测试")
+@pytest.mark.关闭2s后打开通道射频CPE接入ping测试
+@pytest.mark.parametrize("testNum",RUN_TESTCASE['关闭2s后打开通道射频CPE接入ping测试'] if RUN_TESTCASE.get('关闭2s后打开通道射频CPE接入ping测试') else [])
+def testCloseChannelWait2SAttachAndPingTest(testNum):
+    attachDelay=BASIC_DATA['attach']['attachDelay']
+    detachDelay=BASIC_DATA['attach']['detachDelay']
+    exptSuccRate = BASIC_DATA['attach']['succRate']
+    exptLossRate = BASIC_DATA['ping']['loseRate']
+    AccSuccNum = 0
+    with allure.step(key_get_time()+'环境初始化'):
+        logging.info(key_get_time()+': device setup')
+        cpe = key_cpe_login()
+        key_cpe_detach(cpe)
+        key_wait(detachDelay)
+        key_cpe_attach(cpe)
+        key_wait(attachDelay)
+        setupRes = key_confirm_pdu_setup_succ(cpe)
+        assert setupRes == 'success','pdu建立失败，请检查 ！'
+    try:
+        for i in range (1,testNum+1):
+            logging.info(key_get_time()+':run the test <'+str(i)+'> times')
+            with allure.step(key_get_time()+'执行第 '+str(i)+'次测试'):
+                #close channel
+                with allure.step(key_get_time()+': 关闭通道信号，并确认终端掉线'):
+                    logging.info(key_get_time()+': close channel, make sure cpe is detached')
+                    gnb = key_ssh_login_gnb()
+                    key_close_aip_channel(gnb)
+                    key_close_sub6g_channel(gnb)
+                    key_logout_gnb(gnb)
+                with allure.step(key_get_time()+': 等待2秒'):
+                    logging.info(key_get_time()+': wait for 2s')
+                    key_wait(2)
+                #open channel
+                with allure.step(key_get_time()+': 打开通道信号，并确认终端上线'):
+                    logging.info(key_get_time()+': open channel, make sure cpe is attached')
+                    gnb = key_ssh_login_gnb()
+                    key_open_aip_channel(gnb)
+                    key_open_sub6g_channel(gnb)
+                    key_logout_gnb(gnb)
+                setupRes = key_confirm_pdu_setup_succ(cpe)
+                assert setupRes == 'success','pdu建立失败，请检查 ！'
+                if setupRes == 'success':
+                    cellId = key_cpe_attach_cell_info(cpe)
+                    assert cellId != -1,'CPE接入失败，请检查！'
+                    AccSuccNum = AccSuccNum + 1
+                    lossrate = key_cpe_ping(cpe, pingInterface = '')
+                    lossrate = lossrate.split('%')[0]
+                    assert int(lossrate) <= exptLossRate, 'ping包丢包率大于预期，请检查！'
+        with allure.step(key_get_time()+': CPE接入成功率:'+str(AccSuccNum)+'/'+str(testNum)):
+            logging.warning(key_get_time()+': CPE access success rate:'+str(AccSuccNum)+'/'+str(testNum))
+        assert (AccSuccNum/testNum)*100 >= exptSuccRate, '接入成功率小于预期，请检查！'
+    except:
+        gnb = key_ssh_login_gnb()
+        key_open_aip_channel(gnb)
+        key_open_sub6g_channel(gnb)
+        key_logout_gnb(gnb)
+
+@allure.story("设置程控衰减极值恢复后接入ping测试")
+@pytest.mark.设置程控衰减极值恢复后接入ping测试
+@pytest.mark.parametrize("testNum",RUN_TESTCASE['设置程控衰减极值恢复后接入ping测试'] if RUN_TESTCASE.get('设置程控衰减极值恢复后接入ping测试') else [])
+def testAttMaxAttachAndPingTest(testNum):
+    attachDelay=BASIC_DATA['attach']['attachDelay']
+    detachDelay=BASIC_DATA['attach']['detachDelay']
+    exptSuccRate = BASIC_DATA['attach']['succRate']
+    exptLossRate = BASIC_DATA['ping']['loseRate']
+    AccSuccNum = 0
+    with allure.step(key_get_time()+'环境初始化'):
+        attenuator = key_connect_attenuator()
+        cpe = key_cpe_login()
+        key_cpe_detach(cpe)
+        key_wait(detachDelay)
+        key_cpe_attach(cpe)
+        key_wait(attachDelay)
+        setupRes = key_confirm_pdu_setup_succ(cpe)
+        assert setupRes == 'success','pdu建立失败，请检查 ！'
+    try:
+        for i in range (1,testNum+1):
+            logging.info(key_get_time()+':run the test <'+str(i)+'> times')
+            with allure.step(key_get_time()+'执行第 '+str(i)+'次测试'):
+                #att max
+                with allure.step(key_get_time()+': 设置程控衰减到最大值，并确认终端掉线'):
+                    logging.info(key_get_time()+': set attenuator max, make sure cpe is detached')
+                    key_send_multi_channel(attenuator, '1,2,3,4', 110)
+                    key_read_multi_channel(attenuator, '1,2,3,4')
+                    key_wait(20)
+                    setupRes = key_confirm_pdu_setup_fail(cpe)
+                    assert setupRes == 'failure','pdu建立未掉线，请检查 ！'
+                #att 0
+                with allure.step(key_get_time()+': 恢复程控衰减值，并确认终端上线'):
+                    logging.info(key_get_time()+': open channel, make sure cpe is attached')
+                    key_send_multi_channel(attenuator, '1,2,3,4', 0)
+                    key_read_multi_channel(attenuator, '1,2,3,4')
+                    key_wait(20)
+                key_cpe_attach(cpe)
+                setupRes = key_confirm_pdu_setup_succ(cpe)
+                assert setupRes == 'success','pdu建立失败，请检查 ！'
+                if setupRes == 'success':
+                    cellId = key_cpe_attach_cell_info(cpe)
+                    assert cellId != -1,'CPE接入失败，请检查！'
+                    AccSuccNum = AccSuccNum + 1
+                    lossrate = key_cpe_ping(cpe, pingInterface = '')
+                    lossrate = lossrate.split('%')[0]
+                    assert int(lossrate) <= exptLossRate, 'ping包丢包率大于预期，请检查！'
+        with allure.step(key_get_time()+': CPE接入成功率:'+str(AccSuccNum)+'/'+str(testNum)):
+            logging.warning(key_get_time()+': CPE access success rate:'+str(AccSuccNum)+'/'+str(testNum))
+        assert (AccSuccNum/testNum)*100 >= exptSuccRate, '接入成功率小于预期，请检查！'
+    except:
+        key_send_multi_channel(attenuator, '1,2,3,4', 0)
+        key_read_multi_channel(attenuator, '1,2,3,4')
+        key_disconnect_attenuator(attenuator)
+        
+@allure.story("设置程控衰减极值等待2秒恢复后接入ping测试")
+@pytest.mark.设置程控衰减极值等待2秒恢复后接入ping测试
+@pytest.mark.parametrize("testNum",RUN_TESTCASE['设置程控衰减极值等待2秒恢复后接入ping测试'] if RUN_TESTCASE.get('设置程控衰减极值等待2秒恢复后接入ping测试') else [])
+def testAttMaxWait2AttachAndPingTest(testNum):
+    attachDelay=BASIC_DATA['attach']['attachDelay']
+    detachDelay=BASIC_DATA['attach']['detachDelay']
+    exptSuccRate = BASIC_DATA['attach']['succRate']
+    exptLossRate = BASIC_DATA['ping']['loseRate']
+    AccSuccNum = 0
+    with allure.step(key_get_time()+'环境初始化'):
+        logging.info(key_get_time()+': device setup')
+        attenuator = key_connect_attenuator()
+        cpe = key_cpe_login()
+        key_cpe_detach(cpe)
+        key_wait(detachDelay)
+        key_cpe_attach(cpe)
+        key_wait(attachDelay)
+        setupRes = key_confirm_pdu_setup_succ(cpe)
+        assert setupRes == 'success','pdu建立失败，请检查 ！'
+    try:
+        for i in range (1,testNum+1):
+            logging.info(key_get_time()+':run the test <'+str(i)+'> times')
+            with allure.step(key_get_time()+'执行第 '+str(i)+'次测试'):
+                #att max
+                with allure.step(key_get_time()+': 设置程控衰减到最大值，并确认终端掉线'):
+                    logging.info(key_get_time()+': set attenuator max, make sure cpe is detached')
+                    key_send_multi_channel(attenuator, '1,2,3,4', 110)
+                    key_read_multi_channel(attenuator, '1,2,3,4')
+                with allure.step(key_get_time()+': 程控衰减设置后等待2秒'):
+                    logging.info(key_get_time()+': set att and wait 2s')
+                    key_wait(2)
+                #att 0
+                with allure.step(key_get_time()+': 恢复程控衰减值，并确认终端上线'):
+                    logging.info(key_get_time()+': open channel, make sure cpe is attached')
+                    key_send_multi_channel(attenuator, '1,2,3,4', 0)
+                    key_read_multi_channel(attenuator, '1,2,3,4')
+                    key_wait(20)
+                key_cpe_attach(cpe)
+                setupRes = key_confirm_pdu_setup_succ(cpe)
+                assert setupRes == 'success','pdu建立失败，请检查 ！'
+                if setupRes == 'success':
+                    cellId = key_cpe_attach_cell_info(cpe)
+                    assert cellId != -1,'CPE接入失败，请检查！'
+                    AccSuccNum = AccSuccNum + 1
+                    lossrate = key_cpe_ping(cpe, pingInterface = '')
+                    lossrate = lossrate.split('%')[0]
+                    assert int(lossrate) <= exptLossRate, 'ping包丢包率大于预期，请检查！'
+        with allure.step(key_get_time()+': CPE接入成功率:'+str(AccSuccNum)+'/'+str(testNum)):
+            logging.warning(key_get_time()+': CPE access success rate:'+str(AccSuccNum)+'/'+str(testNum))
+        assert (AccSuccNum/testNum)*100 >= exptSuccRate, '接入成功率小于预期，请检查！'
+    except:
+        key_send_multi_channel(attenuator, '1,2,3,4', 0)
+        key_read_multi_channel(attenuator, '1,2,3,4')
+        key_disconnect_attenuator(attenuator)
 
 @allure.story("UDP下行流量测试")
 @pytest.mark.UDP下行流量测试

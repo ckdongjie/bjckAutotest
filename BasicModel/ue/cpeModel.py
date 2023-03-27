@@ -100,7 +100,10 @@ class CpeModel(object):
         return -1,-1
     
     def ping_test(self, pdnIp='193.168.9.239', pingNum=20, pingInterface = 'rmnet_data0', pingSize=32):
-        self._channel.send('ping -I '+pingInterface+' -c '+str(pingNum)+' '+pdnIp+' -s '+str(pingSize)+'\n')
+        if pingInterface == '':
+            self._channel.send('ping -c '+str(pingNum)+' '+pdnIp+' -s '+str(pingSize)+'\n')
+        else:
+            self._channel.send('ping -I '+pingInterface+' -c '+str(pingNum)+' '+pdnIp+' -s '+str(pingSize)+'\n')
         time.sleep(int(pingNum)+5)
         pingRes = self.rece_at_command()
         min, avg, max = self.ping_result_mattch(pingRes)

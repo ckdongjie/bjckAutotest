@@ -61,7 +61,7 @@ def key_send_signal_channel(attenuator, channel, value):
         logging.info(key_get_time()+': set result:'+setVal)
 
 '''
-    说明：读取单通道衰减值
+    说明：读取多通道衰减值
     参数：
     attenuator:程控衰减对象
     channel:通道号
@@ -73,7 +73,7 @@ def key_read_multi_channel(attenuator, channelStr):
         logging.info(key_get_time()+': attenuator multi channel value:'+chaVal)
         
 '''
-    说明：设置单通道衰减值
+    说明：设置多通道衰减值
     参数：
     attenuator:程控衰减对象
     channel:通道号

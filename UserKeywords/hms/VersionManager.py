@@ -380,11 +380,14 @@ def key_delete_xml_file_by_ids(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNum
     serialNumber:基站sn号
     fileName:xml文件名
 '''    
-def key_download_xml_from_hms_to_gnb(hmsObj, fileName, serialNumber=BASIC_DATA['gnb']['serialNumberList']):
+def key_download_xml_from_hms_to_gnb(hmsObj, fileName, serialNumber=BASIC_DATA['gnb']['serialNumberList'], tryNum = 3):
     with allure.step(key_get_time()+": 同步配置文件到基站。\n"):
         logging.info(key_get_time()+': syn xml file to gnb.')  
-        dataId = VersionService().query_xml_data_file_info(hmsObj, serialNumber)     
-        sysRes = VersionService().download_xml_from_hms_to_gnb(hmsObj, dataId, serialNumber, fileName)
+        for i in range (1, tryNum+1):
+            dataId = VersionService().query_xml_data_file_info(hmsObj, serialNumber)     
+            sysRes = VersionService().download_xml_from_hms_to_gnb(hmsObj, dataId, serialNumber, fileName)
+            if sysRes == 0:
+                break
         if sysRes == 0:
             logging.info(key_get_time()+': synchronization xml file success!')
             return True 

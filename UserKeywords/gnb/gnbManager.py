@@ -26,6 +26,14 @@ def key_ssh_login_gnb(gnbIp=BASIC_DATA['weblmt']['ip'], username=BASIC_DATA['gnb
         logging.info(key_get_time()+': login gnb by ssh.')
         gnb = gnbService().ssh_login_gnb(gnbIp, username, password)
         return gnb
+    
+'''
+          登出gnb
+'''
+def key_logout_gnb(gnb):
+    with allure.step(key_get_time() +": 登出基站ssh\n"):
+        logging.info(key_get_time()+': logout gnb by ssh.')
+        gnbService().logout_gnb(gnb)
 
 '''
         说明：查询gps md5值
@@ -115,6 +123,62 @@ def key_upgrade_cpld_version(gnb, cpldVersion, cpldPath, enbType):
         upgradeRes = gnbService().upgrade_cpld_version(gnb, cpldVersion, cpldPath, enbType)
         logging.info(key_get_time()+': cpld upgrade result:'+upgradeRes)
 
+'''
+        说明：关闭毫米波射频通道
+        参数：
+    gnb:gnb对象
+'''
+def key_close_aip_channel(gnb, trmId = 1):
+    with allure.step(key_get_time() +": 关闭毫米波射频通道\n"):
+        logging.info(key_get_time()+': close mmw channel.')
+        if trmId == 1:
+            cmdStr = 'echo -e -n "\x55\x00\x06\x00\x01\x01\x00\x00\x8B\xAA" > /dev/ttyAMA2'
+        else:
+            cmdStr = 'echo -e -n "\x55\x00\x06\x00\x02\x01\x00\x00\xB1\xAA" > /dev/ttyAMA2'
+        result = gnbService().exec_command_on_gnb(gnb, cmdStr)
+
+'''
+        说明：关闭毫米波射频通道
+        参数：
+    gnb:gnb对象
+'''
+def key_open_aip_channel(gnb, trmId = 1):
+    with allure.step(key_get_time() +": 打开毫米波射频通道\n"):
+        logging.info(key_get_time()+': open mmw channel.')
+        if trmId == 1:
+            cmdStr = 'echo -e -n "\x55\x00\x06\x00\x01\x02\x00\x00\x36\xAA" > /dev/ttyAMA2'
+        else:
+            cmdStr = 'echo -e -n "\x55\x00\x06\x00\x02\x02\x00\x00\x0C\xAA" > /dev/ttyAMA2'
+        result = gnbService().exec_command_on_gnb(gnb, cmdStr)
+
+'''
+        说明：关闭sub6g射频通道
+        参数：
+    gnb:gnb对象
+'''
+def key_close_sub6g_channel(gnb):
+    with allure.step(key_get_time() +": 关闭sub6g射频通道\n"):
+        logging.info(key_get_time()+': close sub6g channel.')
+        cmdStr = 'devmem 0xa6003810 32 0x0'
+        gnbService().exec_command_on_gnb(gnb, 'ssh 10.50.0.2')
+        gnbService().exec_command_on_gnb(gnb, 'Web2022@Nr5gTechPs')
+        gnbService().exec_command_on_gnb(gnb, 'Web2022@Nr5gTechPs')
+        result = gnbService().exec_command_on_gnb(gnb, cmdStr)
+        
+'''
+        说明：打开sub6g射频通道
+        参数：
+    gnb:gnb对象
+'''
+def key_open_sub6g_channel(gnb):
+    with allure.step(key_get_time() +": 打开sub6g射频通道\n"):
+        logging.info(key_get_time()+': open sub6g channel.')
+        cmdStr = 'devmem 0xa6003810 32 0xff'
+        gnbService().exec_command_on_gnb(gnb, 'ssh 10.50.0.2')
+        gnbService().exec_command_on_gnb(gnb, 'Web2022@Nr5gTechPs')
+        gnbService().exec_command_on_gnb(gnb, 'Web2022@Nr5gTechPs')
+        result = gnbService().exec_command_on_gnb(gnb, cmdStr)
+        
 if __name__ == '__main__':
     gnb = key_ssh_login_gnb('172.16.2.214', 'root', 'Web2022@Nr5gTech')
     key_query_nrsys_version(gnb)
