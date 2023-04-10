@@ -68,8 +68,8 @@ class DuModel(HMS):
             resInfo = response.json()
             if resInfo.get('socketTimeout'):
                 continue
-            if resCode == 200:
-                return resInfo
+            if resCode == 200 and resInfo['result']=='0':
+                return True
             else:
                 return False
     

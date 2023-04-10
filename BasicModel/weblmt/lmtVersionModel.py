@@ -5,6 +5,8 @@ Created on 2022年12月27日
 @author: autotest
 '''
 
+import logging
+
 from BasicModel.weblmt.requestdata.versionManagerData import LMT_VER_URL_DICT
 from BasicModel.weblmt.weblmt import WebLmt
 
@@ -62,12 +64,17 @@ class LmtVersionModel(WebLmt):
         body = LMT_VER_URL_DICT['activeVersion']['body']
         body.update({"fileName":version+'.zip'})
         response = self.post_request(url, json=body, headers = header)
-        if response != None:
-            resCode = response.status_code 
-            resInfo = response.json()
-            return  resCode, resInfo
-        else:
+        try:
+            if response != None:
+                resCode = response.status_code 
+                resInfo = response.json()
+                return  resCode, resInfo
+            else:
+                return None, None
+        except Exception:
+            logging.warning('=========[HTTP Request Error]=========')
             return None, None
+        
     
     '''
                 版本包激活

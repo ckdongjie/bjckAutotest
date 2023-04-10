@@ -151,3 +151,27 @@ class gnbModel(object):
         print('cmd str:'+cmdStr)
         execRes = self.exec_fun_command(cmdStr)
         return execRes
+    
+    def gnb_copy_file(self, souFilePath, desFilePath):
+        result = self.exec_fun_command('ssh 10.50.0.2')
+        print(result)
+        result = self.exec_fun_command('Web2022@Nr5gTechPs')
+        print(result)
+        result = self.exec_fun_command('Web2022@Nr5gTechPs')
+        print(result)
+        result = self.exec_fun_command('pwd')
+        print(result)
+        cmdStr = 'cp '+souFilePath+' '+desFilePath
+        print('cmd str:'+cmdStr)
+        self.exec_fun_command(cmdStr)
+        cmdStr = 'md5sum /etc/init.d/bootmisc.sh'
+        execRes = self.exec_fun_command(cmdStr)
+        print('bootmisc md5sum:'+execRes)
+        return execRes
+    
+    def query_cpld_version_info(self):
+        cmdStr = 'ptool cpld i'
+        print('cmd str:'+cmdStr)
+        execRes = self.exec_fun_command(cmdStr)
+        return execRes
+    

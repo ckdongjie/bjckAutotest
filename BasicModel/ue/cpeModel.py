@@ -158,7 +158,7 @@ class CpeModel(object):
         result = re.findall(pattern, str)
         logging.info('packets transmitted:{0}'.format(result))
         if result:
-            tranPackage = result[0]
+            tranPackage = result[-1]
             return tranPackage
         return -1
     
@@ -167,7 +167,7 @@ class CpeModel(object):
         result = re.findall(pattern, str)
         logging.info('packets received:{0}'.format(result))
         if result:
-            recePackage = result[0]
+            recePackage = result[-1]
             return recePackage
         return 0
     
@@ -176,7 +176,7 @@ class CpeModel(object):
         result = re.findall(pattern, str)
         logging.info('packet loss:{0}'.format(result))
         if result:
-            lossRate = result[0]
+            lossRate = result[-1]
             return lossRate
         return '100%'
     
@@ -187,9 +187,12 @@ class CpeModel(object):
             time.sleep(1)
             self._channel.send('iptables -t nat -A PREROUTING -i ath0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
-        cmd_str = iperfPath+'\\iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
+#         cmd_str = iperfPath+'\\iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
+        cmd_str = 'iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
         logging.info('iperf command[udp-dl]: '+cmd_str)
-        os.popen(cmd_str)
+#         os.popen(cmd_str)
+        self._channel.send(cmd_str+'\n')
+        time.sleep(1)
     
     #Ue Send UDP Package To PDN(UL)
     def send_udp_package_UL(self, cpePcIp, iperfPath, pdnIp, packageSize='300m', monitorPort=5555, processNum = 3, spanTime = 120):
@@ -198,47 +201,57 @@ class CpeModel(object):
             time.sleep(1)
             self._channel.send('iptables -t nat -A PREROUTING -i ath0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
-        cmd_str = iperfPath+'\\iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)
+#         cmd_str = iperfPath+'\\iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)
+        cmd_str = 'iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)
         logging.info('iperf command[udp-ul]: '+cmd_str)
-        os.popen(cmd_str)
+#         os.popen(cmd_str)
+        self._channel.send(cmd_str+'\n')
+        time.sleep(1)
         
     #PDN Send TCP Package To Ue(DL)
-    def send_tcp_package_DL(self, cpePcIp, iperfPath, pdnIp, packageSize='500m', monitorPort=5555, processNum = 3, spanTime = 120):
+    def send_tcp_package_DL(self, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum = 3, spanTime = 120):
         if self.is_add_dmz_route(cpePcIp):
             self._channel.send('iptables -t nat -A PREROUTING -i rmnet_data0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
             self._channel.send('iptables -t nat -A PREROUTING -i ath0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
-        cmd_str = iperfPath+'\\iperf3 -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
+        #                       iperf3 -c 190.1.1.127 -i 1 -w 1400k -t 86400 -p 7785 -P 5
+#         cmd_str = iperfPath+'\\iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime)+' -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
+        cmd_str = 'iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime)+' -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
         logging.info('iperf command[tcp-dl]: '+cmd_str)
-        os.popen(cmd_str)
+#         os.popen(cmd_str)
+        self._channel.send(cmd_str+'\n')
+        time.sleep(1)
     
     #Ue Send TCP Package To PDN(UL)
-    def send_tcp_package_UL(self, cpePcIp, iperfPath, pdnIp, packageSize='500m', monitorPort=5555, processNum = 3, spanTime = 120):
+    def send_tcp_package_UL(self, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum = 3, spanTime = 120):
         if self.is_add_dmz_route(cpePcIp):
             self._channel.send('iptables -t nat -A PREROUTING -i rmnet_data0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
             self._channel.send('iptables -t nat -A PREROUTING -i ath0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
-        cmd_str = iperfPath+'\\iperf3 -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)
+#         cmd_str = iperfPath+'\\iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime)+' -p '+str(monitorPort)+' -P '+str(processNum)
+        cmd_str = 'iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime)+' -p '+str(monitorPort)+' -P '+str(processNum)
         logging.info('iperf command[tcp-ul]: '+cmd_str)
-        os.popen(cmd_str)
+#         os.popen(cmd_str)
+        self._channel.send(cmd_str+'\n')
+        time.sleep(1)
         
     #flow analyze
     def cell_flow_analyze(self, enbIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='', spanTime = 120, type='WIFI'):
         svSocket = udpSocketModel().socket_SVclient(g_tEiMsgList, enbIp)
         startMonitorTask(svSocket)
-        sleep(3)
-        scrapNetworkPackData(scrapFileName, pcNetworkCardName, (spanTime-30))
-        flowRes = loadDataAndCalculateFlow(scrapFileName, enbIp, pcIp, dir, type)
+        sleep(1)
+        scrapNetworkPackData(scrapFileName, pcNetworkCardName, (spanTime-10))
+        dlTrafRes,ulTrafRes = loadDataAndCalculateFlow(scrapFileName, enbIp, pcIp, dir, type)
         svSocket.close()
-        return flowRes
+        return dlTrafRes,ulTrafRes
     
     def binding_port_and_network(self, port, networkType, flowType='udp', ipType='ipv4'):
         addRes = False
         #删除端口规则 
         delRes = self.modify_port_rule('del', port, networkType, flowType, ipType)
-        sleep(3)
+        sleep(1)
         #增加端口规则
         if delRes == True:
             addRes = self.modify_port_rule('add', port, networkType, flowType, ipType)
@@ -246,7 +259,7 @@ class CpeModel(object):
         
     def modify_port_rule(self, operateType, port, networkType, flowType='udp', ipType='ipv4'):
         self._channel.send('cd /usr/bin\r')
-        time.sleep(2)
+        time.sleep(1)
         if networkType == 'NR':
             cmdStr = './set_multiwan_rule.sh -a '+operateType+' -n test'+networkType+' -f '+ipType+' -p '+flowType+' -t dports -o '+str(port)+' -w modem\r'
         elif networkType == 'WIFI':

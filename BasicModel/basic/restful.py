@@ -23,14 +23,14 @@ class HttpClient(object):
         req = requests.session()
         req.keep_alive = False
         res = None
-        for i in range(10):
+        for i in range(3):
             try:
                 if method == 'GET':
                     res = req.get(url, timeout=60, **kwargs)
                 elif method == 'POST':
-                    res = req.post(url, data=data, json=json, timeout=120, **kwargs)
+                    res = req.post(url, data=data, json=json, timeout=90, **kwargs)
                 elif method == 'PUT':
-                    res = req.put(url, data=data, timeout=120, **kwargs)
+                    res = req.put(url, data=data, timeout=90, **kwargs)
                 elif method == 'DELETE':
                     res = req.delete(url)
                 else:

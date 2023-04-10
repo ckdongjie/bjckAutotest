@@ -36,9 +36,12 @@ def loadDataAndCalculateFlow(name, srcip, dstip, dir, type):
     packets = rdpcap(name)
     packets = defragment(packets)
     oldTimeStr = ''
-    cellRlcList=[]
-    sumRlc = 0
-    flowRes = ''
+    cellUlRlcList=[]
+    cellDlRlcList=[]
+    sumDlRlc = 0
+    sumUlRlc = 0
+    dlTrafRes = ''
+    ulTrafRes = ''
     for packet in packets:
         if 'UDP' in packet:
             if packet.payload.src == srcip and packet.payload.dst == dstip:
@@ -46,27 +49,43 @@ def loadDataAndCalculateFlow(name, srcip, dstip, dir, type):
                 if type == 'NR':
                     if dir =='DL':
                         if DlRlcRes!= None:
-                            cellRlcList.append(DlRlcRes)
+                            cellDlRlcList.append(DlRlcRes)
                     elif dir == 'UL':
                         if UlRlcRes!= None:
-                            cellRlcList.append(UlRlcRes)
+                            cellUlRlcList.append(UlRlcRes)
+                    else:
+                        if DlRlcRes!= None:
+                            cellDlRlcList.append(DlRlcRes)
+                        if UlRlcRes!= None:
+                            cellUlRlcList.append(UlRlcRes)
                 elif type == 'WIFI':
                     if dir =='DL':
                         if DlWifiRlcRes!= None:
-                            cellRlcList.append(DlWifiRlcRes)
+                            cellDlRlcList.append(DlWifiRlcRes)
                     elif dir == 'UL':
                         if UlWifiRlcRes!= None:
-                            cellRlcList.append(UlWifiRlcRes)
+                            cellUlRlcList.append(UlWifiRlcRes)
+                    else:
+                        if DlWifiRlcRes!= None:
+                            cellDlRlcList.append(DlWifiRlcRes)
+                        if UlWifiRlcRes!= None:
+                            cellUlRlcList.append(UlWifiRlcRes)
                 timeStr = TimeStamp2Time(packet.time)
                 if timeStr != oldTimeStr:
-                    if cellRlcList:
-                        for rlc in cellRlcList:
-                            sumRlc = sumRlc + rlc
-                        flowRes = flowRes + '['+timeStr+']:'+analizeResult(sumRlc)+'\n'
-                        sumRlc = 0
-                        cellRlcList = []    
+                    if cellDlRlcList:
+                        for rlc in cellDlRlcList:
+                            sumDlRlc = sumDlRlc + rlc
+                        dlTrafRes = dlTrafRes + '['+timeStr+']:'+analizeResult(sumDlRlc)+'\n'
+                        sumDlRlc = 0
+                        cellDlRlcList = []
+                    if cellUlRlcList:
+                        for rlc in cellUlRlcList:
+                            sumUlRlc = sumUlRlc + rlc
+                        ulTrafRes = ulTrafRes + '['+timeStr+']:'+analizeResult(sumUlRlc)+'\n'
+                        sumUlRlc = 0
+                        cellUlRlcList = []     
                 oldTimeStr = timeStr
-    return flowRes
+    return dlTrafRes,ulTrafRes
 
 def analizeResult(rlc):
     TrafficInfo = ''

@@ -39,7 +39,15 @@ class SerialModel():
         logging.info('The Command is:{0}'.format(cmd))
         self.serial.write((cmd+'\n').encode())
         self.serial.flush()
-        sleep(2)
+        sleep(1)
+    
+    def exec_command_with_hex(self, cmd):
+        if self.serial.isOpen() == False:
+            self.serial.open()
+        logging.info('The Command is:{0}'.format(cmd))
+        self.serial.write(cmd)
+        self.serial.flush()
+        sleep(1)
     
     def read_result_of_serial(self):
         data = ""
@@ -49,8 +57,8 @@ class SerialModel():
         return data
     
 if __name__ == '__main__':
-    serial = SerialModel().login_serial()
+    serial = SerialModel().login_serial('COM16',9600)
 #     serial.login_serial()
-    serial.exec_at_command('?MODEL')
-    result = serial.read_result_of_serial()
-    print(result)
+    serial.exec_at_command(bytes.fromhex('A0 01 00 A1'))
+#     result = serial.read_result_of_serial()
+#     print(result)
