@@ -21,9 +21,6 @@ from UserKeywords.weblmt.WeblmtCellManager import key_weblmt_confirm_cell_status
 from UserKeywords.weblmt.WeblmtGnbManager import key_weblmt_login
 from UserKeywords.weblmt.WeblmtXmlManager import key_export_xml_file, \
     key_upload_xml_to_weblmt, key_import_xml_to_gnb
-
-
- 
     
 @allure.story("weblmt配置文件导入导出压力测试")
 @pytest.mark.welmt配置文件导出导入测试

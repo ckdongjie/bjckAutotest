@@ -3,27 +3,24 @@
 Created on 2022年10月27日
 
 @author: dj
-from UserKeywords.ue.CpeManager import key_cpe_ping
-
 '''
-
 import logging
-
 import allure
 import pytest
 
+from UserKeywords.weblmt.WeblmtGnbManager import key_weblmt_login, key_weblmt_reboot_gnb,key_weblmt_logout, \
+    key_weblmt_gnb_info,key_weblmt_clock_cfg, key_weblmt_get_operator_info, key_weblmt_operator_cfg, key_weblmt_export_wifi_log, \
+    key_weblmt_export_device_log, key_weblmt_export_chr_log, key_weblmt_export_black_box_log, key_weblmt_test_mode_activated,\
+    key_weblmt_ip_enable_switch, key_weblmt_get_ip_address
 from TestCaseData.basicConfig import BASIC_DATA
 from TestCaseData.testcase import RUN_TESTCASE
-from UserKeywords.basic.basic import key_get_time
-from UserKeywords.basic.basic import key_wait
-from UserKeywords.hms.DeviceManager import key_confirm_device_status_same_as_expect, \
-    key_modiry_device_auto_test_mode
+from UserKeywords.basic.basic import key_wait, key_get_time
+from UserKeywords.hms.DeviceManager import key_modiry_device_auto_test_mode
 from UserKeywords.hms.HmsManager import key_login_hms
 from UserKeywords.ue.CpeManager import key_cpe_ping, key_cpe_login
 from UserKeywords.weblmt.WeblmtCellManager import key_weblmt_confirm_cell_status
-from UserKeywords.weblmt.WeblmtGnbManager import *
 
-    
+
 @pytest.mark.weblmt复位基站正常后ping包
 @pytest.mark.parametrize("testNum",RUN_TESTCASE['weblmt复位基站正常后ping包'] if RUN_TESTCASE.get('weblmt复位基站正常后ping包') else [])
 def testWeblmtRebootGnbAndPing(testNum):
@@ -120,7 +117,7 @@ def testWeblmtClockSrcCfg(clkSrc):
     logging.warning(key_get_time() + ':小区状态检查')
     confirmRes = key_weblmt_confirm_cell_status(weblmt, cellId, expectStatus='available')
     allure.step(key_get_time() + ":CPE ping业务")
-    logging.warning(key_get_time() + ':CPE ping业务')
+    logging.info(key_get_time() + ':CPE ping业务')
     key_cpe_ping(cpe, ping_interface=ping_interface)
 
 @pytest.mark.weblmt获取运营商信息
