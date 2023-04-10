@@ -124,6 +124,32 @@ def key_upgrade_cpld_version(gnb, cpldVersion, cpldPath, enbType):
         logging.info(key_get_time()+': cpld upgrade result:'+upgradeRes)
 
 '''
+        说明：使用源文件替换目标文件
+        参数：
+    gnb:gnb对象
+    souFilePath:源文件
+    desFilePath:目标文件
+'''
+def key_gnb_copy_file(gnb, souFilePath, desFilePath):
+    with allure.step(key_get_time() +": 使用源文件替换目标文件\n"):
+        logging.info(key_get_time()+': source file update target file')
+        cpRes = gnbService().gnb_copy_file(gnb, souFilePath, desFilePath)
+        logging.info(key_get_time()+': file update result:'+cpRes)
+        
+'''
+        说明：使用源文件替换目标文件
+        参数：
+    gnb:gnb对象
+    souFilePath:源文件
+    desFilePath:目标文件
+'''
+def key_query_cpld_version_info(gnb):
+    with allure.step(key_get_time() +": 查询cpld版本信息\n"):
+        logging.info(key_get_time()+': query cpld version info')
+        cpRes = gnbService().query_cpld_version_info(gnb)
+        logging.info(key_get_time()+': file update result:'+cpRes)
+        
+'''
         说明：关闭毫米波射频通道
         参数：
     gnb:gnb对象
@@ -180,5 +206,6 @@ def key_open_sub6g_channel(gnb):
         result = gnbService().exec_command_on_gnb(gnb, cmdStr)
         
 if __name__ == '__main__':
-    gnb = key_ssh_login_gnb('172.16.2.214', 'root', 'Web2022@Nr5gTech')
-    key_query_nrsys_version(gnb)
+    gnb = key_ssh_login_gnb()
+#     key_query_cpld_version_info(gnb)
+    key_gnb_copy_file(gnb, '/home/bootmisc.sh', '/etc/init.d/bootmisc.sh')

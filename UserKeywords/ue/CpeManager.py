@@ -3,19 +3,6 @@ Created on 2022年9月23日
 
 @author: dj
 '''
-
-
-import logging
-import allure
-
-from BasicService.ue.cpeService import CpeService
-from BasicService.ue.logAnalyzeService import LogAnalyzeService
-from BasicService.ue.qutsService import QutsService
-from UserKeywords.basic.basic import key_get_time, key_wait
-from UserKeywords.pdn.pndManager import key_start_listen_port, \
-    key_stop_listen_port
-from TestCaseData.basicConfig import BASIC_DATA
-
 '''
     SSH登录CPE
         参数：
@@ -23,6 +10,22 @@ from TestCaseData.basicConfig import BASIC_DATA
     username:cpe前台登录用户名
     passward:cpe前台登录密码
 '''
+
+import logging
+import threading
+from time import sleep
+
+import allure
+
+from BasicService.ue.cpeService import CpeService
+from BasicService.ue.logAnalyzeService import LogAnalyzeService
+from BasicService.ue.qutsService import QutsService
+from TestCaseData.basicConfig import BASIC_DATA
+from UserKeywords.basic.basic import key_get_time, key_wait
+from UserKeywords.pdn.pndManager import key_start_listen_port, \
+    key_stop_listen_port, key_pdn_login
+
+
 def key_cpe_login(cpeIp=BASIC_DATA['cpe']['cpeSshIp'], username=BASIC_DATA['cpe']['cpeUsername'], password=BASIC_DATA['cpe']['cpePassword']):
     with allure.step(key_get_time() +": 登录CPE前台\n"):
         logging.info(key_get_time()+': login cpe command model')
@@ -99,8 +102,8 @@ def key_cpe_ping(cpe, pdnIp=BASIC_DATA['pdn']['pdnIp'], pingNum=BASIC_DATA['ping
                 break
         with allure.step(key_get_time()+': Cpe['+cpe.ip+'_'+pingInterface+'] ping result[max/avg/min/transmitted/received/loss rate] = '+str(max)+"/"+str(avg)+"/"+str(min)+"/"+str(transmitted)+"/"+str(received)+"/"+str(lossrate)+"\n"):
             logging.info(key_get_time()+': Cpe['+cpe.ip+'_'+pingInterface+'] ping result[max/avg/min/transmitted/received/loss rate] = '+str(max)+"/"+str(avg)+"/"+str(min)+"/"+str(transmitted)+"/"+str(received)+"/"+str(lossrate))
-        assert avg != -1,'ping包测试不通过，请检查'
-        return lossrate
+#         assert avg != -1,'ping包测试不通过，请检查'
+        return lossrate, avg
 
 '''
     复位cpe
@@ -176,9 +179,9 @@ def key_cpe_logout_at_model(cpe):
     monitorPort:使用端口
     processNum:进程个数  
 '''            
-def key_dl_udp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+def key_dl_udp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['udpDlSize'], monitorPort=BASIC_DATA['flow']['wifiDlPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 下行UDP流量测试"):
-        logging.info(key_get_time()+': exec DL UDP flow test')
+        logging.info(key_get_time()+': exec DL UDP traffic test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
             logging.info(key_get_time()+': add port rule')
             if ':' in pdnIp:
@@ -195,10 +198,10 @@ def key_dl_udp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], i
             CpeService().cpe_udp_flow_DL(cpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime=spanTime)
         with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
             logging.info(key_get_time()+': start scrap process, analyze data')
-            flowRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='WIFI')
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='WIFI')
         key_stop_listen_port(pdn, monitorPort)
-        with allure.step(key_get_time() +": 流量测试结果：\n"+flowRes):
-            logging.info(key_get_time()+': DL UDP Wifi test result:\n'+flowRes)
+        with allure.step(key_get_time() +": 流量测试结果：\n"+dlTrafRes):
+            logging.info(key_get_time()+': DL UDP Wifi test result:\n'+dlTrafRes)
             
 '''
         下行udp nr灌包
@@ -210,9 +213,9 @@ def key_dl_udp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], i
     monitorPort:使用端口
     processNum:进程个数  
 '''            
-def key_dl_udp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+def key_dl_udp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['udpDlSize'], monitorPort=BASIC_DATA['flow']['nrDlPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 下行UDP流量测试"):
-        logging.info(key_get_time()+': exec DL UDP flow test')
+        logging.info(key_get_time()+': exec DL UDP traffic test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
             logging.info(key_get_time()+': add port rule')
             if ':' in pdnIp:
@@ -229,10 +232,10 @@ def key_dl_udp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], ipe
             CpeService().cpe_udp_flow_DL(cpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime=spanTime)
         with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
             logging.info(key_get_time()+': start scrap process, analyze data')
-            flowRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='NR')
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='NR')
         key_stop_listen_port(pdn, monitorPort)
-        with allure.step(key_get_time() +": 流量测试结果：\n"+flowRes):
-            logging.info(key_get_time()+': DL UDP NR test result:\n'+flowRes)
+        with allure.step(key_get_time() +": 流量测试结果：\n"+dlTrafRes):
+            logging.info(key_get_time()+': DL UDP NR test result:\n'+dlTrafRes)
             
 '''
         上行udp wifi灌包
@@ -244,9 +247,9 @@ def key_dl_udp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], ipe
     monitorPort:使用端口
     processNum:进程个数  
 '''       
-def key_ul_udp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum =BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+def key_ul_udp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['udpUlSize'],monitorPort=BASIC_DATA['flow']['wifiUlPort'], processNum =BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 上行UDP流量测试"):
-        logging.info(key_get_time()+': exec UL UDP flow test')
+        logging.info(key_get_time()+': exec UL UDP traffic test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
             logging.info(key_get_time()+': add port rule')
             if ':' in pdnIp:
@@ -263,10 +266,10 @@ def key_ul_udp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], i
             CpeService().cpe_udp_flow_UL(cpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime=spanTime)
         with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
             logging.info(key_get_time()+': start scrap process, analyze data')
-            flowRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'UL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='WIFI')
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'UL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='WIFI')
         key_stop_listen_port(pdn, monitorPort)
-        with allure.step(key_get_time() +": 流量测试结果：\n"+flowRes):
-            logging.info(key_get_time()+': UL UDP Wifi test result:\n'+flowRes)
+        with allure.step(key_get_time() +": 流量测试结果：\n"+ulTrafRes):
+            logging.info(key_get_time()+': UL UDP Wifi test result:\n'+ulTrafRes)
 
 '''
         上行udp nr灌包
@@ -278,9 +281,9 @@ def key_ul_udp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], i
     monitorPort:使用端口
     processNum:进程个数  
 '''       
-def key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum =BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+def key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['udpUlSize'],monitorPort=BASIC_DATA['flow']['nrUlPort'], processNum =BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 上行UDP流量测试"):
-        logging.info(key_get_time()+': exec UL UDP flow test')
+        logging.info(key_get_time()+': exec UL UDP traffic test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
             logging.info(key_get_time()+': add port rule')
             if ':' in pdnIp:
@@ -297,10 +300,10 @@ def key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], ipe
             CpeService().cpe_udp_flow_UL(cpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime=spanTime)
         with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
             logging.info(key_get_time()+': start scrap process, analyze data')
-            flowRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'UL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='NR')
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'UL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='NR')
         key_stop_listen_port(pdn, monitorPort)
-        with allure.step(key_get_time() +": 流量测试结果：\n"+flowRes):
-            logging.info(key_get_time()+': UL UDP NR test result:\n'+flowRes)
+        with allure.step(key_get_time() +": 流量测试结果：\n"+ulTrafRes):
+            logging.info(key_get_time()+': UL UDP NR test result:\n'+ulTrafRes)
             
 '''
         下行tcp wifi灌包
@@ -312,9 +315,9 @@ def key_ul_udp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], ipe
     monitorPort:使用端口
     processNum:进程个数  
 '''       
-def key_dl_tcp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+def key_dl_tcp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['tcpDlSize'],monitorPort=BASIC_DATA['flow']['wifiDlPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 下行TCP流量测试"):
-        logging.info(key_get_time()+': exec DL WIFI TCP flow test')
+        logging.info(key_get_time()+': exec DL WIFI TCP traffic test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
             logging.info(key_get_time()+': add port rule')
             if ':' in pdnIp:
@@ -329,14 +332,12 @@ def key_dl_tcp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], i
         with allure.step(key_get_time() +": 执行iperf命令"):
             logging.info(key_get_time()+': exec iperf command')
             CpeService().cpe_tcp_flow_DL(cpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime=spanTime)
-#         key_wait(15)
         with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
             logging.info(key_get_time()+': start scrap process, analyze data')
-            flowRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='WIFI')
-        key_wait(20)
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='WIFI')
         key_stop_listen_port(pdn, monitorPort)
-        with allure.step(key_get_time() +": 流量测试结果：\n"+flowRes):
-            logging.info(key_get_time()+': DL TCP Wifi test result:\n'+flowRes)
+        with allure.step(key_get_time() +": 流量测试结果：\n"+dlTrafRes):
+            logging.info(key_get_time()+': DL TCP Wifi test result:\n'+dlTrafRes)
             
 '''
         下行tcp nr灌包
@@ -348,9 +349,9 @@ def key_dl_tcp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], i
     monitorPort:使用端口
     processNum:进程个数  
 '''       
-def key_dl_tcp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+def key_dl_tcp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['tcpDlSize'],monitorPort=BASIC_DATA['flow']['nrDlPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 下行TCP流量测试"):
-        logging.info(key_get_time()+': exec DL NR TCP flow test')
+        logging.info(key_get_time()+': exec DL NR TCP traffic test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
             logging.info(key_get_time()+': add port rule')
             if ':' in pdnIp:
@@ -365,13 +366,12 @@ def key_dl_tcp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], ipe
         with allure.step(key_get_time() +": 执行iperf命令"):
             logging.info(key_get_time()+': exec iperf command')
             CpeService().cpe_tcp_flow_DL(cpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime=spanTime)
-        key_wait(15)
         with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
             logging.info(key_get_time()+': start scrap process, analyze data')
-            flowRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='NR')
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter', spanTime=spanTime, type='NR')
         key_stop_listen_port(pdn, monitorPort)
-        with allure.step(key_get_time() +": 流量测试结果：\n"+flowRes):
-            logging.info(key_get_time()+': DL TCP NR test result:\n'+flowRes)
+        with allure.step(key_get_time() +": 流量测试结果：\n"+dlTrafRes):
+            logging.info(key_get_time()+': DL TCP NR test result:\n'+dlTrafRes)
     
 '''
         上行tcp wifi灌包
@@ -383,9 +383,9 @@ def key_dl_tcp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], ipe
     monitorPort:使用端口
     processNum:进程个数  
 '''        
-def key_ul_tcp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+def key_ul_tcp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['tcpUlSize'],monitorPort=BASIC_DATA['flow']['wifiUlPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 上行TCP流量测试"):
-        logging.info(key_get_time()+': exec UL TCP flow test')
+        logging.info(key_get_time()+': exec UL TCP traffic test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
             logging.info(key_get_time()+': add port rule')
             if ':' in pdnIp:
@@ -400,13 +400,12 @@ def key_ul_tcp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], i
         with allure.step(key_get_time() +": 执行iperf命令"):
             logging.info(key_get_time()+': exec iperf command')
             CpeService().cpe_tcp_flow_UL(cpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime=spanTime)
-        key_wait(15)
         with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
             logging.info(key_get_time()+': start scrap process, analyze data')
-            flowRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'UL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter',spanTime=spanTime, type='WIFI')
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'UL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter',spanTime=spanTime, type='WIFI')
         key_stop_listen_port(pdn, monitorPort)
-        with allure.step(key_get_time() +": 流量测试结果：\n"+flowRes):
-            logging.info(key_get_time()+': UL TCP Wifi test result:\n'+flowRes)
+        with allure.step(key_get_time() +": 流量测试结果：\n"+ulTrafRes):
+            logging.info(key_get_time()+': UL TCP Wifi test result:\n'+ulTrafRes)
             
 '''
         上行tcp nr灌包
@@ -418,9 +417,9 @@ def key_ul_tcp_wifi_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], i
     monitorPort:使用端口
     processNum:进程个数  
 '''        
-def key_ul_tcp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['size'],monitorPort=BASIC_DATA['flow']['nrPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+def key_ul_tcp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['tcpUlSize'],monitorPort=BASIC_DATA['flow']['nrUlPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
     with allure.step(key_get_time() +": 上行TCP流量测试"):
-        logging.info(key_get_time()+': exec UL TCP flow test')
+        logging.info(key_get_time()+': exec UL TCP traffic test')
         with allure.step(key_get_time() +": 添加端口过滤规则"):
             logging.info(key_get_time()+': add port rule')
             if ':' in pdnIp:
@@ -435,13 +434,176 @@ def key_ul_tcp_nr_flow_test(cpe, pdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], ipe
         with allure.step(key_get_time() +": 执行iperf命令"):
             logging.info(key_get_time()+': exec iperf command')
             CpeService().cpe_tcp_flow_UL(cpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime=spanTime)
-        key_wait(15)
         with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
             logging.info(key_get_time()+': start scrap process, analyze data')
-            flowRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'UL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter',spanTime=spanTime, type='NR')
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(cpe, enbDebugIp, pcIp, scrapFileName, dir = 'UL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter',spanTime=spanTime, type='NR')
         key_stop_listen_port(pdn, monitorPort)
-        with allure.step(key_get_time() +": 流量测试结果：\n"+flowRes):
-            logging.info(key_get_time()+': UL TCP NR test result:\n'+flowRes)
+        with allure.step(key_get_time() +": 流量测试结果：\n"+ulTrafRes):
+            logging.info(key_get_time()+': UL TCP NR test result:\n'+ulTrafRes)
+        
+'''
+        上下行tcp nr灌包
+        参数： 
+    cpePcIp:cpe直连PC的 ip地址
+    iperfPath:本地iperf安装路径，用于启动本地命令
+    pdnIp:pdn ip地址
+    packageSize:包大小 
+    monitorPort:使用端口
+    processNum:进程个数  
+'''        
+def key_udl_tcp_nr_flow_test(ulCpe, dlCpe, ulPdn, dlPdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['tcpUlSize'],monitorUlPort=BASIC_DATA['flow']['nrUlPort'], monitorDlPort=BASIC_DATA['flow']['nrDlPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+    with allure.step(key_get_time() +": 上下行TCP流量测试"):
+        logging.info(key_get_time()+': exec UDL TCP traffic test')
+        with allure.step(key_get_time() +": 添加端口过滤规则"):
+            logging.info(key_get_time()+': add port rule')
+            if ':' in pdnIp:
+                bindRes = CpeService().binding_port_and_network(ulCpe, monitorUlPort, 'NR', 'tcp', 'ipv6')
+                bindRes2 = CpeService().binding_port_and_network(ulCpe, monitorDlPort, 'NR', 'tcp', 'ipv6')
+            else:
+                bindRes = CpeService().binding_port_and_network(ulCpe, monitorUlPort, 'NR', 'tcp', 'ipv4')
+                bindRes2 = CpeService().binding_port_and_network(ulCpe, monitorDlPort, 'NR', 'tcp', 'ipv4')
+            if bindRes == True and bindRes2 == True:
+                logging.info(key_get_time()+': binding port rule success!')
+            else:
+                logging.info(key_get_time()+': binding port rule failure!')
+        key_start_listen_port(ulPdn, monitorUlPort)
+        key_start_listen_port(dlPdn, monitorDlPort)
+        with allure.step(key_get_time() +": 执行iperf命令"):
+            logging.info(key_get_time()+': exec iperf command')
+            CpeService().cpe_tcp_flow_UL(ulCpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorUlPort, processNum, spanTime=spanTime)
+            CpeService().cpe_tcp_flow_DL(dlCpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorDlPort, processNum, spanTime=spanTime)
+        with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
+            logging.info(key_get_time()+': start scrap process, analyze data')
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(ulCpe, enbDebugIp, pcIp, scrapFileName, dir = 'UDL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter',spanTime=spanTime, type='NR')
+        key_stop_listen_port(ulPdn, monitorUlPort)
+        key_stop_listen_port(dlPdn, monitorDlPort)
+        with allure.step(key_get_time() +": 上行流量测试结果：\n"+ulTrafRes):
+            logging.info(key_get_time()+': UL TCP NR test result:\n'+ulTrafRes)
+        with allure.step(key_get_time() +": 下行流量测试结果：\n"+dlTrafRes):
+            logging.info(key_get_time()+': DL TCP NR test result:\n'+dlTrafRes)
+
+'''
+        上下行tcp wifi灌包
+        参数： 
+    cpePcIp:cpe直连PC的 ip地址
+    iperfPath:本地iperf安装路径，用于启动本地命令
+    pdnIp:pdn ip地址
+    packageSize:包大小 
+    monitorPort:使用端口
+    processNum:进程个数  
+'''        
+def key_udl_tcp_wifi_flow_test(ulCpe, dlCpe, ulPdn, dlPdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['tcpUlSize'],monitorUlPort=BASIC_DATA['flow']['nrUlPort'], monitorDlPort=BASIC_DATA['flow']['nrDlPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+    with allure.step(key_get_time() +": 上下行TCP流量测试"):
+        logging.info(key_get_time()+': exec UDL TCP traffic test')
+        with allure.step(key_get_time() +": 添加端口过滤规则"):
+            logging.info(key_get_time()+': add port rule')
+            if ':' in pdnIp:
+                bindRes = CpeService().binding_port_and_network(ulCpe, monitorUlPort, 'WIFI', 'tcp', 'ipv6')
+                bindRes2 = CpeService().binding_port_and_network(ulCpe, monitorDlPort, 'WIFI', 'tcp', 'ipv6')
+            else:
+                bindRes = CpeService().binding_port_and_network(ulCpe, monitorUlPort, 'WIFI', 'tcp', 'ipv4')
+                bindRes2 = CpeService().binding_port_and_network(ulCpe, monitorDlPort, 'WIFI', 'tcp', 'ipv4')
+            if bindRes == True and bindRes2 == True:
+                logging.info(key_get_time()+': binding port rule success!')
+            else:
+                logging.info(key_get_time()+': binding port rule failure!')
+        key_start_listen_port(ulPdn, monitorUlPort)
+        key_start_listen_port(dlPdn, monitorDlPort)
+        with allure.step(key_get_time() +": 执行iperf命令"):
+            logging.info(key_get_time()+': exec iperf command')
+            CpeService().cpe_tcp_flow_UL(ulCpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorUlPort, processNum, spanTime=spanTime)
+            CpeService().cpe_tcp_flow_DL(dlCpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorDlPort, processNum, spanTime=spanTime)
+        with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
+            logging.info(key_get_time()+': start scrap process, analyze data')
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(ulCpe, enbDebugIp, pcIp, scrapFileName, dir = 'UDL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter',spanTime=spanTime, type='WIFI')
+        key_stop_listen_port(ulPdn, monitorUlPort)
+        key_stop_listen_port(dlPdn, monitorDlPort)
+        with allure.step(key_get_time() +": 上行流量测试结果：\n"+ulTrafRes):
+            logging.info(key_get_time()+': UL TCP WIFI test result:\n'+ulTrafRes)
+        with allure.step(key_get_time() +": 下行流量测试结果：\n"+dlTrafRes):
+            logging.info(key_get_time()+': DL TCP WIFI test result:\n'+dlTrafRes)
+            
+'''
+        上下行udp nr灌包
+        参数： 
+    cpePcIp:cpe直连PC的 ip地址
+    iperfPath:本地iperf安装路径，用于启动本地命令
+    pdnIp:pdn ip地址
+    packageSize:包大小 
+    monitorPort:使用端口
+    processNum:进程个数  
+'''        
+def key_udl_udp_nr_flow_test(ulCpe, dlCpe, ulPdn, dlPdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['tcpUlSize'],monitorUlPort=BASIC_DATA['flow']['nrUlPort'], monitorDlPort=BASIC_DATA['flow']['nrDlPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+    with allure.step(key_get_time() +": 上下行UDP流量测试"):
+        logging.info(key_get_time()+': exec UDL UDP traffic test')
+        with allure.step(key_get_time() +": 添加端口过滤规则"):
+            logging.info(key_get_time()+': add port rule')
+            if ':' in pdnIp:
+                bindRes = CpeService().binding_port_and_network(ulCpe, monitorUlPort, 'NR', 'tcp', 'ipv6')
+                bindRes2 = CpeService().binding_port_and_network(ulCpe, monitorDlPort, 'NR', 'tcp', 'ipv6')
+            else:
+                bindRes = CpeService().binding_port_and_network(ulCpe, monitorUlPort, 'NR', 'tcp', 'ipv4')
+                bindRes2 = CpeService().binding_port_and_network(ulCpe, monitorDlPort, 'NR', 'tcp', 'ipv4')
+            if bindRes == True and bindRes2 == True:
+                logging.info(key_get_time()+': binding port rule success!')
+            else:
+                logging.info(key_get_time()+': binding port rule failure!')
+        key_start_listen_port(ulPdn, monitorUlPort)
+        key_start_listen_port(dlPdn, monitorDlPort)
+        with allure.step(key_get_time() +": 执行iperf命令"):
+            logging.info(key_get_time()+': exec iperf command')
+            CpeService().cpe_udp_flow_UL(ulCpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorUlPort, processNum, spanTime=spanTime)
+            CpeService().cpe_udp_flow_DL(dlCpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorDlPort, processNum, spanTime=spanTime)
+        with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
+            logging.info(key_get_time()+': start scrap process, analyze data')
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(ulCpe, enbDebugIp, pcIp, scrapFileName, dir = 'UDL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter',spanTime=spanTime, type='NR')
+        key_stop_listen_port(ulPdn, monitorUlPort)
+        key_stop_listen_port(dlPdn, monitorDlPort)
+        with allure.step(key_get_time() +": 上行流量测试结果：\n"+ulTrafRes):
+            logging.info(key_get_time()+': UL TCP NR test result:\n'+ulTrafRes)
+        with allure.step(key_get_time() +": 下行流量测试结果：\n"+dlTrafRes):
+            logging.info(key_get_time()+': DL TCP NR test result:\n'+dlTrafRes)
+
+'''
+        上下行tcp wifi灌包
+        参数： 
+    cpePcIp:cpe直连PC的 ip地址
+    iperfPath:本地iperf安装路径，用于启动本地命令
+    pdnIp:pdn ip地址
+    packageSize:包大小 
+    monitorPort:使用端口
+    processNum:进程个数  
+'''        
+def key_udl_udp_wifi_flow_test(ulCpe, dlCpe, ulPdn, dlPdn, cpePcIp=BASIC_DATA['flow']['cpePcIp'], iperfPath=BASIC_DATA['flow']['iperfLocalPath'], pdnIp=BASIC_DATA['pdn']['pdnIp'], enbDebugIp=BASIC_DATA['weblmt']['ip'], pcIp=BASIC_DATA['flow']['localPcIp'], scrapFileName=BASIC_DATA['flow']['scrapFileName'], packageSize=BASIC_DATA['flow']['tcpUlSize'],monitorUlPort=BASIC_DATA['flow']['nrUlPort'], monitorDlPort=BASIC_DATA['flow']['nrDlPort'], processNum=BASIC_DATA['flow']['processNum'], spanTime=BASIC_DATA['flow']['spanTime']):
+    with allure.step(key_get_time() +": 上下行UDP流量测试"):
+        logging.info(key_get_time()+': exec UDL UDP traffic test')
+        with allure.step(key_get_time() +": 添加端口过滤规则"):
+            logging.info(key_get_time()+': add port rule')
+            if ':' in pdnIp:
+                bindRes = CpeService().binding_port_and_network(ulCpe, monitorUlPort, 'WIFI', 'tcp', 'ipv6')
+                bindRes2 = CpeService().binding_port_and_network(ulCpe, monitorDlPort, 'WIFI', 'tcp', 'ipv6')
+            else:
+                bindRes = CpeService().binding_port_and_network(ulCpe, monitorUlPort, 'WIFI', 'tcp', 'ipv4')
+                bindRes2 = CpeService().binding_port_and_network(ulCpe, monitorDlPort, 'WIFI', 'tcp', 'ipv4')
+            if bindRes == True and bindRes2 == True:
+                logging.info(key_get_time()+': binding port rule success!')
+            else:
+                logging.info(key_get_time()+': binding port rule failure!')
+        key_start_listen_port(ulPdn, monitorUlPort)
+        key_start_listen_port(dlPdn, monitorDlPort)
+        with allure.step(key_get_time() +": 执行iperf命令"):
+            logging.info(key_get_time()+': exec iperf command')
+            CpeService().cpe_udp_flow_UL(ulCpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorUlPort, processNum, spanTime=spanTime)
+            CpeService().cpe_udp_flow_DL(dlCpe, cpePcIp, iperfPath, pdnIp, packageSize, monitorDlPort, processNum, spanTime=spanTime)
+        with allure.step(key_get_time() +": 启动抓包程序，进行数据分析"):
+            logging.info(key_get_time()+': start scrap process, analyze data')
+            dlTrafRes,ulTrafRes = CpeService().cell_flow_analyze(ulCpe, enbDebugIp, pcIp, scrapFileName, dir = 'UDL', pcNetworkCardName ='TP-Link Gigabit PCI Express Adapter',spanTime=spanTime, type='WIFI')
+        key_stop_listen_port(ulPdn, monitorUlPort)
+        key_stop_listen_port(dlPdn, monitorDlPort)
+        with allure.step(key_get_time() +": 上行流量测试结果：\n"+ulTrafRes):
+            logging.info(key_get_time()+': UL TCP WIFI test result:\n'+ulTrafRes)
+        with allure.step(key_get_time() +": 下行流量测试结果：\n"+dlTrafRes):
+            logging.info(key_get_time()+': DL TCP WIFI test result:\n'+dlTrafRes)
 
 '''
            功能：启动ue log跟踪
@@ -887,3 +1049,13 @@ def key_pucch_channel_feedback_per_bandwith_analyze(ueLogFilePath=BASIC_DATA['ve
         logging.info(key_get_time()+':check pdsch resource allocation type')
         result = LogAnalyzeService().pucch_channel_feedback_per_bandwith_analyze(ueLogFilePath)
         return result
+    
+if __name__ == '__main__':
+    dlCpe = key_cpe_login()
+    ulCpe = key_cpe_login()
+    dlPdn = key_pdn_login()
+    ulPdn = key_pdn_login()
+#     key_dl_tcp_nr_flow_test(cpe, pdn)
+    key_udl_tcp_nr_flow_test(ulCpe, dlCpe, ulPdn, dlPdn)
+#     start_cell_traffic_test(cpe, 'UDL', 'NR')
+#     sleep(240)

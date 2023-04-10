@@ -80,7 +80,13 @@ def key_read_multi_channel(attenuator, channelStr):
     value:衰减值
 '''
 def key_send_multi_channel(attenuator, channelStr, value):
-    with allure.step(key_get_time() +":设置可调衰减单通道值:"+channelStr+'-'+value):
-        logging.info(key_get_time()+':set signal channel value:'+channelStr+'-'+value)
+    with allure.step(key_get_time() +":设置可调衰减单通道值:"+channelStr+'-'+str(value)):
+        logging.info(key_get_time()+':set signal channel value:'+channelStr+'-'+str(value))
         setVal = AttenuatorService().send_multi_channel_value(attenuator, channelStr, value)
         logging.info(key_get_time()+': set result:'+setVal)
+        
+if __name__ == '__main__':
+    attenuator = key_connect_attenuator()
+    key_send_multi_channel(attenuator, '1,2,3,4', 0)
+    key_read_multi_channel(attenuator, '1,2,3,4')
+    key_disconnect_attenuator(attenuator)

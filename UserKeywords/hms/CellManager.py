@@ -53,7 +53,7 @@ def key_query_cell_status(hmsObj, enbId, cellId=1, tryNum = 5):
     tryNum:最大尝试次数
         返回：
 '''    
-def key_confirm_cell_status(hmsObj, enbId, expectStatus='available', cellId=1, tryNum=80):
+def key_confirm_cell_status(hmsObj, enbId, expectStatus='available', cellId=1, tryNum=100):
     with allure.step(key_get_time() +": 确认小区状态与预期一致,预期状态:"+expectStatus+'\n'):
         logging.info(key_get_time()+': confirm if cell status is same as expect status,expect status:'+expectStatus)
         for i in range (tryNum):

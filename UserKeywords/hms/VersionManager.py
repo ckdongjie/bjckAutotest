@@ -196,7 +196,7 @@ def key_query_rollback_status(hmsObj, enbName, tryNum=10):
 '''
 def key_query_version_info(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNumberList']):
     with allure.step(key_get_time()+": 版本信息查询\n"):
-        logging.info(key_get_time()+': query gnb version info from device')
+        logging.info(key_get_time()+': query gnb version info')
         resCode, resInfo = VersionService().query_gnb_version_info(hmsObj, serialNumber)
         if resCode != 200:
             logging.info(key_get_time()+': query gnb version info fail, fail info:'+str(resInfo))
@@ -211,7 +211,7 @@ def key_query_version_info(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNumberL
 '''
 def key_query_version_info_from_device(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNumberList'], tryNum=20):
     with allure.step(key_get_time()+": 同步获取基站版本信息\n"):
-        logging.info(key_get_time()+': query gnb version info from device')
+        logging.info(key_get_time()+': get gnb version info from device')
         for i in range (1, tryNum):
             resCode, resInfo = VersionService().query_gnb_version_info_from_device(hmsObj, serialNumber)
             if resInfo['result'] == '0':
@@ -332,7 +332,7 @@ def key_download_xml_file_to_local(hmsObj, enbId, savePath=BASIC_DATA['version']
         logging.info(key_get_time()+': download xml file to local.')
         for i in range (1, tryNum):
             fileList = VersionService().query_gnb_data_file(hmsObj, enbId)
-            if fileList != []:
+            if fileList['total'] != 0:
                 break
         xmlPath = fileList['rows'][0]['path']
         xmlFilename = fileList['rows'][0]['filename']

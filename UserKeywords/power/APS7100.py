@@ -20,7 +20,7 @@ from TestCaseData.basicConfig import BASIC_DATA
 from UserKeywords.basic.basic import key_get_time
 
 
-def key_login_aps7100(serialPort=BASIC_DATA['aps7100']['serialPort'], serialRate=BASIC_DATA['aps7100']['serialRate']):
+def key_login_aps7100(serialPort=BASIC_DATA['power']['serialPort'], serialRate=BASIC_DATA['power']['serialRate']):
     with allure.step(key_get_time() +":串口登录程控电源:"+serialPort+','+str(serialRate)):
         logging.info(key_get_time()+':login aps7100 by serial:'+serialPort+','+str(serialRate))
         aps7100 = APS7100Service().login_serial(serialPort, serialRate)
@@ -69,7 +69,8 @@ def key_read_set_vol_aps7100(aps7100):
         logging.info(key_get_time()+':read aps7100 set vol')
         setVol = APS7100Service().read_set_power_vol(aps7100)
         logging.info(key_get_time()+': aps7100 set vol:'+setVol)
-        
+
+
 if __name__ == '__main__':
     aps7100 = key_login_aps7100('COM7', 9600)
     key_read_set_vol_aps7100(aps7100)
