@@ -88,3 +88,19 @@ class gnbService():
     def upgrade_cpld_version(self, gnb, cpldVersion, cpldPath, enbType):
         upgradeRes = gnb.upgrade_cpld_version(cpldVersion, cpldPath, enbType)
         return upgradeRes
+    
+    '''
+                    复制文件
+    '''
+    def gnb_copy_file(self, gnb, souFilePath, desFilePath):
+        cpRes = gnb.gnb_copy_file(souFilePath, desFilePath)
+        return cpRes
+    
+    '''
+                    复制文件
+    '''
+    def query_cpld_version_info(self, gnb):
+        cpldRes = gnb.query_cpld_version_info()
+        return cpldRes
+    
+    

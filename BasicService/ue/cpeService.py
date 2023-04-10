@@ -169,7 +169,7 @@ class CpeService():
         processNum:灌包进程数
     '''
     #PDN Send TCP Package To Ue(DL)
-    def cpe_tcp_flow_DL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='500m', monitorPort=5555, processNum=3, spanTime=120):
+    def cpe_tcp_flow_DL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum=3, spanTime=120):
         flowRes = cpe.send_tcp_package_DL(cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime)
         return flowRes
     
@@ -183,7 +183,7 @@ class CpeService():
         processNum:灌包进程数
     '''
     #Ue Send TCP Package To PDN(UL)
-    def cpe_tcp_flow_UL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='500m', monitorPort=5555, processNum=3, spanTime=120):
+    def cpe_tcp_flow_UL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum=3, spanTime=120):
         flowRes = cpe.send_tcp_package_UL(cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime)
         return flowRes
     
@@ -191,8 +191,8 @@ class CpeService():
                 说明：小区流量分析
     '''
     def cell_flow_analyze(self, cpe, enbIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='', spanTime=120, type='WIFI'):
-        flowRes = cpe.cell_flow_analyze(enbIp, pcIp, scrapFileName, dir, pcNetworkCardName, spanTime, type)
-        return flowRes
+        dlTrafRes,ulTrafRes = cpe.cell_flow_analyze(enbIp, pcIp, scrapFileName, dir, pcNetworkCardName, spanTime, type)
+        return dlTrafRes,ulTrafRes
     
     '''
                 说明：新增端口绑定规则
