@@ -7,17 +7,11 @@ from time import sleep
 import time
 
 import serial
+
 from BasicModel.ue.mate30 import mate30Model
 
 
 class mate30Service():
-    '''
-    classdocs
-    '''
-    def __init__(self):
-        '''
-        Constructor
-        '''
     
     '''
                 说明：登录mate30

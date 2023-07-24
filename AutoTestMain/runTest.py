@@ -36,26 +36,25 @@ def new_dir(path):
     if not os.path.exists(reportDir):
         os.mkdir(reportDir)
         return reportDir
-    
 
 if __name__ == '__main__':
     runTestMark = login_main()
      
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) #d:/bjckAutotest
     xmlDir = BASE_DIR+'\\target\\allure-results'
-    
     #清空xml数据
     delCmd = 'rd /s/Q '+xmlDir
     os.popen(delCmd)
     sleep(5)
     os.mkdir(xmlDir)
     
-    pytest.main(['-s', '-v', BASE_DIR+'/autotestPro/TestCase', '-m', runTestMark,'--alluredir', BASE_DIR+'/target/allure-results', '--junitxml',BASE_DIR+'/target/test-reports/result.xml'])
+    pytest.main(['-s', '-v', BASE_DIR+'/TestCase', '-m', runTestMark,'--alluredir',  BASE_DIR+'/target/allure-results', '--junitxml',BASE_DIR+'/target/test-reports/result.xml'])
 #----------------------------------------------------------------------------------------------------------------------
 #     生成测试报告 
 #     allure generate --clean E:\autotestPro\AutoTestMain\report\xml -o E:\autotestPro\AutoTestMain\report\html2
 #----------------------------------------------------------------------------------------------------------------------
-    reportDir = new_dir(BASE_DIR+'\\autotestPro\\AutoTestMain\\report')
+    
+    reportDir = new_dir(BASE_DIR+'\\AutoTestMain\\report')
     logging.warning(key_get_time()+': generate test report: '+reportDir)
     genReportCmd = 'allure generate --clean '+xmlDir+' -o '+reportDir
     os.popen(genReportCmd)

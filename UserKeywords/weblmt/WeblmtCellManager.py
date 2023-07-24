@@ -51,11 +51,13 @@ def key_weblmt_confirm_cell_status(weblmt, cellId=0, expectStatus='available', t
             else:
                 key_wait(5)
         if cellStatus == expectStatus:
-            logging.info(key_get_time()+': cell status is same as expect')
-            return True
+            with allure.step(key_get_time()+':小区状态与预期一致'):
+                logging.info(key_get_time()+': cell status is same as expect')
+                return True
         else:
-            logging.warning(key_get_time()+': cell status is not same as expect')
-            return False
+            with allure.step(key_get_time()+':小区状态与预期不一致'):
+                logging.warning(key_get_time()+': cell status is not same as expect')
+                return False
         
 '''
         说明：weblmt上修改du小区参数-小区带宽

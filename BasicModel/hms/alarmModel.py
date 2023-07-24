@@ -20,7 +20,7 @@ class AlarmModel(HMS):
         header = ALARM_URL_DICT['queryPageActiveAlarm']['header']
         url = self.baseUrl+ALARM_URL_DICT['queryPageActiveAlarm']['action']
         body = ALARM_URL_DICT['queryPageActiveAlarm']['body']
-        body.update({'sn':sn})
+        body.update({'enbSnList':[sn]})
         response = self.post_request(url, json=body, headers = header)
         resCode = response.status_code
         resInfo = response.json()
@@ -33,7 +33,7 @@ class AlarmModel(HMS):
         header = ALARM_URL_DICT['queryPageHistoryAlarm']['header']
         url = self.baseUrl+ALARM_URL_DICT['queryPageHistoryAlarm']['action']
         body = ALARM_URL_DICT['queryPageHistoryAlarm']['body']
-        body.update({'sn':sn, 'alarmRaisedStartTime':alarmRaisedStartTime, 'alarmRaisedEndTime':alarmRaisedEndTime})
+        body.update({'enbSnList':[sn], 'alarmRaisedStartTime':alarmRaisedStartTime, 'alarmRaisedEndTime':alarmRaisedEndTime})
         response = self.post_request(url, json=body, headers = header)
         resCode = response.status_code
         resInfo = response.json()

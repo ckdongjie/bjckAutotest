@@ -6,12 +6,13 @@ from BasicModel.basic.EIDetailConfigParse import GetsvLinkMsg, GetsvBasicMsg, \
     GetsvSpecificMsg, GetsvHeartBeat
 from BasicModel.basic.sigTraceParse import GetLinkMsg, GetSigStartMsg, \
     GetSigHeartBeat
+from reprlib import repr
 
 class udpSocketModel:
-    def socket_Sigclient(self, srcip):
+    def socket_Sigclient(self, srcip, localIp, sigMointerPort=6080):
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            bindAddr = ('', 6090)
+            bindAddr = ('', sigMointerPort)
             s.bind(bindAddr)
             s.connect((srcip, 49152))
         except socket.error as msg:
@@ -22,7 +23,7 @@ class udpSocketModel:
         s.send(linkMsg)
         time.sleep(0.5)
         # 启动信令跟踪任务
-        sigTaskMsg = GetSigStartMsg()
+        sigTaskMsg = GetSigStartMsg(localIp)
         s.send(sigTaskMsg)
         time.sleep(0.5)
         #心跳消息
@@ -30,10 +31,10 @@ class udpSocketModel:
         s.send(heartBeat)
         return s
     
-    def socket_SVclient(self, tEiMsgList, srcip):
+    def socket_sv_basic_client(self, srcip, svMointerPort=16666):
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            bindAddr = ('', 16666)
+            bindAddr = ('', svMointerPort)
             s.bind(bindAddr)
             s.connect((srcip, 49152))
         except socket.error as msg:
@@ -47,10 +48,30 @@ class udpSocketModel:
         svBasicTaskMsg = GetsvBasicMsg()
         s.send(svBasicTaskMsg)
         time.sleep(0.5)
+        
+        #心跳消息
+        heartBeat = GetsvHeartBeat()
+        s.send(heartBeat)
+        return s
+    
+    def socket_sv_deatil_client(self, srcip, tEiMsgList, svMointerPort=16667):
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            bindAddr = ('', svMointerPort)
+            s.bind(bindAddr)
+            s.connect((srcip, 49152))
+        except socket.error as msg:
+            print(msg)
+            sys.exit(1)
+        #链接请求
+        svLinkMsg = GetsvLinkMsg()
+        s.send(svLinkMsg)
+        
         # 启动详细信息任务
         svSpecificTaskMsg = GetsvSpecificMsg(tEiMsgList)
         s.send(svSpecificTaskMsg)
         time.sleep(0.5)
+        
         #心跳消息
         heartBeat = GetsvHeartBeat()
         s.send(heartBeat)

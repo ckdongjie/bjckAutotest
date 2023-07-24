@@ -86,7 +86,7 @@ class mate30Model(object):
     
     def mate30_ping_test(self, pdn, ueIp='190.1.169.96', pingNum=20):
         pingCmd = 'ping -c '+str(pingNum)+' '+ueIp+'\n'
-        pingRes = pdn.exec_cmd(pingCmd, pingNum+2)
+        pingRes = pdn.exec_cmd(pingCmd, pingNum)
         return self.ping_result_mattch(pingRes)
         
     def ping_result_mattch(self, str):
@@ -101,6 +101,7 @@ class mate30Model(object):
     
     #PDN Send UDP Package To Ue(DL)
     def send_udp_package_DL(self, pdnIp, packageSize='500m', monitorPort='5555', processNum = '3'):
+        #iperf3 -u -c 193.168.9.239 -b 200m -i 1 -t 999 -l 1400 -p 4567 -P 20 -R
         logging.warning('command is: iperf3 -u -c '+ pdnIp +' -b '+ packageSize +' -i 1 -t 300 -l 1300 -p '+ monitorPort +' -P '+ processNum +' -R')
         self._channel.send('iperf3 -u -c '+ pdnIp +' -b '+ packageSize +' -i 1 -t 300 -l 1300 -p '+ monitorPort +' -P '+ processNum +' -R\n')
         time.sleep(10)
@@ -117,6 +118,7 @@ class mate30Model(object):
         
     #PDN Send TCP Package To Ue(DL)
     def send_tcp_package_DL(self, pdnIp, packageSize='500m', monitorPort='5555', processNum = '3'):
+        #iperf3 -c 193.168.9.239 -p 4567 -i 1 -w 400k -t 9999 -P 20 -R
         self._channel.send('iperf3 -c '+ pdnIp +' -b '+ packageSize +' -i 1 -t 180 -l 1300 -p '+ monitorPort +' -P '+ processNum +' -R\n')
         time.sleep(3)
     

@@ -29,5 +29,3 @@ def key_wait(sec):
     with allure.step(key_get_time() +": 等待 "+str(sec)+"s......\n"):
         logging.info(key_get_time()+': wait for '+str(sec)+'s......')
         sleep(sec)
-        
-        

@@ -20,9 +20,11 @@ def key_confirm_device_online(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNumb
         logging.info(key_get_time()+': confirm if gnb is online')
         enbStatus = deviceManagerService().query_device_online(hmsObj, serialNumber)
         if enbStatus == 'online':
-            logging.info(key_get_time()+': gnb is online')
+            with allure.step(key_get_time()+": 基站在线"):
+                logging.info(key_get_time()+': gnb is online')
         else:
-            logging.warning(key_get_time()+': gnb is offline')
+            with allure.step(key_get_time()+": 基站断链"):
+                logging.warning(key_get_time()+': gnb is offline')
         assert enbStatus == 'online',key_get_time()+':基站断链，请检查！'
 
 '''
@@ -37,9 +39,11 @@ def key_confirm_device_status_same_as_expect(hmsObj, serialNumber=BASIC_DATA['gn
         logging.info(key_get_time()+': confirm if gnb status is same as expect,expect status: '+expectStatus)
         isSame = deviceManagerService().query_device_status_same_as_expect(hmsObj, serialNumber, expectStatus)
         if isSame == True:
-            logging.info(key_get_time()+': gnb status is same as expect!')
+            with allure.step(key_get_time()+": 基站状态与预期一致"):
+                logging.info(key_get_time()+': gnb status is same as expect!')
         else:
-            logging.warning(key_get_time()+': gnb status is not same as expect!')
+            with allure.step(key_get_time()+": 基站状态与预期不一致"):
+                logging.warning(key_get_time()+': gnb status is not same as expect!')
         assert isSame == True,key_get_time()+':基站在线状态与预期不一致，请检查！'
 
 '''
@@ -52,6 +56,6 @@ def key_confirm_device_status_same_as_expect(hmsObj, serialNumber=BASIC_DATA['gn
 '''
 def key_modiry_device_auto_test_mode(hmsObj, testMode=1, serialNumber=BASIC_DATA['gnb']['serialNumberList']):
     with allure.step(key_get_time()+": 设置基站自测模式\n"):
-        logging.warning(key_get_time()+': set auto test mode: ' + "open" if testMode==1 else "close")
+        logging.info(key_get_time()+': set auto test mode: ' + "open" if testMode==1 else "close")
         resInfo = deviceManagerService().set_auto_test_mode(hmsObj, serialNumber, testMode)
         return resInfo

@@ -17,8 +17,8 @@ class CuService():
         enbId:基站enbId
         params:修改参数字典
     '''
-    def update_cu_cell_para(self, hmsObj, enbId, params):
-        updateRes = CuModel(hmsObj).update_cu_cell_para(enbId, params)
+    def update_cu_cell_para(self, hmsObj, enbId, params, cellId=1):
+        updateRes = CuModel(hmsObj).update_cu_cell_para(enbId, params, cellId)
         return updateRes
     
     '''

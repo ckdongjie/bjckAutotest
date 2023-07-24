@@ -19,14 +19,21 @@ class xmlModel():
         '''
         Constructor
         '''
+    
+    def read_xml_record_value(self, filename, filePath, xmlTreePath):
+        xmlFile = ET.parse(filePath+'\\'+filename)
+        xmlRoot = xmlFile.getroot()
+        sub = xmlRoot.find(xmlTreePath)
+        logging.info('the current value:'+sub.text)
+        return sub.text
         
-    def modify_xml_record_value(self, filePath, xmlTreePath, modifyContext):
-        xmlFile = ET.parse(filePath)
+    def modify_xml_record_value(self, filename, filePath, xmlTreePath, modifyContext):
+        xmlFile = ET.parse(filePath+'\\'+filename)
         xmlRoot = xmlFile.getroot()
         sub = xmlRoot.find(xmlTreePath)
         logging.info('the old value:'+sub.text)
         sub.text = modifyContext
-        xmlFile.write(filePath)
+        xmlFile.write(filePath+'\\'+filename)
      
     def modify_xml_root_value(self, filePath, valueDir):
         xmlFile = ET.parse(filePath)
@@ -35,6 +42,10 @@ class xmlModel():
             logging.info('the old value:'+xmlRoot.attrib[key])
             xmlRoot.attrib[key] = valueDir[key]
         xmlFile.write(filePath) 
+        
+    def rename_xml_filename(self, newfilePath, filePath):
+        xmlFile = ET.parse(filePath)
+        xmlFile.write(newfilePath)
           
     def read_root_note_value(self, filePath, noteName):
         xmlFile = ET.parse(filePath)

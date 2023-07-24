@@ -35,7 +35,7 @@ class HMS(HttpClient):
         response = self.post_request(url, data=header, json=data)
         return response.status_code                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
     
-    def query_enb_info(self, serialNumber):
+    def query_enb_info(self, serialNumber, attrName):
         header = URL_DICT['queryPageEnbByCondition']['header']
         url = self.baseUrl+URL_DICT['queryPageEnbByCondition']['action']
         body = URL_DICT['queryPageEnbByCondition']['body']
@@ -43,13 +43,11 @@ class HMS(HttpClient):
         body.update(params) #更新body参数
         response = self.post_request(url, json=body, headers = header)
         resCode = response.status_code 
-        enbId = None
-        enbName = None
+        attrValue = None
         if resCode == 200:
             resInfo = response.json()
-            enbId = resInfo['rows'][0]['enbId']
-            enbName = resInfo['rows'][0]['enbName']
-        return enbId, enbName
+            attrValue = resInfo['rows'][0][attrName]
+        return attrValue
      
         
 if __name__ == '__main__':

@@ -6,7 +6,7 @@ Created on 2023年1月10日
 '''
 ALARM_URL_DICT={
     'queryPageActiveAlarm':
-    {
+    {             
         'action':'/api/hmsAlarm/v1/queryPageActiveAlarm',
         'method':'POST',
         'header':{
@@ -15,14 +15,11 @@ ALARM_URL_DICT={
         },
         'body':{
             "domainList":"1,2,3,7,9,11,13",
-            "enbName":"",
-            "sn":"902272840007",
+            "enbSnList":["902222640001"],
             "perceivedSeverity":"",
             "eventType":"",
             "alarmRaisedStartTime":"",
             "alarmRaisedEndTime":"",
-            "enbIp":"",
-            "region":"",
             "alarmState":"",
             "alarmCode":"",
             "alarmName":"",
@@ -41,7 +38,7 @@ ALARM_URL_DICT={
         'body':{
             "domainList":"1,2,3,7,9,11,13",
             "enbName":"",
-            "sn":"902272840007",
+            "enbSnList":["902222640001"],
             "perceivedSeverity":"",
             "eventType":"",
             "alarmRaisedStartTime":"",

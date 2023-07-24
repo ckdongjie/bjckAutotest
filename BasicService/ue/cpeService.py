@@ -5,6 +5,8 @@ Created on 2022年11月1日
 @author: dj
 '''
 
+import re
+import subprocess
 from time import sleep
 
 from BasicModel.ue.cpeModel import CpeModel
@@ -100,6 +102,19 @@ class CpeService():
             sleep(1)
             cpe.logout_at_model()
             return ueAttach, cellId
+        
+    '''
+                说明：查询cpe接入小区信息
+                参数：
+    '''
+    def query_resident_cell_pci(self, cpe):
+        if cpe:
+            cpe.login_at_model()
+            sleep(1)
+            cellPci = cpe.query_resident_cell_info("at+sgcellinfoex?")
+            sleep(1)
+            cpe.logout_at_model()
+            return cellPci
     
     '''
                 说明：cpe ping包测试
@@ -113,7 +128,64 @@ class CpeService():
     def cpe_ping_test(self, cpe, pdnIp='193.168.9.239', pingNum=20, pingInterface = 'rmnet_data0', pingSize=32):
         min, avg, max, transmitted, received, lossrate = cpe.ping_test(pdnIp, pingNum, pingInterface, pingSize)
         return min, avg, max, transmitted, received, lossrate
-
+    
+    '''
+            本地pc执行ping
+    '''
+    def local_pc_ping(self, pdnIp='193.168.9.239', count=10, pingSize=32):
+        command = 'ping -n '+str(count)+' -l '+str(pingSize)+' '+pdnIp
+        p = subprocess.Popen(command,
+                         stdin=subprocess.PIPE,
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE,
+                         shell=True)
+        out = p.stdout.read().decode('gbk')
+        min,max,avg,transmitted,received,lossrate = self.filter_ping_result(out)
+        if avg == -1:
+            min,max,avg,transmitted,received,lossrate = self.filter_ping_result_english(out)
+        return min,max,avg,transmitted,received,lossrate
+        
+    def filter_ping_result(self, pingResStr=''):
+        pattern = r'最短 = (.*)ms，最长 = (.*)ms，平均 = (.*)ms'
+        transmitted,received,lossrate = 0,0,100
+        result = re.findall(pattern, str(pingResStr))
+        if result !=[]:
+            min = list(result[0])[0]
+            max = list(result[0])[1]
+            avg = list(result[0])[2]
+        else:
+            min = -1
+            max = -1
+            avg = -1
+        pattern2 = r'数据包: 已发送 = (.*)，已接收 = (.*)，丢失 = (.*) ((.*) 丢失)'
+        result2 = re.findall(pattern2, str(pingResStr))
+        if result2 !=[]:
+            pingRes2 = list(result2[0])
+            transmitted = pingRes2[0]
+            received = pingRes2[1]
+            lossrate = int((int(transmitted)-int(received)) /int(transmitted)*100)
+        return min,max,avg,transmitted,received,lossrate
+    
+    def filter_ping_result_english(self, pingResStr=''):
+        pattern = r'Minimum = (.*)ms, Maximum = (.*)ms, Average = (.*)ms'
+        transmitted,received,lossrate = 0,0,100
+        result = re.findall(pattern, str(pingResStr))
+        if result !=[]:
+            min = list(result[0])[0]
+            max = list(result[0])[1]
+            avg = list(result[0])[2]
+        else:
+            min = -1
+            max = -1
+            avg = -1
+        pattern2 = r'Packets: Sent = (.*), Received = (.*), Lost = (.*) ((.*) loss)'
+        result2 = re.findall(pattern2, str(pingResStr))
+        if result2 !=[]:
+            pingRes2 = list(result2[0])
+            transmitted = pingRes2[0]
+            received = pingRes2[1]
+            lossrate = int((int(transmitted)-int(received)) /int(transmitted)*100)
+        return min,max,avg,transmitted,received,lossrate
     '''
                 说明：复位cpe
                 参数：
@@ -141,8 +213,8 @@ class CpeService():
         processNum:灌包进程数
     '''
     #PDN Send UDP Package To Ue(DL)
-    def cpe_udp_flow_DL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='500m', monitorPort=5555, processNum = 3, spanTime = 120):
-        flowRes = cpe.send_udp_package_DL(cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime)
+    def cpe_udp_flow_DL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='500m', monitorPort=5555, processNum = 3, spanTime = 120, isLocalExec=True):
+        flowRes = cpe.send_udp_package_DL(cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime, isLocalExec)
         return flowRes
     
     '''
@@ -155,8 +227,8 @@ class CpeService():
         processNum:灌包进程数
     '''
     #Ue Send UDP Package To PDN(UL)
-    def cpe_udp_flow_UL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='300m', monitorPort=5555, processNum=3, spanTime=120):
-        flowRes = cpe.send_udp_package_UL(cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime)
+    def cpe_udp_flow_UL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='300m', monitorPort=5555, processNum=3, spanTime=120, isLocalExec=True):
+        flowRes = cpe.send_udp_package_UL(cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime, isLocalExec)
         return flowRes
     
     '''
@@ -169,8 +241,8 @@ class CpeService():
         processNum:灌包进程数
     '''
     #PDN Send TCP Package To Ue(DL)
-    def cpe_tcp_flow_DL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum=3, spanTime=120):
-        flowRes = cpe.send_tcp_package_DL(cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime)
+    def cpe_tcp_flow_DL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum=3, spanTime=120, isLocalExec=True):
+        flowRes = cpe.send_tcp_package_DL(cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime, isLocalExec)
         return flowRes
     
     '''
@@ -183,16 +255,16 @@ class CpeService():
         processNum:灌包进程数
     '''
     #Ue Send TCP Package To PDN(UL)
-    def cpe_tcp_flow_UL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum=3, spanTime=120):
-        flowRes = cpe.send_tcp_package_UL(cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime)
+    def cpe_tcp_flow_UL(self, cpe, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum=3, spanTime=120, isLocalExec=True):
+        flowRes = cpe.send_tcp_package_UL(cpePcIp, iperfPath, pdnIp, packageSize, monitorPort, processNum, spanTime, isLocalExec)
         return flowRes
     
     '''
                 说明：小区流量分析
     '''
-    def cell_flow_analyze(self, cpe, enbIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='', spanTime=120, type='WIFI'):
-        dlTrafRes,ulTrafRes = cpe.cell_flow_analyze(enbIp, pcIp, scrapFileName, dir, pcNetworkCardName, spanTime, type)
-        return dlTrafRes,ulTrafRes
+    def cell_flow_analyze(self, cpe, enbIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='', spanTime=120, type='WIFI', gnbType='BS5514', isLocalExec=True):
+        dlTrafRes,ulTrafRes, avgDlTraf, avgUlTraf = cpe.cell_flow_analyze(enbIp, pcIp, scrapFileName, dir, pcNetworkCardName, spanTime, type, gnbType, isLocalExec)
+        return dlTrafRes,ulTrafRes, avgDlTraf, avgUlTraf
     
     '''
                 说明：新增端口绑定规则
@@ -203,4 +275,6 @@ class CpeService():
         bindRes = cpe.binding_port_and_network(port, networkType, flowType, ipType)
         return bindRes
     
-    
+if __name__ == '__main__':
+    CpeService().local_pc_ping('193.168.9.223')
+#     CpeService().filter_ping_result()

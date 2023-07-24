@@ -50,7 +50,7 @@ class QCatModel():
 #             print(context)
             if isFilter == False:
                 if filterContext in context:
-                    isFilter == True
+                    isFilter = True
             else :
                 if subTitle == '':
                     logContextList.append(context)

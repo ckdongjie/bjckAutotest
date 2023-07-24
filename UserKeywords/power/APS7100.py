@@ -4,12 +4,7 @@ Created on 2023年1月5日
 
 @author: autotest
 '''
-'''
-    说明：登录程控电源
-    参数：
-    serialPort:程控电源串口号
-    serialRate:程控电源串口速率
-'''
+
 
 import logging
 
@@ -19,7 +14,12 @@ from BasicService.power.APS7100Service import APS7100Service
 from TestCaseData.basicConfig import BASIC_DATA
 from UserKeywords.basic.basic import key_get_time
 
-
+'''
+    说明：登录程控电源
+    参数：
+    serialPort:程控电源串口号
+    serialRate:程控电源串口速率
+'''
 def key_login_aps7100(serialPort=BASIC_DATA['power']['serialPort'], serialRate=BASIC_DATA['power']['serialRate']):
     with allure.step(key_get_time() +":串口登录程控电源:"+serialPort+','+str(serialRate)):
         logging.info(key_get_time()+':login aps7100 by serial:'+serialPort+','+str(serialRate))

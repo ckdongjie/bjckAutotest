@@ -13,17 +13,18 @@ Created on 2022年9月26日
 '''
 
 import logging
+import re
 
 import allure
 
 from BasicService.ue.mate30Service import mate30Service
 from TestCaseData.basicConfig import BASIC_DATA
-from UserKeywords.basic.basic import key_get_time
+from UserKeywords.basic.basic import key_get_time, key_wait
 
 
-def key_login_serial(serialPort=BASIC_DATA['mate30']['serialPort'], serialRate=BASIC_DATA['mate30']['serialRate'], timeout = 30):
-    with allure.step(key_get_time()+": 登录mate30串口\n"):
-        logging.warning(key_get_time()+': login mate30')
+def key_login_mate30(serialPort=BASIC_DATA['phone']['serialPort'], serialRate=BASIC_DATA['phone']['serialRate'], timeout = 30):
+    with allure.step(key_get_time()+": 登录手机串口\n"):
+        logging.warning(key_get_time()+': login phone')
         mate30 = mate30Service().login_serial(serialPort, serialRate, timeout)
         return mate30
 
@@ -31,16 +32,16 @@ def key_login_serial(serialPort=BASIC_DATA['mate30']['serialPort'], serialRate=B
         串口登出mate30
         参数：
 '''        
-def key_logout_serial(mate30):
-    with allure.step(key_get_time()+": 登出mate30串口\n"):
-        logging.warning(key_get_time()+': logout mate30')
+def key_logout_mate30(mate30):
+    with allure.step(key_get_time()+": 登出手机串口\n"):
+        logging.warning(key_get_time()+': logout phone')
         mate30Service().logout_serial(mate30)
 
 '''
     mate30执行attach
         参数：
 '''        
-def key_ue_attach(mate30):
+def key_mate30_attach(mate30):
     with allure.step(key_get_time()+": mate30执行attach命令\n"):
         logging.warning(key_get_time()+': exec attach on mate30')
         result = mate30Service().ue_attach(mate30)
@@ -50,10 +51,10 @@ def key_ue_attach(mate30):
     mate30执行detach
         参数：
 '''       
-def key_ue_detach(mate30):
+def key_mate30_detach(mate30):
     with allure.step(key_get_time()+": mate30执行detach命令\n"):
         logging.warning(key_get_time()+': exec detach on mate30')
-        result = mate30Service.ue_detach(mate30)
+        result = mate30Service().ue_detach(mate30)
         return result
 
 '''
@@ -63,7 +64,7 @@ def key_ue_detach(mate30):
 def key_query_attach_info(mate30):
     with allure.step(key_get_time()+": mate30驻留小区信息查询\n"):
         logging.warning(key_get_time()+': qury cell info on mate30')
-        attachStatus, cellInfo = mate30Service().query_attach_info(mate30)
+        attachStatus, cellInfo = mate30Service().query_attach_cell_info(mate30)
         return attachStatus, cellInfo
     
 
@@ -74,10 +75,10 @@ def key_query_attach_info(mate30):
     ueIp:ue ip地址，从pdn上执行ping命令
     pingNum:ping包次数
 '''       
-def key_mate30_ping_test(mate30, pdn, ueIp=BASIC_DATA['mate30']['ueIp'], pingNum=BASIC_DATA['ping']['pingNum']):
-    with allure.step(key_get_time()+": mate30执行ping包测试\n"):
-        logging.warning(key_get_time()+': exec ping test on mate30')
-        pingRes = mate30Service.mate30_ping_test(mate30, pdn, ueIp, pingNum)
+def key_mate30_ping_test(mate30, pdn, ueIp=BASIC_DATA['phone']['ueIp'], pingNum=BASIC_DATA['ping']['pingNum']):
+    with allure.step(key_get_time()+": 手机执行ping包测试\n"):
+        logging.warning(key_get_time()+': exec ping test by phone')
+        pingRes = mate30Service().mate30_ping_test(mate30, pdn, ueIp, pingNum)
         return pingRes
 
 '''
@@ -89,12 +90,12 @@ def key_mate30_ping_test(mate30, pdn, ueIp=BASIC_DATA['mate30']['ueIp'], pingNum
     processNum:进程个数
 '''     
 #PDN Send UDP Package To Ue(DL)
-def key_send_udp_package_DL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum = BASIC_DATA['flow']['processNum']):
+def key_send_udp_package_DL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSize=BASIC_DATA['traffic']['udpDlSize'], monitorPort=BASIC_DATA['traffic']['nrDlPort'], processNum = BASIC_DATA['traffic']['processNum']):
     with allure.step(key_get_time()+": mate30执行下行udp灌包测试\n"):
         logging.warning(key_get_time()+': exec DL udp test on mate30')
         updDlRes = mate30Service().send_udp_package_DL(mate30, pdnIp, packageSize, monitorPort, processNum)
         return updDlRes
-
+ 
 '''
     mate上行udp测试
         参数：
@@ -104,12 +105,12 @@ def key_send_udp_package_DL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSiz
     processNum:进程个数
 '''
 #Ue Send UDP Package To PDN(UL)
-def key_send_udp_package_UL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum = BASIC_DATA['flow']['processNum']):
+def key_send_udp_package_UL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSize=BASIC_DATA['traffic']['udpUlSize'], monitorPort=BASIC_DATA['traffic']['nrUlPort'], processNum = BASIC_DATA['traffic']['processNum']):
     with allure.step(key_get_time()+": mate30执行上行udp灌包测试\n"):
         logging.warning(key_get_time()+': exec UL udp test on mate30')
         udpUlRes = mate30Service().send_udp_package_UL(mate30, pdnIp, packageSize, monitorPort, processNum)
         return udpUlRes
-        
+         
 '''
     mate下行tcp测试
         参数：
@@ -119,12 +120,12 @@ def key_send_udp_package_UL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSiz
     processNum:进程个数
 '''        
 #PDN Send TCP Package To Ue(DL)
-def key_send_tcp_package_DL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum = BASIC_DATA['flow']['processNum']):
+def key_send_tcp_package_DL(mate30, pdn, packageSize=BASIC_DATA['traffic']['tcpDlSize'], monitorPort=BASIC_DATA['traffic']['nrDlPort'], processNum = BASIC_DATA['traffic']['processNum']):
     with allure.step(key_get_time()+": mate30执行下行tcp灌包测试\n"):
         logging.warning(key_get_time()+': exec DL tcp test on mate30')
-        tcpDlRes = mate30Service().send_tcp_package_DL(mate30, pdnIp, packageSize, monitorPort, processNum)
+        tcpDlRes = mate30Service().send_tcp_package_DL(mate30, pdn, packageSize, monitorPort, processNum)
         return tcpDlRes
-
+ 
 '''
     mate上行tcp测试
         参数：
@@ -134,8 +135,17 @@ def key_send_tcp_package_DL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSiz
     processNum:进程个数
 '''    
 #Ue Send TCP Package To PDN(UL)
-def key_send_tcp_package_UL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSize=BASIC_DATA['flow']['size'], monitorPort=BASIC_DATA['flow']['nrPort'], processNum = BASIC_DATA['flow']['processNum']):
+def key_send_tcp_package_UL(mate30, pdnIp=BASIC_DATA['pdn']['pdnIp'], packageSize=BASIC_DATA['traffic']['tcpUlSize'], monitorPort=BASIC_DATA['traffic']['nrUlPort'], processNum = BASIC_DATA['traffic']['processNum']):
     with allure.step(key_get_time()+": mate30执行上行tcp灌包测试\n"):
         logging.warning(key_get_time()+': exec UL tcp test on mate30')
         tcpUlRes = mate30Service().send_tcp_package_UL(mate30, pdnIp, packageSize, monitorPort, processNum)
         return tcpUlRes
+    
+# if __name__ == '__main__':
+#     mate30 = key_login_mate30()
+#     key_mate30_detach(mate30)
+#     key_wait(5)
+#     key_mate30_attach(mate30)
+#     key_wait(5)
+#     attachStatus, cellInfo = key_query_attach_info(mate30)
+#     print(attachStatus, cellInfo )

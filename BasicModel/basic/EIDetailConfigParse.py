@@ -1,11 +1,13 @@
 #coding=utf-8
+import os
 import struct
-
-#通过minidom解析xml文件
 from xml.dom.minidom import parse
 import xml.dom.minidom
-import os
 
+from TestCaseData.svDetailConfig import eiTlvSelDict
+
+
+#通过minidom解析xml文件
 class EiMsgObj:
     def __init__(self):
         self.strEiMsgName = ''
@@ -182,7 +184,10 @@ def IsTypeSigned(strTypeName):
     else:
         return 0
 
-def LoadTlvList(message, eiMsgObj):
+'''
+        读取TLV表结构
+'''
+def LoadTlvList(message, eiMsgObj, eiTlvSelList):
     Tlvs = message.getElementsByTagName("TLV")
     for tlv in Tlvs:
         eiTlvObj = EiTlvObj()
@@ -190,10 +195,11 @@ def LoadTlvList(message, eiMsgObj):
         eiTlvObj.u32EiTlvId = int(tlv.getAttribute("id"))
         eiTlvObj.strEiTlvStructName = tlv.getAttribute("struct").strip()
         eiTlvObj.eiStrctObj = GetEiStrctObjFromName(eiMsgObj, eiTlvObj.strEiTlvStructName)
-
         if None == eiTlvObj.eiStrctObj:
             print("加载Struct" + eiTlvObj.strEiTlvStructName + "失败，请检查配置文件")
             return
+        if eiTlvSelList[eiMsgObj.strEiMsgName][eiTlvObj.strEiTlvName] != True:
+            eiTlvObj.bSelected = False
         eiMsgObj.tEiTlvList.append(eiTlvObj)
 
 def GetEiStrctObjFromName(eiMsgObj, strStrctName):
@@ -202,7 +208,27 @@ def GetEiStrctObjFromName(eiMsgObj, strStrctName):
             return tEiStrctObj
     return None
 
+'''
+        配置sv detail跟踪项
+'''
+def configSvDetailSelect():
+    tableSelDict = {}
+    for tableName in eiTlvSelDict.keys():
+        isSelect = False
+        for tlvName in eiTlvSelDict[tableName].keys():
+            if eiTlvSelDict[tableName][tlvName] == True:
+                tableSelDict[tableName] = True
+                isSelect = True
+                break
+        if isSelect==False:
+            tableSelDict[tableName] = False
+    return tableSelDict, eiTlvSelDict
+'''
+        加载sv detail配置文件
+    pcapconfig.xml
+'''
 def loadXmlMsgStruct():
+    tableSelDict, eiTlvSelDict = configSvDetailSelect()
     File_DIR = os.path.dirname(os.path.abspath(__file__))
     # 得到文档对象
     DOMTree = xml.dom.minidom.parse(File_DIR+"\\pcapconfig.xml")
@@ -220,8 +246,9 @@ def loadXmlMsgStruct():
         eiMsgObj.u16DspId = int(message.getAttribute("DspId"))
         eiMsgObj.u16CoreId = int(message.getAttribute("CoreId"))
         LoadStructList(message, eiMsgObj)
-        LoadTlvList(message, eiMsgObj)
-        originalEiMsgObjList.append(eiMsgObj)
+        LoadTlvList(message, eiMsgObj, eiTlvSelDict)
+        if tableSelDict[eiMsgObj.strEiMsgName] == True:
+            originalEiMsgObjList.append(eiMsgObj)
     return originalEiMsgObjList
 
 def GetActiveEIMsgList():
@@ -257,7 +284,6 @@ def GetActiveEIMsgList():
                 tEiMsgInfo.u16TagNum =  tEiMsgInfo.u16TagNum + 1
         if tEiMsgInfo.u16TagNum > 0:
             tEiMsgList.append(tEiMsgInfo)
-
     return tEiMsgList
 
 def GetsvLinkMsg():

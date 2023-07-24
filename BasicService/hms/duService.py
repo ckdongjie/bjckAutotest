@@ -31,8 +31,8 @@ class DuService():
         enbId:基站enbId
         params:修改参数字典
     '''
-    def update_du_cell_para(self, hmsObj, enbId, params):
-        updateRes = DuModel(hmsObj).update_du_cell_para(enbId, params)
+    def update_du_cell_para(self, hmsObj, enbId, params, cellId=1):
+        updateRes = DuModel(hmsObj).update_du_cell_para(enbId, params, cellId)
         return updateRes
     
     '''

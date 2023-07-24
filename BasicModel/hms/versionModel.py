@@ -56,6 +56,39 @@ class EnbVersionModel(HMS):
         return resCode, resInfo
     
     '''
+                基站备用版本信息查询
+                参数：
+        serialNumber:基站序列号
+    '''    
+    def query_gnb_backup_version_info(self, serialNumber):
+        header = URL_DICT['queryPageEnbByCondition4SoftwareRollback']['header']
+        url = self.baseUrl+URL_DICT['queryPageEnbByCondition4SoftwareRollback']['action']
+        body = URL_DICT['queryPageEnbByCondition4SoftwareRollback']['body']
+        params = {"serialNumber":serialNumber}
+        body.update(params) #更新body参数
+        response = self.post_request(url, json=body, headers = header)
+        resCode = response.status_code 
+        resInfo = response.json()
+        return resCode, resInfo
+    
+    '''
+                基站下载版本信息查询
+                参数：
+        serialNumber:基站序列号
+    '''    
+    def query_gnb_download_version_info(self, serialNumber):
+        header = URL_DICT['queryPageEnbByCondition4SoftwareDownload']['header']
+        url = self.baseUrl+URL_DICT['queryPageEnbByCondition4SoftwareDownload']['action']
+        body = URL_DICT['queryPageEnbByCondition4SoftwareDownload']['body']
+        params = {"serialNumber":serialNumber}
+        body.update(params) #更新body参数
+        response = self.post_request(url, json=body, headers = header)
+        resCode = response.status_code 
+        resInfo = response.json()
+        return resCode, resInfo
+    
+    
+    '''
                 基站版本下载
                 参数：
         serialNumberList:基站序列号列表
@@ -285,24 +318,28 @@ class EnbVersionModel(HMS):
         resCode = response.status_code
         resInfo = response.json()
         if resCode == 200:
-            return  resInfo['result']
+            return  resInfo
     
     '''
                 查询xml文件信息
                 参数：
         serialNumber:基站sn号
     '''
-    def query_xml_data_file_info(self, serialNumber):
+    def query_xml_data_file_info(self, serialNumber, tryNum=3):
         header = URL_DICT['queryPageDataFile']['header']
         url = self.baseUrl+URL_DICT['queryPageDataFile']['action']
         body = URL_DICT['queryPageDataFile']['body']
         params = {'serialNumber':serialNumber}
         body.update(params) #更新body参数
-        response = self.post_request(url, json=body, headers = header)
-        resCode = response.status_code
-        resInfo = response.json()
-        if resCode == 200:
-            return resInfo['rows'][-1]['dataId']
+        for i in range (1,tryNum):
+            response = self.post_request(url, json=body, headers = header)
+            resCode = response.status_code
+            resInfo = response.json()
+            if resCode == 200 and resInfo['rows']!=[]:
+                break
+        if resCode == 200 :
+            return resInfo['rows']
+
     
     '''
                 删除hms上xml文件信息
@@ -337,6 +374,84 @@ class EnbVersionModel(HMS):
         resInfo = response.json()
         if resCode == 200:
             return resInfo['result']    #0--成功  1--失败
+        
+    '''
+                校验策略升级参数
+                参数：
+        cfgDict:策略升级参数字典
+    '''
+    def check_policy_upgrade_cfg(self, cfgDict):
+        header = URL_DICT['validateSoftPolicyCfg']['header']
+        url = self.baseUrl+URL_DICT['validateSoftPolicyCfg']['action']
+        body = URL_DICT['validateSoftPolicyCfg']['body']
+        body.update(cfgDict)
+        response = self.post_request(url, json=body, headers = header)
+        resCode = response.status_code 
+        resInfo = response.json()
+        if resCode == 200:
+            return resInfo   #{"success":true}
+        
+    '''
+                创建策略升级任务
+                参数：
+        cfgDict:策略升级参数字典
+        gnbList:基站升级列表
+    '''
+    def create_policy_upgrade_task(self, cfgDict, gnbList):
+        header = URL_DICT['insertSoftPolicyCfg']['header']
+        url = self.baseUrl+URL_DICT['insertSoftPolicyCfg']['action']
+        body = URL_DICT['insertSoftPolicyCfg']['body']
+        body.update(cfgDict)
+        body.update({'enbPolicyCfgs':gnbList})
+        response = self.post_request(url, json=body, headers = header)
+        resCode = response.status_code 
+        resInfo = response.json()
+        if resCode == 200:
+            return resInfo #{"result":true}
+        
+    '''
+                查询策略升级任务信息
+                参数：
+    '''
+    def query_policy_upgrade_task_info(self):
+        header = URL_DICT['findPageSoftwareUpgradePolicy']['header']
+        url = self.baseUrl+URL_DICT['findPageSoftwareUpgradePolicy']['action']
+        body = URL_DICT['findPageSoftwareUpgradePolicy']['body']
+        response = self.post_request(url, json=body, headers = header)
+        resCode = response.status_code 
+        resInfo = response.json()
+        if resCode == 200:
+            return resInfo['rows'] #infoList
+        
+    '''
+               删除策略升级任务
+                参数：
+    '''
+    def delete_policy_upgrade_task(self, cfgDict):
+        header = URL_DICT['deleteSoftPolicyCfg']['header']
+        url = self.baseUrl+URL_DICT['deleteSoftPolicyCfg']['action']
+        body = URL_DICT['deleteSoftPolicyCfg']['body']
+        body.update(cfgDict)
+        response = self.post_request(url, json=body, headers = header)
+        resCode = response.status_code 
+        resInfo = response.json()
+        if resCode == 200:
+            return resInfo #{"result":true}
+        
+    '''
+               激活策略升级任务
+                参数：
+    '''
+    def active_policy_upgrade_task(self, cfgDict):
+        header = URL_DICT['activateSoftPolicyCfg']['header']
+        url = self.baseUrl+URL_DICT['activateSoftPolicyCfg']['action']
+        body = URL_DICT['activateSoftPolicyCfg']['body']
+        body.update(cfgDict)
+        response = self.post_request(url, json=body, headers = header)
+        resCode = response.status_code 
+        resInfo = response.json()
+        if resCode == 200:
+            return resInfo #{"result":true}
     
 if __name__ == '__main__':
     hms = EnbVersionModel(HMS('172.16.2.159'))

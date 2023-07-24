@@ -45,9 +45,27 @@ def key_get_enb_info(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNumberList'])
         hmsObj = HMS()
     with allure.step(key_get_time() +": 查询基站信息\n"):
         logging.info(key_get_time() +": query gnb info")
-        enbId, enbName = hmsObj.query_enb_info(serialNumber)
+        enbId = hmsObj.query_enb_info(serialNumber, 'enbId')
+        enbName = hmsObj.query_enb_info(serialNumber, 'enbName')
         logging.info(key_get_time() +": enbId/enbName:"+str(enbId)+'/'+enbName)
         return enbId, enbName
+    
+'''
+        说明：hms上查询基站信息
+        参数：
+    hmsObj:hms对象
+    serialNumber:基站sn号
+        返回：
+    enbIp:基站ip
+'''
+def key_get_enb_ip(hmsObj, serialNumber=BASIC_DATA['gnb']['serialNumberList']):
+    if hmsObj==None:
+        hmsObj = HMS()
+    with allure.step(key_get_time() +": 查询基站ip信息\n"):
+        logging.info(key_get_time() +": query gnb ip address")
+        enbIp = hmsObj.query_enb_info(serialNumber, 'enbIp')
+        logging.info(key_get_time() +": enbIp:"+str(enbIp))
+        return enbIp
 
 '''
         说明：hms上更新时钟源

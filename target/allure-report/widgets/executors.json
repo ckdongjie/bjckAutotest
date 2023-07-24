@@ -1,0 +1,1 @@
+[{"name":"Jenkins","type":"jenkins","url":"http://172.16.2.43:8080/","buildOrder":2,"buildName":"BS5514_Alarm_Testcase #2","buildUrl":"http://172.16.2.43:8080/job/BS5514_Alarm_Testcase/2/","reportName":"AllureReport","reportUrl":"http://172.16.2.43:8080/job/BS5514_Alarm_Testcase/2/allure"}]

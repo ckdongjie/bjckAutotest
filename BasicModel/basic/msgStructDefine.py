@@ -60,6 +60,7 @@ class T_EICellULDetailState:
         self.u32CellULMacThroughput = 0
         self.u32CellULRlcThrput = 0
         self.u32CellULPdcpThrput = 0
+        self.u32CellULWifiThrput = 0 # add dj
         self.u8ULRbRatio = 0
         self.u8CellULSchdUeNumPerTti = 0
         self.u8CellULAvrHarqTxCnt = 0
@@ -76,7 +77,7 @@ class T_EICellULDetailState:
         self.u32MaxTotalTaskTime = 0
 
     def pack(self):
-        buffer = struct.pack('<3I4B12HI', self.u32CellULMacThroughput, self.u32CellULRlcThrput, self.u32CellULPdcpThrput, self.u8ULRbRatio,
+        buffer = struct.pack('<4I4B12HI', self.u32CellULMacThroughput, self.u32CellULRlcThrput, self.u32CellULPdcpThrput, self.u32CellULWifiThrput, self.u8ULRbRatio,
                              self.u8CellULSchdUeNumPerTti, self.u8CellULAvrHarqTxCnt, self.u8CellULBler, self.u16CellULHarqFailRatio,
                              self.u16CellULHarqSelfMaintainRatio,self.au16AvrgULMcs[0], self.au16AvrgULMcs[1], self.au16AvrgULMcs[2],
                              self.au16AvrgULMcs[3], self.u16CellULHqRetSuccRatio1, self.u16CellULHqRetSuccRatio2, self.u16CellULHqRetSuccRatio3,
@@ -88,6 +89,7 @@ class T_EICellDLDetailState:
         self.u32CellDLMacThroughput = 0
         self.u32CellDLRlcThrput = 0
         self.u32CellDLPdcpThrput = 0
+        self.u32CellDLWifiThrput = 0  # add dj
         self.u8DLRbRatio = 0
         self.u8CellDLSchdUeNumPerTti = 0
         self.u8CellDLAvrHarqTxCnt = 0
@@ -107,7 +109,7 @@ class T_EICellDLDetailState:
         self.u16CellDLMaxSchdTaskTime = 0
 
     def pack(self):
-        buffer = struct.pack('<3I4B7H4B5H', self.u32CellDLMacThroughput, self.u32CellDLRlcThrput, self.u32CellDLPdcpThrput, self.u8DLRbRatio,
+        buffer = struct.pack('<4I4B7H4B5H', self.u32CellDLMacThroughput, self.u32CellDLRlcThrput, self.u32CellDLPdcpThrput, self.u32CellDLWifiThrput, self.u8DLRbRatio,
                              self.u8CellDLSchdUeNumPerTti, self.u8CellDLAvrHarqTxCnt, self.u8CellDLBler, self.u16CellDLHarqFailRatio,
                              self.u16CellDLHarqSelfMaintainRatio, self.au16AvrgDLMcs[0], self.au16AvrgDLMcs[1],self.au16AvrgDLMcs[2],self.au16AvrgDLMcs[3],
                              self.u16DtxRatio, self.u8CellDLTxLayerRatio1, self.u8CellDLTxLayerRatio2, self.u8CellDLTxLayerRatio3, self.u8CellDLTxLayerRatio4,
@@ -152,7 +154,7 @@ class T_EIUEGeneralInfo:
 
     def pack(self):
         buffer = struct.pack('<4B4IQ2I14H2B2H2BHh', self.u8UELiveCount, self.u8IsUsed, self.u8PL, 0, self.u32ULPdcpThrput, self.u32ULRlcThrput,
-                             self.u32DLPdcpThrput, self.u32DLRlcThrput , self.u64IP, self.u32ULMacThrput, self.u32DLMacThrput, self.u16ULSchdCnt, self.u16DLSchdCnt,
+                             self.u32DLPdcpThrput, self.u32DLRlcThrput, self.u64IP, self.u32ULMacThrput, self.u32DLMacThrput, self.u16ULSchdCnt, self.u16DLSchdCnt,
                              self.u16ULHarqFailRatio, self.u16DLHarqFailRatio, self.u16ULHarqExpireRatio, self.u16DLHarqExpireRatio, self.au16ULAvrgMcs[0],
                              self.au16ULAvrgMcs[1],self.au16ULAvrgMcs[2],self.au16ULAvrgMcs[3],self.au16DLAvrgMcs[0],self.au16DLAvrgMcs[1],self.au16DLAvrgMcs[2],
                              self.au16DLAvrgMcs[3], self.u8ULAvrgHarqTxCnt, self.u8DLAvrgHarqTxCnt, self.u16ULAvrgRbNum, self.u16DLAvrgRbNum, self.u8ULAvrgBler,

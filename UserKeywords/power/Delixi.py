@@ -7,9 +7,9 @@ import logging
 
 import allure
 
-from BasicService.power import DelixiService
+from BasicService.power.DelixiService import DelixiService
 from TestCaseData.basicConfig import BASIC_DATA
-from UserKeywords.basic.basic import key_get_time
+from UserKeywords.basic.basic import key_get_time, key_wait
 
 
 def key_login_delixi(serialPort=BASIC_DATA['power']['serialPort'], serialRate=BASIC_DATA['power']['serialRate']):
@@ -47,4 +47,11 @@ def key_power_off_delixi(delixi):
     with allure.step(key_get_time() +":关闭程控电源开关"):
         logging.info(key_get_time()+':delixi power off')
         poffRes = DelixiService().power_off(delixi)
-        logging.info(key_get_time()+': delixi power off result:'+delixi)
+        logging.info(key_get_time()+': delixi power off result:'+poffRes)
+        
+if __name__ == '__main__':
+    delixi = key_login_delixi()
+    key_power_off_delixi(delixi)
+    key_wait(60)
+    key_power_on_delixi(delixi)
+    key_logout_delixi(delixi)

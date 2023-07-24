@@ -22,6 +22,7 @@ class DuModel(HMS):
         '''
         if hmsObj:
             self.baseUrl = hmsObj.baseUrl
+            
     #刷新DUCellBaseInformation信息
     def realtime_query_du_cell_info(self, enbId, tryNum=3):
         header = URL_DICT['realtimeQueryDuCellBasicByEnbId']['header']
@@ -38,6 +39,7 @@ class DuModel(HMS):
             else:
                 sleep(3)
         return result
+    
     #查询DUCellBaseInformation信息
     def query_du_cell_info(self, enbId):
         if self.realtime_query_du_cell_info(enbId):
@@ -50,13 +52,17 @@ class DuModel(HMS):
             if resCode == 200:
                 resInfo = response.json()
                 if resInfo['rows']!=[]:
-                    infoDict = resInfo['rows'][0]
+                    infoDict = resInfo['rows']
             return infoDict
         else:
             return False
+        
     #修改DUCellBaseInformation参数
-    def update_du_cell_para(self, enbId, params, tryNum=5):
-        duCellInfo = self.query_du_cell_info(enbId)
+    def update_du_cell_para(self, enbId, params, cellId, tryNum=5):
+        duCellInfoList = self.query_du_cell_info(enbId)
+        for duCellInfo in duCellInfoList:
+            if duCellInfo['cellId'] == cellId:
+                break
         duCellInfo.update(params)
         header = URL_DICT['updateDUCellBasic']['header']
         url = self.baseUrl+URL_DICT['updateDUCellBasic']['action']
@@ -69,9 +75,8 @@ class DuModel(HMS):
             if resInfo.get('socketTimeout'):
                 continue
             if resCode == 200 and resInfo['result']=='0':
-                return True
-            else:
-                return False
+                break
+        return resInfo
     
     def realtime_Query_Dl_Schedule(self, enbId, tryNum=3):
         header = DL_SCHEDULE_URL_DICT['realtimeQueryDlScheduleInfo']['header']

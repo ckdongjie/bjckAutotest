@@ -36,7 +36,7 @@ URL_DICT={
             'enbStatus':'',
             'region':'',
             'start':0,
-            'limit':15
+            'limit':100
         }
     },
     'queryEnbSoftwareVersionFromDeviceBySns':
@@ -81,7 +81,7 @@ URL_DICT={
             "startTime":"",
             "endTime":"",
             "start":0,
-            "limit":15
+            "limit":100
         }
     },
     'queryPageEnbByCondition4SoftwareDownload':
@@ -102,7 +102,7 @@ URL_DICT={
             "region":"",
             "downloadVersion":"",
             "start":0,
-            "limit":15
+            "limit":100
         },
     },
     'activeVersion':
@@ -134,7 +134,7 @@ URL_DICT={
             "startTime":"",
             "endTime":"",
             "start":0,
-            "limit":15
+            "limit":100
         }
     },
     'rollbackVersion':
@@ -166,7 +166,7 @@ URL_DICT={
             "startTime":"",
             "endTime":"",
             "start":0,
-            "limit":15
+            "limit":100
         }
     },
     'batchRealtimeQuerySoftwareCtrlParameters':
@@ -231,7 +231,7 @@ URL_DICT={
             "enbStatus":"",
             "region":"",
             "start":0,
-            "limit":15
+            "limit":100
         }
     },
     'queryCellStatus':
@@ -251,7 +251,7 @@ URL_DICT={
             "cellActiveState":"",
             "enbStatus":"",
             "start":0,
-            "limit":15
+            "limit":100
         },
     },
     'updateDUCellBasic':
@@ -352,7 +352,7 @@ URL_DICT={
             "enbStatus":"",
             "region":"",
             "start":0,
-            "limit":15
+            "limit":100
         },
     },
     'findCuCellBasicByEnbId':
@@ -480,7 +480,7 @@ URL_DICT={
             "region":"",
             "delAccount":"",
             "start":0,
-            "limit":15
+            "limit":100
         },
     },
     'findEnbDataFile':
@@ -529,7 +529,7 @@ URL_DICT={
             "dataFileActivateStatus":"",
             "delAccount":"",
             "start":0,
-            "limit":15
+            "limit":100
         }
     },
     'deleteDataFileByIds':
@@ -556,4 +556,250 @@ URL_DICT={
             "fileName":"Automatic-18_902272840007_20221109184508.cfg"
         }],
     },
+    'pingDiagnose':
+    {
+        'action':'/api/hmsCfg/v1/pingDiagnose',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':{
+            "pingTimes":"20",
+            "ipList":["195:168:16:0:200:500:0:1"]
+        },
+    },
+    'getHmsReponse':
+    {
+        'action':'/api/softwarenotification/v1/connect',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':[{
+                "channel":"/meta/connect",
+                "connectionType":"long-polling",
+                "id":"185",
+                "clientId":"9qw724rxzyjar3m1o18s9osp6g"
+        }],
+    },
+    'queryClientId':
+    {
+        'action':'/api/softwarenotification/v1/handshake',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':[{
+            "version":"1.0",
+            "minimumVersion":"0.9",
+            "channel":"/meta/handshake",
+            "supportedConnectionTypes":["long-polling","callback-polling"],
+            "advice":{"timeout":60000,"interval":0},
+            "id":"1"
+        }],
+    },
+    'bandClientId':
+    {
+        'action':'/api/softwarenotification/v1/',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':[{
+            "channel":"/meta/subscribe",
+            "subscription":"/enb/diagnose",
+            "id":"2",
+            "clientId":"bk1p6up2b85qedz1smmjcwj47x3k"
+        }],
+    },
+    'traceRouteDiagnose':
+    {
+        'action':'/api/hmsCfg/v1/traceRouteDiagnose',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':{
+            "taskId":"",
+            "ipList":["195:168:16:0:200:200:0:1"]
+        },
+    },
+    'validateSoftPolicyCfg':
+    {
+        'action':'/api/hmsCfg/v1/validateSoftPolicyCfg',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':{
+            "policyCfgId":"1687754495810", #时间戳
+            "policyName":"auto", #策略名
+            "policyStatus":"0", # 0-suspend  1-active
+            "executeOrNot":"", #
+            "downloadFlag":"1",# 0-no download 1-download
+            "softVersion":"BS5514_V1.20.20", #版本号
+            "triggerMode":"0",# 0-time 1-event
+            "times":"2023-06-26 11:40",# download time
+            "triggerType":"",#下载触发类型 
+            "startTime":"", #触发起时间
+            "endTime":"", #触发终时间
+            "activateType":"1",# 激活类型  0-不激活  1-下载后激活   2--时间激活
+            "timerActivateTime":"",#激活时间
+            "creatTime":"",#创建时间
+            "creatorID":"65bb5097-de07-44f7-ad5d-20cb413f60de"#创建id
+        },
+    },#{"success":true}
+    'insertSoftPolicyCfg':
+    {
+        'action':'/api/hmsCfg/v1/insertSoftPolicyCfg',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':{
+            "policyCfgId":"1687754495810",
+            "policyName":"auto",
+            "policyStatus":"0",
+            "executeOrNot":"",
+            "downloadFlag":"1",
+            "softVersion":"BS5514_V1.20.20",
+            "triggerMode":"0",
+            "times":"2023-06-26 11:40",
+            "triggerType":"",
+            "startTime":"",
+            "endTime":"",
+            "activateType":"1",
+            "timerActivateTime":"",
+            "creatTime":"",
+            "enbPolicyCfgs":[
+                {"serialNumber":"902133550090","triggerMode":0},
+                {"serialNumber":"902133550089","triggerMode":0}
+            ],
+            "creatorID":"65bb5097-de07-44f7-ad5d-20cb413f60de"
+        },
+    },#{"result":true}
+    'findPageSoftwareUpgradePolicy':
+    {
+        'action':'/api/hmsCfg/v1/findPageSoftwareUpgradePolicy',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':{
+            "policyName":"",
+            "policyStatus":"",
+            "triggerMode":"",
+            "executeOrNot":"",
+            "operatorID":"65bb5097-de07-44f7-ad5d-20cb413f60de",
+            "rootUserFlag":True,
+            "operatorUserName":"root",
+            "start":0,
+            "limit":100
+        },
+    },#{"result":true}
+    'deleteSoftPolicyCfg':
+    {
+        'action':'/api/hmsCfg/v1/deleteSoftPolicyCfg',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':{
+            "policyCfgId":"1687762443325",
+            "policyName":"auto222",
+            "policyStatus":0,
+            "downloadFlag":1,
+            "triggerMode":0,
+            "times":"2023-06-27 11:40",
+            "softVersion":"BS5514_V1.20.20",
+            "triggerType":"",
+            "startTime":"",
+            "endTime":"",
+            "creatTime":"2023-06-26 15:54:03",
+            "executes":"",
+            "executeOrNot":0,
+            "activateType":1,
+            "timerActivateTime":"",
+            "creatorID":"65bb5097-de07-44f7-ad5d-20cb413f60de",
+            "creator":"root",
+            "creatorUserInfo":{
+                "userID":"65bb5097-de07-44f7-ad5d-20cb413f60de",
+                "userName":"root",
+                "userDomain":"1,2,3,4"
+            },
+            "enbPolicyCfgs":""},
+    },#{"result":true}
+    'activateSoftPolicyCfg':
+    {
+        'action':'/api/hmsCfg/v1/activateSoftPolicyCfg',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':{
+            "policyCfgId":"1687769175745",
+            "policyName":"1111",
+            "policyStatus":1,
+            "downloadFlag":1,
+            "triggerMode":0,
+            "times":"2023-06-26 15:10",
+            "softVersion":"BS5514_V1.20.20",
+            "triggerType":"",
+            "startTime":"",
+            "endTime":"",
+            "creatTime":"2023-06-26 16:07:49",
+            "executes":"",
+            "executeOrNot":0,# 0-未执行 1-执行完成 2-执行中
+            "activateType":1,
+            "timerActivateTime":"",
+            "creatorID":"65bb5097-de07-44f7-ad5d-20cb413f60de",
+            "creator":"root",
+            "creatorUserInfo":{
+                "userID":"65bb5097-de07-44f7-ad5d-20cb413f60de",
+                "userName":"root",
+                "userDomain":"1,2,3,4"
+            },
+            "enbPolicyCfgs":""
+        },
+    },#{"result":true}
+    'findPageTraceMeEnbs':
+    {
+        'action':'/api/hmsCfg/v1/findPageTraceMeEnbs',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':{
+            "domainList":"1,2,3,4,5",
+            "enbName":"",
+            "enbIp":"",
+            "serialNumber":"",
+            "enbStatus":"",
+            "switchState":"",
+            "region":"",
+            "delAccount":"",
+            "start":0,
+            "limit":100
+        }
+    },#dict
+    'updateTraceMeParas':
+    {
+        'action':'/api/hmsCfg/v1/updateTraceMeParas',
+        'method':'POST',
+        'header':{
+            'Cookie':'lang=en-US; BAYEUX_BROWSER=1myku1tiv3o1t1if; sessioncode=uxplximbon; username=root; warningFlag=false'
+        },
+        'body':{
+            "traceMeParas":[
+                {
+                    "serialNumber":"902181800017",
+                    "enbId":39,
+                    "switchState":"1",
+                    "startTime":"2023-06-08 16:32:45",
+                    "endTime":"2023-06-30 16:32:45",
+                    "enbName":"Automatic-17"
+                }
+            ]
+        }
+    },#"result": 1
 }

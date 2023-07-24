@@ -1,0 +1,75 @@
+INFO     root:HmsManager.py:29 2023-07-21 16:52:56: login HMS, ip: 172.16.2.220,username: root
+INFO     root:HmsManager.py:31 2023-07-21 16:52:56: login HMS success!
+INFO     root:HmsManager.py:47 2023-07-21 16:52:56: query gnb info
+INFO     root:HmsManager.py:50 2023-07-21 16:52:56: enbId/enbName:40/Automatic-17
+INFO     root:CellManager.py:58 2023-07-21 16:52:56: confirm if cell[1] status is same as expect status,expect status:available
+INFO     root:CellManager.py:26 2023-07-21 16:52:56: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:52:58: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:52:58: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:53:03: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:53:04: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:53:04: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:53:09: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:53:10: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:53:10: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:53:15: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:53:15: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:53:15: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:53:20: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:53:21: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:53:21: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:53:26: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:53:27: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:53:27: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:53:32: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:53:33: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:53:33: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:53:38: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:53:39: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:53:39: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:53:44: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:53:45: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:53:45: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:53:50: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:53:51: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:53:51: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:53:56: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:53:57: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:53:57: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:54:02: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:54:03: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:54:03: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:54:08: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:54:09: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:54:09: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:54:14: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:54:15: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:54:15: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:54:20: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:54:21: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:54:21: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:54:26: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:54:27: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:54:27: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:54:32: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:54:33: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:54:33: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:54:38: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:54:39: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:54:39: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:54:44: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:54:45: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:54:45: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:54:50: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:54:51: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:54:51: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:54:56: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:54:56: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:54:56: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:55:01: query cell status
+WARNING  root:CellManager.py:40 2023-07-21 16:55:02: cell_1 status:unavailable
+INFO     root:basic.py:30 2023-07-21 16:55:02: wait for 5s......
+INFO     root:CellManager.py:26 2023-07-21 16:55:07: query cell status
+INFO     root:CellManager.py:36 2023-07-21 16:55:08: cell_1 status:available
+INFO     root:CellManager.py:65 2023-07-21 16:55:08: cell[1] status:available, expect status:available
+INFO     root:SctpManager.py:67 2023-07-21 16:55:08: query ipv6 sctp info

@@ -1,0 +1,47 @@
+INFO     root:HmsManager.py:29 2023-07-21 16:46:06: login HMS, ip: 172.16.2.220,username: root
+INFO     root:HmsManager.py:31 2023-07-21 16:46:06: login HMS success!
+INFO     root:HmsManager.py:47 2023-07-21 16:46:06: query gnb info
+INFO     root:HmsManager.py:50 2023-07-21 16:46:06: enbId/enbName:40/Automatic-17
+INFO     root:WifiManager.py:52 2023-07-21 16:46:06: query wifi cell status
+INFO     root:WifiManager.py:56 2023-07-21 16:46:08: wifi cell status:Normal
+INFO     root:test_alarm.py:90 2023-07-21 16:46:08: wifi cell down alarm and DFS alarm report
+INFO     root:gnbManager.py:22 2023-07-21 16:46:08: login gnb by ssh.
+INFO     paramiko.transport:transport.py:1873 Connected (version 2.0, client OpenSSH_8.4)
+INFO     paramiko.transport:transport.py:1873 Authentication (publickey) failed.
+INFO     paramiko.transport:transport.py:1873 Authentication (password) successful!
+INFO     root:gnbService.py:30 ssh login gnb success, gnb: <BasicModel.gnb.gnbModel.gnbModel object at 0x0817D8B0>
+INFO     root:gnbManager.py:226 2023-07-21 16:46:09: login wifi exec command:radartool bangradar
+INFO     root:gnbService.py:121 radartool bangradar exec result: radartool bangradar
+root@OpenWrt:~# 
+INFO     root:gnbManager.py:229 2023-07-21 16:46:12: command exec result:radartool bangradar
+root@OpenWrt:~# 
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:12: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:46:12: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:17: query gnb active alarm
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:17: query gnb active alarm
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:17: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:46:18: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:23: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:46:23: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:28: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:46:28: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:33: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:46:33: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:38: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:46:38: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:43: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:46:43: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:48: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:46:48: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:53: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:46:53: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:46:58: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:46:59: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:47:04: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:47:04: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:47:09: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:47:09: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:47:14: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:47:14: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:47:19: query gnb active alarm
+INFO     root:AlarmManager.py:27 2023-07-21 16:47:19: query gnb active alarm

@@ -1,15 +1,11 @@
 # coding= 'utf-8'
 '''
 Created on 2022年11月17日
-
 @author: dj
-
 '''
-
-
+from time import sleep
 import logging
 import allure
-
 from BasicService.gnb.gnbService import gnbService
 from TestCaseData.basicConfig import BASIC_DATA
 from UserKeywords.basic.basic import key_get_time
@@ -105,8 +101,8 @@ def key_unforbid_dpdk0(gnb):
     gnb:gnb对象
 '''
 def key_exec_command_on_gnb(gnb, cmdStr):
-    with allure.step(key_get_time() +": 基站侧执行桩函数\n"):
-        logging.info(key_get_time()+': exec command on gnb.')
+    with allure.step(key_get_time() +": 基站侧执行桩函数:"+cmdStr):
+        logging.info(key_get_time()+': exec command on gnb, command:'+cmdStr)
         result = gnbService().exec_command_on_gnb(gnb, cmdStr)
 
 '''
@@ -205,7 +201,69 @@ def key_open_sub6g_channel(gnb):
         gnbService().exec_command_on_gnb(gnb, 'Web2022@Nr5gTechPs')
         result = gnbService().exec_command_on_gnb(gnb, cmdStr)
         
+'''
+        说明：打开sub6g射频通道
+        参数：
+    gnb:gnb对象
+'''
+def key_query_gnb_cpu_ratio(coreNum=14, queryNum=1):
+    gnb = key_ssh_login_gnb()
+    with allure.step(key_get_time() +": 查询基站核"+str(coreNum)+" CPU利用率"):
+        logging.info(key_get_time()+': query gnb core'+str(coreNum)+' cpu ratio')
+        queryCpuRes = gnbService().query_cpu_ratio(gnb, coreNum, queryNum)
+        with allure.step(key_get_time() +": 核"+str(coreNum)+" CPU利用率查询结果："+queryCpuRes):
+            logging.info(key_get_time()+': the query result of gnb core'+str(coreNum)+' cpu ratio:'+queryCpuRes)
+#         print(queryCpuRes)
+        
+'''
+        说明：登录wifi板执行command命令
+        参数：
+    gnb:gnb对象
+'''
+def key_login_wifi_exec_command(cmdStr):
+    gnb = key_ssh_login_gnb()
+    with allure.step(key_get_time() +": 登录wifi板执行桩函数："+cmdStr):
+        logging.info(key_get_time()+': login wifi exec command:'+cmdStr)
+        execRes = gnbService().login_wifi_exec_command(gnb, cmdStr)
+        with allure.step(key_get_time() +": 桩函数结果："+execRes):
+            logging.info(key_get_time()+': command exec result:'+execRes)
+        
+'''
+        说明：登录基站nrapp执行command命令
+        参数：
+    gnb:gnb对象
+'''
+def key_login_nrapp_exec_command(cmdStr):
+    gnb = key_ssh_login_gnb()
+    with allure.step(key_get_time() +": 登录nrapp执行桩函数："+cmdStr):
+        logging.info(key_get_time()+': login nrapp exec command:'+cmdStr)
+        execRes = gnbService().login_nrapp_exec_command(gnb, cmdStr)
+        with allure.step(key_get_time() +": 桩函数结果："+execRes):
+            logging.info(key_get_time()+': command exec result:'+execRes)       
+
+'''
+            说明：串口登录gnb
+            参数：
+    serialPort:2160端口号
+    serialRate:端口比特率
+    timeout:登录超时时间
+''' 
+def key_serial_login_2160(serialPort=BASIC_DATA['gnbSerial']['2160Port'], serialRate=BASIC_DATA['gnbSerial']['2160PortRate']):
+    with allure.step(key_get_time() +": 串口登录2160"):
+        logging.info(key_get_time()+': login 2160 by serial port')
+        serial = gnbService().serial_login_2160(serialPort, serialRate)
+        return serial
+    
+'''
+          登出gnb
+'''
+def key_serial_logout_2160(serial):
+    with allure.step(key_get_time() +": 串口登出2160"):
+        logging.info(key_get_time()+': logout 2160 by serial port')
+        gnbService().serial_logout_2160(serial)
+        
 if __name__ == '__main__':
     gnb = key_ssh_login_gnb()
 #     key_query_cpld_version_info(gnb)
-    key_gnb_copy_file(gnb, '/home/bootmisc.sh', '/etc/init.d/bootmisc.sh')
+#     key_gnb_copy_file(gnb, '/home/bootmisc.sh', '/etc/init.d/bootmisc.sh')
+    key_query_gnb_cpu_ratio(gnb, 14, 5)

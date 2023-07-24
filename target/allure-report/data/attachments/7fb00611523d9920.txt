@@ -1,0 +1,29 @@
+INFO     root:HmsManager.py:29 2023-07-21 17:02:16: login HMS, ip: 172.16.2.220,username: root
+INFO     root:HmsManager.py:31 2023-07-21 17:02:16: login HMS success!
+INFO     root:HmsManager.py:47 2023-07-21 17:02:16: query gnb info
+INFO     root:HmsManager.py:50 2023-07-21 17:02:16: enbId/enbName:40/Automatic-17
+INFO     root:test_alarm.py:378 2023-07-21 17:02:16: high voltage alarm report
+INFO     root:DeviceAlarmParaManager.py:53 2023-07-21 17:02:16: modify over voltage alarm threshold, params:{'busVolAlarmHighThld': 11}
+INFO     root:DeviceAlarmParaManager.py:57 2023-07-21 17:02:21: over voltage alarm threshold modify success!
+INFO     root:AlarmManager.py:27 2023-07-21 17:02:21: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 17:02:22: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 17:02:27: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 17:02:27: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 17:02:32: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 17:02:32: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 17:02:37: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 17:02:37: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 17:02:42: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 17:02:42: wait for 5s......
+INFO     root:test_alarm.py:384 2023-07-21 17:02:47: recovery high voltage alarm report
+INFO     root:DeviceAlarmParaManager.py:53 2023-07-21 17:02:47: modify over voltage alarm threshold, params:{'busVolAlarmHighThld': 14}
+INFO     root:DeviceAlarmParaManager.py:57 2023-07-21 17:02:55: over voltage alarm threshold modify success!
+INFO     root:AlarmManager.py:27 2023-07-21 17:02:55: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 17:02:55: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 17:03:00: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 17:03:00: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 17:03:05: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 17:03:05: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 17:03:10: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 17:03:10: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 17:03:15: query gnb active alarm

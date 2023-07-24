@@ -49,13 +49,19 @@ class CuModel(HMS):
         infoDict = {}
         if resCode == 200:
             resInfo = response.json()
-            infoDict = resInfo['rows'][0]
-            infoDict.pop('enbInfo')
-            infoDict.pop('nci')
+            infoDict = resInfo['rows']
+#             infoDict = resInfo['rows'][0]
+#             infoDict.pop('enbInfo')
+#             infoDict.pop('nci')
         return infoDict
         
-    def update_cu_cell_para(self, enbId, params):
-        cuCellInfo = self.query_cu_cell_info(enbId)
+    def update_cu_cell_para(self, enbId, params, cellId=1):
+        cuCellInfoList = self.query_cu_cell_info(enbId)
+        for cuCellInfo in cuCellInfoList:
+            if cuCellInfo['cellId'] == cellId:
+                cuCellInfo.pop('enbInfo')
+                cuCellInfo.pop('nci')
+                break
         cuCellInfo.update(params)
         header = URL_DICT['updateCUCellBasic']['header']
         url = self.baseUrl+URL_DICT['updateCUCellBasic']['action']
@@ -64,7 +70,8 @@ class CuModel(HMS):
         response = self.post_request(url, json=body, headers = header)
         resCode = response.status_code
         resInfo = response.json() 
-        if resCode == 200 and resInfo['result']=='0':
-            return True
-        else:           
-            return False   
+        return resInfo
+#         if resCode == 200 and resInfo['result']=='0':
+#             return True
+#         else:           
+#             return False   

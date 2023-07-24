@@ -1,0 +1,21 @@
+INFO     root:HmsManager.py:29 2023-07-21 16:56:23: login HMS, ip: 172.16.2.220,username: root
+INFO     root:HmsManager.py:31 2023-07-21 16:56:23: login HMS success!
+INFO     root:HmsManager.py:47 2023-07-21 16:56:23: query gnb info
+INFO     root:HmsManager.py:50 2023-07-21 16:56:23: enbId/enbName:40/Automatic-17
+INFO     root:CellManager.py:58 2023-07-21 16:56:23: confirm if cell[1] status is same as expect status,expect status:available
+INFO     root:CellManager.py:26 2023-07-21 16:56:23: query cell status
+INFO     root:CellManager.py:36 2023-07-21 16:56:27: cell_1 status:available
+INFO     root:CellManager.py:65 2023-07-21 16:56:27: cell[1] status:available, expect status:available
+INFO     root:test_alarm.py:265 2023-07-21 16:56:27: cell unavailable alarm report
+INFO     root:CellManager.py:77 2023-07-21 16:56:27: block du cell
+INFO     root:CellManager.py:82 2023-07-21 16:56:37: block du cell success!
+INFO     root:AlarmManager.py:27 2023-07-21 16:56:37: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:56:37: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:56:42: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:56:42: wait for 5s......
+INFO     root:test_alarm.py:271 2023-07-21 16:56:47: recovery cell unavailable alarm report
+INFO     root:CellManager.py:97 2023-07-21 16:56:47: unblock du cell
+INFO     root:CellManager.py:102 2023-07-21 16:56:56: unblock du cell success!
+INFO     root:AlarmManager.py:27 2023-07-21 16:56:56: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:56:56: wait for 5s......
+INFO     root:AlarmManager.py:27 2023-07-21 16:57:01: query gnb active alarm

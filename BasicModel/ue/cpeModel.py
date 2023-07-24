@@ -10,8 +10,9 @@ import time
 import paramiko
 
 from BasicModel.basic.loadFileAndAnalyzeData import loadDataAndCalculateFlow, \
-    g_tEiMsgList, startMonitorTask, scrapNetworkPackData
+    startMonitorTask, startCatputer, stopCatputer
 from BasicModel.basic.udpSocket import udpSocketModel
+from pip._vendor.tenacity.before import before_log
 
 
 class CpeModel(object):
@@ -57,7 +58,7 @@ class CpeModel(object):
             self._ssh.invoke_shell()
         self._channel.send(cmd+'\n')
         time.sleep(2)
-        logging.info('AT Command is:{0}'.format(cmd))
+#         logging.info('AT Command is:{0}'.format(cmd))
         result = self.rece_at_command()
 #         logging.warning('AT Command Result is:{0}'.format(result))
         return self.at_result_mattch(result)
@@ -67,10 +68,19 @@ class CpeModel(object):
             self._ssh.invoke_shell()
         self._channel.send(cmd+'\n')
         time.sleep(2)
-        logging.info('AT Command is:{0}'.format(cmd))
+#         logging.info('AT Command is:{0}'.format(cmd))
         result = self.rece_at_command()
 #         logging.warning('AT Command Result is:{0}'.format(result))
         return self.at_cell_info_mattch(result)
+    
+    def query_resident_cell_info(self, cmd):
+        if not self._ssh:
+            self._ssh.invoke_shell()
+        self._channel.send(cmd+'\n')
+        time.sleep(1)
+#         logging.info('AT Command is:{0}'.format(cmd))
+        result = self.rece_at_command()
+        return self.at_cell_pci_mattch(result)
         
     def rece_at_command(self):
         try:
@@ -81,7 +91,7 @@ class CpeModel(object):
     def at_result_mattch(self, str):
         pattern = r'.*\s*(.*)\r\s*.*AT:'
         result = re.findall(pattern, str)
-        logging.info('mattch result is:{0}'.format(result))
+#         logging.info('mattch result is:{0}'.format(result))
         if len(result)==1:
             return result[0]
         if len(result)==2:
@@ -90,7 +100,7 @@ class CpeModel(object):
     def at_cell_info_mattch(self, str):
         pattern = r'.*\s*\+C5GREG:\s*(.*)\r\r\s*(.*)\r\s*AT:'
         result = re.findall(pattern, str)
-        logging.info('cell info mattch result is:{0}'.format(result))
+#         logging.info('cell info mattch result is:{0}'.format(result))
         if result != []:
             if result[0][1]=='OK':
                 cellInfo = result[0][0]
@@ -98,6 +108,15 @@ class CpeModel(object):
                 if len(cellInfoList) > 4:
                     return cellInfoList[1], cellInfoList[3]
         return -1,-1
+    
+    def at_cell_pci_mattch(self, str):
+        pattern = '.*\s*PHYSICAL_CELL_ID:(.*)\r\r\s*'
+        result = re.findall(pattern, str)
+#         logging.info('cell pci:{0}'.format(result))
+        if result != []:
+            return result[0]
+        else:
+            return -1
     
     def ping_test(self, pdnIp='193.168.9.239', pingNum=20, pingInterface = 'rmnet_data0', pingSize=32):
         if pingInterface == '':
@@ -123,7 +142,7 @@ class CpeModel(object):
         time.sleep(5)
         ipInfo = self.rece_at_command()
         mattchRes = self.ip_info_mattch(ipInfo)
-        if len(mattchRes)<2:
+        if len(mattchRes)<1:
             return 'failure'
         else:
             return 'success'
@@ -131,7 +150,7 @@ class CpeModel(object):
     def ip_info_mattch(self, str):
         pattern = '.*rmnet_data[0|1].*\n*.*inet addr:(.*)  Mask:255.255'
         result = re.findall(pattern, str)
-        logging.info('ip info mattch result is{0}'.format(result))
+#         logging.info('ip info mattch result is{0}'.format(result))
         return result    
         
     def is_add_dmz_route(self, cpePcIp):
@@ -146,7 +165,7 @@ class CpeModel(object):
     def ping_result_mattch(self, str):
         pattern = '.*min/avg/max = (.*) ms'
         result = re.findall(pattern, str)
-        logging.info('ping result mattched is:{0}'.format(result))
+#         logging.info('ping result mattched is:{0}'.format(result))
         if result:
             pingResList = result[0].split('/')
             min,avg,max = pingResList[0],pingResList[1],pingResList[2]
@@ -156,7 +175,7 @@ class CpeModel(object):
     def ping_result_mattch_transmitted(self, str):
         pattern = r'.*\s*(.*) packets transmitted'
         result = re.findall(pattern, str)
-        logging.info('packets transmitted:{0}'.format(result))
+#         logging.info('packets transmitted:{0}'.format(result))
         if result:
             tranPackage = result[-1]
             return tranPackage
@@ -165,7 +184,7 @@ class CpeModel(object):
     def ping_result_mattch_received(self, str):
         pattern = 'packets transmitted, (.*) packets received'
         result = re.findall(pattern, str)
-        logging.info('packets received:{0}'.format(result))
+#         logging.info('packets received:{0}'.format(result))
         if result:
             recePackage = result[-1]
             return recePackage
@@ -174,78 +193,101 @@ class CpeModel(object):
     def ping_result_mattch_loss_rate(self, str):
         pattern = 'packets received, (.*) packet loss'
         result = re.findall(pattern, str)
-        logging.info('packet loss:{0}'.format(result))
+#         logging.info('packet loss:{0}'.format(result))
         if result:
             lossRate = result[-1]
             return lossRate
         return '100%'
     
     #PDN Send UDP Package To Ue(DL)
-    def send_udp_package_DL(self, cpePcIp, iperfPath, pdnIp, packageSize='500m', monitorPort=5555, processNum = 3, spanTime = 120):
+    def send_udp_package_DL(self, cpePcIp, iperfPath, pdnIp, packageSize='500m', monitorPort=5555, processNum = 3, spanTime = 120, isLocalExec=True):
         if self.is_add_dmz_route(cpePcIp):
             self._channel.send('iptables -t nat -A PREROUTING -i rmnet_data0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
             self._channel.send('iptables -t nat -A PREROUTING -i ath0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
-#         cmd_str = iperfPath+'\\iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
-        cmd_str = 'iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
-        logging.info('iperf command[udp-dl]: '+cmd_str)
-#         os.popen(cmd_str)
-        self._channel.send(cmd_str+'\n')
+        if isLocalExec == True:
+            #exec iperf on pc
+            cmd_str = iperfPath+'\\iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime+10)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
+            logging.info('iperf command[udp-dl]: '+cmd_str)
+            os.popen(cmd_str)
+        else:
+            #exec iperf on cpe
+            cmd_str = 'iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime+10)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
+            logging.info('iperf command[udp-dl]: '+cmd_str)
+            self._channel.send(cmd_str+'\n')
         time.sleep(1)
     
     #Ue Send UDP Package To PDN(UL)
-    def send_udp_package_UL(self, cpePcIp, iperfPath, pdnIp, packageSize='300m', monitorPort=5555, processNum = 3, spanTime = 120):
+    def send_udp_package_UL(self, cpePcIp, iperfPath, pdnIp, packageSize='300m', monitorPort=5555, processNum = 3, spanTime = 120, isLocalExec=True):
         if self.is_add_dmz_route(cpePcIp):
             self._channel.send('iptables -t nat -A PREROUTING -i rmnet_data0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
             self._channel.send('iptables -t nat -A PREROUTING -i ath0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
-#         cmd_str = iperfPath+'\\iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)
-        cmd_str = 'iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)
-        logging.info('iperf command[udp-ul]: '+cmd_str)
-#         os.popen(cmd_str)
-        self._channel.send(cmd_str+'\n')
+        if isLocalExec == True:
+            #exec iperf on pc
+            cmd_str = iperfPath+'\\iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime+10)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)
+            logging.info('iperf command[udp-ul]: '+cmd_str)
+            os.popen(cmd_str)
+        else:
+            #exec iperf on cpe
+            cmd_str = 'iperf3 -u -c '+pdnIp+' -b '+ packageSize +' -i 1 -t '+str(spanTime+10)+' -l 1300 -p '+str(monitorPort)+' -P '+str(processNum)
+            logging.info('iperf command[udp-ul]: '+cmd_str)
+            self._channel.send(cmd_str+'\n')
         time.sleep(1)
         
     #PDN Send TCP Package To Ue(DL)
-    def send_tcp_package_DL(self, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum = 3, spanTime = 120):
+    def send_tcp_package_DL(self, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum = 3, spanTime = 120, isLocalExec=True):
         if self.is_add_dmz_route(cpePcIp):
             self._channel.send('iptables -t nat -A PREROUTING -i rmnet_data0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
             self._channel.send('iptables -t nat -A PREROUTING -i ath0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
-        #                       iperf3 -c 190.1.1.127 -i 1 -w 1400k -t 86400 -p 7785 -P 5
-#         cmd_str = iperfPath+'\\iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime)+' -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
-        cmd_str = 'iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime)+' -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
-        logging.info('iperf command[tcp-dl]: '+cmd_str)
-#         os.popen(cmd_str)
-        self._channel.send(cmd_str+'\n')
+        if isLocalExec == True:
+            #exec iperf on pc
+            #iperf3 -c 190.1.1.127 -i 1 -w 1400k -t 86400 -p 7785 -P 5
+            cmd_str = iperfPath+'\\iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime+10)+' -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
+            logging.info('iperf command[tcp-dl]: '+cmd_str)
+            os.popen(cmd_str)
+        else:
+            #exec iperf on cpe
+            cmd_str = 'iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime+10)+' -p '+str(monitorPort)+' -P '+str(processNum)+' -R'
+            logging.info('iperf command[tcp-dl]: '+cmd_str)
+            self._channel.send(cmd_str+'\n')
         time.sleep(1)
     
     #Ue Send TCP Package To PDN(UL)
-    def send_tcp_package_UL(self, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum = 3, spanTime = 120):
+    def send_tcp_package_UL(self, cpePcIp, iperfPath, pdnIp, packageSize='1400k', monitorPort=5555, processNum = 3, spanTime = 120, isLocalExec=True):
         if self.is_add_dmz_route(cpePcIp):
             self._channel.send('iptables -t nat -A PREROUTING -i rmnet_data0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
             self._channel.send('iptables -t nat -A PREROUTING -i ath0 -j DNAT --to-destination '+cpePcIp+'\n')
             time.sleep(1)
-#         cmd_str = iperfPath+'\\iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime)+' -p '+str(monitorPort)+' -P '+str(processNum)
-        cmd_str = 'iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime)+' -p '+str(monitorPort)+' -P '+str(processNum)
-        logging.info('iperf command[tcp-ul]: '+cmd_str)
-#         os.popen(cmd_str)
-        self._channel.send(cmd_str+'\n')
+        if isLocalExec == True:
+            #exec iperf on pc
+            cmd_str = iperfPath+'\\iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime+10)+' -p '+str(monitorPort)+' -P '+str(processNum)
+            logging.info('iperf command[tcp-ul]: '+cmd_str)
+            os.popen(cmd_str)
+        else:
+            #exec iperf on cpe
+            cmd_str = 'iperf3 -c '+pdnIp+' -w '+ packageSize +' -i 1 -t '+str(spanTime+10)+' -p '+str(monitorPort)+' -P '+str(processNum)
+            logging.info('iperf command[tcp-ul]: '+cmd_str)
+            self._channel.send(cmd_str+'\n')
         time.sleep(1)
         
     #flow analyze
-    def cell_flow_analyze(self, enbIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='', spanTime = 120, type='WIFI'):
-        svSocket = udpSocketModel().socket_SVclient(g_tEiMsgList, enbIp)
+    def cell_flow_analyze(self, enbIp, pcIp, scrapFileName, dir = 'DL', pcNetworkCardName ='', spanTime = 120, type='WIFI', gnbType='BS5514', isLocalExec=True):
+        svSocket = udpSocketModel().socket_sv_basic_client(enbIp, 16677)
         startMonitorTask(svSocket)
-        sleep(1)
-        scrapNetworkPackData(scrapFileName, pcNetworkCardName, (spanTime-10))
-        dlTrafRes,ulTrafRes = loadDataAndCalculateFlow(scrapFileName, enbIp, pcIp, dir, type)
+        startCatputer(pcNetworkCardName)
+        sleep(spanTime)
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        capturePath = BASE_DIR+'\\AutoTestMain\\captureData'
+        stopCatputer(capturePath+'\\'+scrapFileName)
+        dlTrafRes,ulTrafRes, avgDlTraf, avgUlTraf = loadDataAndCalculateFlow(capturePath+'\\'+scrapFileName, enbIp, pcIp, dir, type, gnbType, isLocalExec)
         svSocket.close()
-        return dlTrafRes,ulTrafRes
+        return dlTrafRes,ulTrafRes, avgDlTraf, avgUlTraf
     
     def binding_port_and_network(self, port, networkType, flowType='udp', ipType='ipv4'):
         addRes = False
@@ -271,3 +313,6 @@ class CpeModel(object):
             return True
         else:
             return False
+
+if __name__ == '__main__':
+    CpeModel().cell_flow_analyze('172.16.7.15', '172.16.7.100','test.pcap', 'DL', 'Realtek PCIe GbE Family Controller', 50, 'NR' )

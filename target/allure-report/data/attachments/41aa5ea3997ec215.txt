@@ -1,0 +1,21 @@
+INFO     root:HmsManager.py:29 2023-07-21 16:57:01: login HMS, ip: 172.16.2.220,username: root
+INFO     root:HmsManager.py:31 2023-07-21 16:57:01: login HMS success!
+INFO     root:HmsManager.py:47 2023-07-21 16:57:01: query gnb info
+INFO     root:HmsManager.py:50 2023-07-21 16:57:01: enbId/enbName:40/Automatic-17
+INFO     root:CellManager.py:58 2023-07-21 16:57:01: confirm if cell[1] status is same as expect status,expect status:available
+INFO     root:CellManager.py:26 2023-07-21 16:57:01: query cell status
+INFO     root:CellManager.py:36 2023-07-21 16:57:02: cell_1 status:available
+INFO     root:CellManager.py:65 2023-07-21 16:57:02: cell[1] status:available, expect status:available
+INFO     root:test_alarm.py:282 2023-07-21 16:57:02: NG fault alarm report
+INFO     root:SctpManager.py:83 2023-07-21 16:57:02: 新增 ipv6 sctp, params:{'assID': '2', 'primaryPeerAddress': '193:168:6::145'}
+INFO     root:SctpManager.py:87 2023-07-21 16:57:10: ipv6 sctp add success!
+INFO     root:NgManager.py:20 2023-07-21 16:57:10: sctp instance id, params:{'assId': '2'}
+INFO     root:NgManager.py:24 2023-07-21 16:57:16: ng config modify success!
+INFO     root:AlarmManager.py:27 2023-07-21 16:57:16: query gnb active alarm
+INFO     root:basic.py:30 2023-07-21 16:57:16: wait for 5s......
+INFO     root:test_alarm.py:290 2023-07-21 16:57:21: recovery ng fault alarm report
+INFO     root:NgManager.py:20 2023-07-21 16:57:21: sctp instance id, params:{'assId': '1'}
+INFO     root:NgManager.py:24 2023-07-21 16:57:27: ng config modify success!
+INFO     root:SctpManager.py:47 2023-07-21 16:57:27: delete ipv6 sctp, id:2
+INFO     root:SctpManager.py:51 2023-07-21 16:57:29: ipv6 sctp delete success!
+INFO     root:AlarmManager.py:27 2023-07-21 16:57:29: query gnb active alarm

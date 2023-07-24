@@ -134,8 +134,14 @@ def key_weblmt_export_black_box_log(lmtObj, logPath):
 def key_weblmt_test_mode_activated(lmtObj, testMode):
     with allure.step(key_get_time() + ": %s weblmt激活自测模式\n" % (lmtObj.ip)):
         logging.warning(key_get_time() + ": %s weblmt test mode set %s\n" % (lmtObj.ip, "open" if testMode==1 else "close"))
-        res = LmtGnbService().lmtTestModeActivated(lmtObj, testMode)
-        return res
+        resInfo = LmtGnbService().lmtTestModeActivated(lmtObj, testMode)
+        if resInfo['result'] == 0:
+            with allure.step(key_get_time()+": weblmt激活自测模式失败"):
+                logging.warning(key_get_time() + ":weblmt active auto test mode fail")
+        elif resInfo['result'] == 1:
+            with allure.step(key_get_time()+": weblmt激活自测模式成功"):
+                logging.info(key_get_time() + ":weblmt active auto test mode success")
+        return resInfo
 
 '''
 说明：打开IPV4/V6使能开关

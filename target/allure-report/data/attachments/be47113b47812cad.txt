@@ -1,0 +1,30 @@
+INFO     root:HmsManager.py:29 2023-07-21 16:47:19: login HMS, ip: 172.16.2.220,username: root
+INFO     root:HmsManager.py:31 2023-07-21 16:47:19: login HMS success!
+INFO     root:HmsManager.py:47 2023-07-21 16:47:19: query gnb info
+INFO     root:HmsManager.py:50 2023-07-21 16:47:19: enbId/enbName:40/Automatic-17
+INFO     root:WifiManager.py:52 2023-07-21 16:47:19: query wifi cell status
+INFO     root:WifiManager.py:56 2023-07-21 16:47:21: wifi cell status:Normal
+INFO     root:test_alarm.py:106 2023-07-21 16:47:21: login wifi and exec reboot
+INFO     root:gnbManager.py:22 2023-07-21 16:47:21: login gnb by ssh.
+INFO     paramiko.transport:transport.py:1873 Connected (version 2.0, client OpenSSH_8.4)
+INFO     paramiko.transport:transport.py:1873 Authentication (publickey) failed.
+INFO     paramiko.transport:transport.py:1873 Authentication (password) successful!
+INFO     root:gnbService.py:30 ssh login gnb success, gnb: <BasicModel.gnb.gnbModel.gnbModel object at 0x081FAE68>
+INFO     root:gnbManager.py:226 2023-07-21 16:47:22: login wifi exec command:apps_reboot
+INFO     root:gnbService.py:121 apps_reboot exec result: apps_reboot
+apps reboot ...
+modem reboot ...
+
+INFO     root:gnbManager.py:229 2023-07-21 16:47:25: command exec result:apps_reboot
+apps reboot ...
+modem reboot ...
+
+INFO     root:basic.py:30 2023-07-21 16:47:25: wait for 120s......
+INFO     root:WifiManager.py:52 2023-07-21 16:49:25: query wifi cell status
+INFO     root:WifiManager.py:60 2023-07-21 16:49:26: wifi cell status:Abnormal
+INFO     root:WifiManager.py:84 2023-07-21 16:49:26: query wifi heartbeat status
+INFO     root:WifiManager.py:88 2023-07-21 16:49:28: wifi heartbeat status:Heartbeat Normal
+INFO     root:WifiManager.py:52 2023-07-21 16:49:28: query wifi cell status
+INFO     root:WifiManager.py:56 2023-07-21 16:49:31: wifi cell status:Normal
+INFO     root:WifiManager.py:84 2023-07-21 16:49:31: query wifi heartbeat status
+INFO     root:WifiManager.py:88 2023-07-21 16:49:32: wifi heartbeat status:Heartbeat Normal

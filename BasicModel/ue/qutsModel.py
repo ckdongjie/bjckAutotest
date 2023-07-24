@@ -133,7 +133,7 @@ class qutsModel():
         # save the data. This saves all the data that was generated in the device
         HDF_path = dev_manager.saveLogFiles(logSavePath)  # size correlated with logs logged in QXDM
     
-        logging.info("hdf is saved to {}".format(HDF_path))
+#         logging.info("hdf is saved to {}".format(HDF_path))
     
         diagService.destroyService()
         self.qxdm_exit_gracef(qxdm_window)

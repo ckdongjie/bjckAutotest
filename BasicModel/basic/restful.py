@@ -28,9 +28,9 @@ class HttpClient(object):
                 if method == 'GET':
                     res = req.get(url, timeout=60, **kwargs)
                 elif method == 'POST':
-                    res = req.post(url, data=data, json=json, timeout=90, **kwargs)
+                    res = req.post(url, data=data, json=json, timeout=240, **kwargs)
                 elif method == 'PUT':
-                    res = req.put(url, data=data, timeout=90, **kwargs)
+                    res = req.put(url, data=data, timeout=240, **kwargs)
                 elif method == 'DELETE':
                     res = req.delete(url)
                 else:

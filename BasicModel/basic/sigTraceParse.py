@@ -227,10 +227,9 @@ def GetLinkMsg():
     buffer = struct.pack('<2HI', 0x200E, 0, 0)
     return buffer
 
-def GetSigStartMsg():
+def GetSigStartMsg(strIpAddress):
     tTraceStartInd = T_TraceStartInd()
     tHead = struct.pack('<2HI', 4366, 0x7C00, 0)
-    strIpAddress = '172.16.2.39'
     arryAddres = strIpAddress.split('.')
     tTraceStartInd.au8IPAdress[0] = int(arryAddres[0])
     tTraceStartInd.au8IPAdress[1] = int(arryAddres[1])

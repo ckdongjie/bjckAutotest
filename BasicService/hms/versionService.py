@@ -24,13 +24,33 @@ class VersionService():
         return resCode, resInfo
     
     '''
-                说明：查询基站版本信息
+                说明：同步基站版本信息到网管
                 参数：
         hmsObj:hms对象
         serialNumber:基站sn号
     '''
     def query_gnb_version_info_from_device(self, hmsObj, serialNumber):
         resCode, resInfo = EnbVersionModel(hmsObj).query_gnb_version_info_from_device(serialNumber)
+        return resCode, resInfo
+    
+    '''
+                说明：查询基站备用版本信息
+                参数：
+        hmsObj:hms对象
+        serialNumber:基站sn号
+    '''
+    def query_gnb_backup_version_info(self, hmsObj, serialNumber):
+        resCode, resInfo = EnbVersionModel(hmsObj).query_gnb_backup_version_info(serialNumber)
+        return resCode, resInfo
+    
+    '''
+                说明：查询基站下载版本信息
+                参数：
+        hmsObj:hms对象
+        serialNumber:基站sn号
+    '''
+    def query_gnb_download_version_info(self, hmsObj, serialNumber):
+        resCode, resInfo = EnbVersionModel(hmsObj).query_gnb_download_version_info(serialNumber)
         return resCode, resInfo
     
     '''
@@ -178,7 +198,22 @@ class VersionService():
         serialNumber:基站sn号
     '''
     def query_xml_data_file_info(self, hmsObj, serialNumber):
-        fileId = EnbVersionModel(hmsObj).query_xml_data_file_info(serialNumber)
+        queryDataList = EnbVersionModel(hmsObj).query_xml_data_file_info(serialNumber)
+        return queryDataList[-1]['dataId']
+    
+    '''
+                说明：查询hms上同步失败的xml文件的id
+                参数：
+        hmsObj:hms对象
+        serialNumber:基站sn号
+    '''
+    def query_fail_xml_data_file_info(self, hmsObj, serialNumber):
+        queryDataList = EnbVersionModel(hmsObj).query_xml_data_file_info(serialNumber)
+        fileId = ''
+        for dataInfo in queryDataList:
+            if dataInfo['upStatus']==1:
+                fileId = dataInfo['dataId']
+                break
         return fileId
     
     '''
@@ -202,3 +237,61 @@ class VersionService():
     def download_xml_from_hms_to_gnb(self, hmsObj, dataId, serialNumber, fileName):
         sysRes = EnbVersionModel(hmsObj).download_xml_from_hms_to_gnb(dataId, serialNumber, fileName)
         return sysRes
+    
+    '''
+                说明：校验策略升级参数
+                参数：
+        hmsObj:hms对象
+        cfgDict:配置参数字典
+    '''
+    def check_policy_upgrade_cfg(self, hmsObj, cfgDict):
+        checkRes = EnbVersionModel(hmsObj).check_policy_upgrade_cfg(cfgDict)
+        return checkRes
+    
+    '''
+                说明：创建策略升级任务
+                参数：
+        hmsObj:hms对象
+        cfgDict:配置参数字典
+        gnbList:基站信息列表
+    '''
+    def create_policy_upgrade_task(self, hmsObj, cfgDict, gnbList):
+        addRes = EnbVersionModel(hmsObj).create_policy_upgrade_task(cfgDict, gnbList)
+        return addRes
+    
+    '''
+                说明：查询策略升级任务信息
+                参数：
+        hmsObj:hms对象
+    '''
+    def query_policy_upgrade_task_info(self, hmsObj):
+        taskInfoList = EnbVersionModel(hmsObj).query_policy_upgrade_task_info()
+        return taskInfoList
+    
+    '''
+                说明：删除策略升级任务信息
+                参数：
+        hmsObj:hms对象
+    '''
+    def delete_policy_upgrade_task(self, hmsObj, taskName):
+        taskInfoList = self.query_policy_upgrade_task_info(hmsObj)
+        for taskInfo in taskInfoList:
+            if taskInfo['policyName'] == taskName:
+                cfgDict = taskInfo
+        delRes = EnbVersionModel(hmsObj).delete_policy_upgrade_task(cfgDict)
+        return delRes
+    
+    '''
+                说明：删除策略升级任务信息
+                参数：
+        hmsObj:hms对象
+    '''
+    def active_policy_upgrade_task(self, hmsObj, taskName):
+        taskInfoList = self.query_policy_upgrade_task_info(hmsObj)
+        for taskInfo in taskInfoList:
+            if taskInfo['policyName'] == taskName:
+                cfgDict = taskInfo
+        cfgDict['policyStatus']='1'
+        activeRes = EnbVersionModel(hmsObj).active_policy_upgrade_task(cfgDict)
+        return activeRes
+    
