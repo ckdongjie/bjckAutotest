@@ -72,22 +72,51 @@ class PdnModel():
                 参数：
         port:iperf使用的端口号
     '''
-    def kill_iperf_process(self, port):
+    def kill_iperf_process(self, port, iperfType='iperf3'):
         query_proc_cmd = 'netstat -anp|grep '+str(port)
         queryCmdRes = self.exec_cmd(query_proc_cmd)
-        processId = self.iperf_query_result_mattch(queryCmdRes)
+        processId = self.iperf_query_result_mattch(queryCmdRes, iperfType)
         if processId != -1:
             stop_proc_cmd = 'kill -9 '+str(processId)
             killRes = self.exec_cmd(stop_proc_cmd)
             return killRes
+    '''
+                    启动iperf tcp灌包命令
+    '''    
+    def start_iperf_command_tcp(self, phoneIp, packageSize, monitorPort, processNum, spanTime, iperfType='iperf'):
+        iperfCmd = 'nohup '+iperfType+' -c '+phoneIp+' -i 1 -w '+packageSize+' -t '+str(spanTime+10)+' -p '+monitorPort+' -P '+str(processNum)+' &'
+        print(iperfCmd)
+        self.exec_cmd(iperfCmd)
         
+    '''
+                    启动iperf tcp灌包命令 上行
+    '''    
+    def start_iperf_command_tcp_ul(self, phoneIp, packageSize, monitorPort, processNum, spanTime, iperfType='iperf'):
+        iperfCmd = 'nohup '+iperfType+' -c '+phoneIp+' -i 1 -w '+packageSize+' -t '+str(spanTime+10)+' -p '+monitorPort+' -P '+str(processNum)+' -R &'
+        print(iperfCmd)
+        self.exec_cmd(iperfCmd)
+    
+    '''
+                    启动iperf udp灌包命令
+    '''    
+    def start_iperf_command_udp(self, phoneIp, packageSize, monitorPort, processNum, spanTime, iperfType='iperf'):
+        iperfCmd = 'nohup '+iperfType+' -u -c '+phoneIp+' -i 1 -b '+packageSize+' -t '+str(spanTime+10)+' -l 1300 -p '+monitorPort+' -P '+str(processNum)+' &'
+        self.exec_cmd(iperfCmd)
+        
+    '''
+                    启动iperf udp灌包命令
+    '''    
+    def start_iperf_command_udp_ul(self, phoneIp, packageSize, monitorPort, processNum, spanTime, iperfType='iperf'):
+        iperfCmd = 'nohup '+iperfType+' -u -c '+phoneIp+' -i 1 -b '+packageSize+' -t '+str(spanTime+10)+' -l 1300 -p '+monitorPort+' -P '+str(processNum)+' -R &'
+        self.exec_cmd(iperfCmd)
+            
     '''
                 说明：正则匹配查找对应的iperf进程
                 参数：
         resString:iperf进程信息
     '''    
-    def iperf_query_result_mattch(self, resString):
-        pattern = '.*LISTEN\s*(.*)/iperf3'
+    def iperf_query_result_mattch(self, resString, iperfType='iperf3'):
+        pattern = '.*LISTEN\s*(.*)/'+iperfType
         result = re.findall(pattern, resString)
         if len(result)!=0:
             return result[0]

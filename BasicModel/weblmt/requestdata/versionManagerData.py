@@ -71,5 +71,20 @@ LMT_VER_URL_DICT={
             "operationType":"query",
             "tableName":"boardStatus"
         }
-    },   
+    },  
+    'queryVersionPackageInfo':
+    {
+        'action':'/cgi-bin/CuDuBts.py',
+        'method':'POST',
+        'header':{
+            'content-type': "application/json; charset=UTF-8",
+            'Cookie':'LoginName=admin'
+        },
+        'body':{
+            "operationType":"select",
+            "tableName":"t_swpkg",
+            "pageIndex":0,
+            "pageSize":"25"
+        }
+    }, 
 }

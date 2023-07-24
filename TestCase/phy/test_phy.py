@@ -1,16 +1,9 @@
 # coding = 'utf-8'
-from distutils.core import setup
 '''
 Created on 2022年12月13日
 
 @author: autotest
-
 '''
-'''
-    物理层参数测试用例
-'''
-# @allure.feature("物理层参数测试")
-# class TestPhy():
 
 import logging
 import os
@@ -49,14 +42,13 @@ from UserKeywords.ue.CpeManager import key_cpe_login, key_cpe_attach, \
     key_support_ul_dmrs_type1, key_ul_udp_nr_flow_test, key_support_csi_rs, \
     key_pre_rx_power_and_power_ramp_analyze, key_csi_rs_power_analyze, \
     key_pusch_resource_allocation_type_analyze, \
-    key_pdsch_resource_allocation_type_analyze
+    key_pdsch_resource_allocation_type_analyze, key_qxdm_log_save
 
 
 @allure.story("支持每个时隙配置PDCCH符号数")
 @pytest.mark.支持每个时隙配置PDCCH符号数
 @pytest.mark.parametrize("symbolNumber",RUN_TESTCASE['支持每个时隙配置PDCCH符号数'] if RUN_TESTCASE.get('支持每个时隙配置PDCCH符号数') else [])
 def testModifyPdcchSymbolNum(symbolNumber):
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     hmsObj = key_login_hms(BASIC_DATA['hms']['ip'])
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
@@ -79,19 +71,13 @@ def testModifyPdcchSymbolNum(symbolNumber):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
     
 @allure.story("支持PDCCH CCE聚合度配置")
 @pytest.mark.支持PDCCH_CCE聚合度配置
 @pytest.mark.parametrize("cceLevel",RUN_TESTCASE['支持PDCCH_CCE聚合度配置'] if RUN_TESTCASE.get('支持PDCCH_CCE聚合度配置') else [])
 def testModifyPdcchCceLevel(cceLevel):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
     try:
@@ -113,19 +99,13 @@ def testModifyPdcchCceLevel(cceLevel):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
     
 @allure.story("支持PDCCH的传输格式")
 @pytest.mark.支持PDCCH的传输格式
 @pytest.mark.parametrize("transferFormat, cceLevel",RUN_TESTCASE['支持PDCCH的传输格式'] if RUN_TESTCASE.get('支持PDCCH的传输格式') else [])
 def testConfirmPdcchSupportTransferFormate(transferFormat, cceLevel):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
     try:
@@ -150,19 +130,13 @@ def testConfirmPdcchSupportTransferFormate(transferFormat, cceLevel):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
         
 @allure.story("支持PDSCH_调制解调方式配置")
 @pytest.mark.支持PDSCH_调制解调方式配置
 @pytest.mark.parametrize("switch, mcs",RUN_TESTCASE['支持PDSCH_调制解调方式配置'] if RUN_TESTCASE.get('支持PDSCH_调制解调方式配置') else [])
 def testModifyPdschMcs(switch, mcs):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
     pdn = key_pdn_login()
@@ -189,19 +163,13 @@ def testModifyPdschMcs(switch, mcs):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
             
 @allure.story("支持随机接入PRACH格式")
 @pytest.mark.支持随机接入PRACH格式
 @pytest.mark.parametrize("configIndex",RUN_TESTCASE['支持随机接入PRACH格式'] if RUN_TESTCASE.get('支持随机接入PRACH格式') else [])
 def testModifyPrachConfigurationIndex(configIndex):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
     ueLogFilePath = ''
@@ -226,12 +194,7 @@ def testModifyPrachConfigurationIndex(configIndex):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
             
 
 @allure.story("支持PUCCH传输格式:Format1")
@@ -239,7 +202,6 @@ def testModifyPrachConfigurationIndex(configIndex):
 @pytest.mark.parametrize("format1RbNumber",RUN_TESTCASE['支持PUCCH传输格式_Format1'] if RUN_TESTCASE.get('支持PUCCH传输格式_Format1') else [])
 def testPucchSupportTransferFormat1(format1RbNumber):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
@@ -266,19 +228,13 @@ def testPucchSupportTransferFormat1(format1RbNumber):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
             
 @allure.story("支持PUCCH传输格式:Format3")
 @pytest.mark.支持PUCCH传输格式_Format3
 @pytest.mark.parametrize("format3RbNumber",RUN_TESTCASE['支持PUCCH传输格式_Format3'] if RUN_TESTCASE.get('支持PUCCH传输格式_Format3') else [])
 def testPucchSupportTransferFormat3(format3RbNumber):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
@@ -306,18 +262,12 @@ def testPucchSupportTransferFormat3(format3RbNumber):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
             
 @allure.story("支持PUCCH format1和format3时隙内跳频")
 @pytest.mark.支持PUCCH_format1和format3时隙内跳频
 def testPucchSupportFormat1HopAndFormat3Hop():
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
@@ -340,18 +290,12 @@ def testPucchSupportFormat1HopAndFormat3Hop():
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
     
 @allure.story("支持DMRS Mapping Type A")
 @pytest.mark.支持DMRS_Mapping_Type_A
 def testSupportDmrsMappingTypeA():
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
@@ -374,18 +318,12 @@ def testSupportDmrsMappingTypeA():
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)   
+        key_qxdm_log_save(ueLogFilePath) 
             
 @allure.story("支持DL DMRS Type 1")
 @pytest.mark.支持DL_DMRS_Type1
 def testSupportDLDmrsType1():
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
@@ -408,18 +346,12 @@ def testSupportDLDmrsType1():
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
 
 @allure.story("支持UL DMRS Type 1")
 @pytest.mark.支持UL_DMRS_Type1
 def testSupportULDmrsType1():
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
@@ -442,19 +374,13 @@ def testSupportULDmrsType1():
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup) 
+        key_qxdm_log_save(ueLogFilePath) 
             
 @allure.story("支持PDSCH_上行调制解调方式配置")
 @pytest.mark.支持PDSCH_上行调制解调方式配置
 @pytest.mark.parametrize("switch, mcs",RUN_TESTCASE['支持PDSCH_上行调制解调方式配置'] if RUN_TESTCASE.get('支持PDSCH_上行调制解调方式配置') else [])
 def testModifyPdschUlMcs(switch, mcs):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
     pdn = key_pdn_login()
@@ -481,19 +407,13 @@ def testModifyPdschUlMcs(switch, mcs):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
             
 @allure.story("支持单端口CS_IRS配置用于时频同步")
 @pytest.mark.支持单端口CSI_RS配置用于时频同步
 @pytest.mark.parametrize("trsPeriod, csiReportQuantiry",RUN_TESTCASE['支持单端口CSI_RS配置用于时频同步'] if RUN_TESTCASE.get('支持单端口CSI_RS配置用于时频同步') else [])
 def testSupportCsiRsConfig(trsPeriod, csiReportQuantiry):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
     pdn = key_pdn_login()
@@ -521,19 +441,13 @@ def testSupportCsiRsConfig(trsPeriod, csiReportQuantiry):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
             
 @allure.story("支持配置PRACH功率初始值和功率调整步长")
 @pytest.mark.支持配置PRACH功率初始值和功率调整步长
 @pytest.mark.parametrize("preambleInitRxTargetPwr, pwrRampingStep",RUN_TESTCASE['支持配置PRACH功率初始值和功率调整步长'] if RUN_TESTCASE.get('支持配置PRACH功率初始值和功率调整步长') else [])
 def testConfigPreambleInitRxTargetPwrAndPwrRampingStep(preambleInitRxTargetPwr, pwrRampingStep):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
     pdn = key_pdn_login()
@@ -558,19 +472,13 @@ def testConfigPreambleInitRxTargetPwrAndPwrRampingStep(preambleInitRxTargetPwr, 
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
             
 @allure.story("支持CSI-RS发射功率可配置")
 @pytest.mark.支持CSI_RS发射功率可配置
 @pytest.mark.parametrize("powerOffset",RUN_TESTCASE['支持CSI_RS发射功率可配置'] if RUN_TESTCASE.get('支持CSI_RS发射功率可配置') else [])
 def testConfigCSIRSPowerOffset(powerOffset):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
     pdn = key_pdn_login()
@@ -595,19 +503,13 @@ def testConfigCSIRSPowerOffset(powerOffset):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
             
 @allure.story("支持PUSCH资源分配方式type1")
 @pytest.mark.支持PUSCH资源分配方式type1
 @pytest.mark.parametrize("puschAllocType",RUN_TESTCASE['支持PUSCH资源分配方式type1'] if RUN_TESTCASE.get('支持PUSCH资源分配方式type1') else [])
 def testPuschResourceAllocationType(puschAllocType):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
     pdn = key_pdn_login()
@@ -633,19 +535,13 @@ def testPuschResourceAllocationType(puschAllocType):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)
+        key_qxdm_log_save(ueLogFilePath)
 
 @allure.story("支持PDSCH资源分配方式type1")
 @pytest.mark.支持PDSCH资源分配方式type1
 @pytest.mark.parametrize("pdschAllocType",RUN_TESTCASE['支持PDSCH资源分配方式type1'] if RUN_TESTCASE.get('支持PDSCH资源分配方式type1') else [])
 def testPdschResourceAllocationType(pdschAllocType):
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
     pdn = key_pdn_login()
@@ -671,18 +567,12 @@ def testPdschResourceAllocationType(pdschAllocType):
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)                
+        key_qxdm_log_save(ueLogFilePath)               
     
 @allure.story("支持在PUCCH信道反馈周期性宽带CQI/PMI/RI")
 @pytest.mark.支持在PUCCH信道反馈周期性宽带
 def testPucchChannelFeedbackPerBandwith():
     hmsObj = key_login_hms()
-    ueLogBackup = BASIC_DATA['cpe']['ueLogBackup']
     enbId, enbName = key_get_enb_info(hmsObj)
     cpe = key_cpe_login()
     pdn = key_pdn_login()
@@ -707,9 +597,4 @@ def testPucchChannelFeedbackPerBandwith():
     finally:
         #cpe去接入小区
         key_cpe_detach(cpe)
-        logging.info(key_get_time()+': move the log file to backup folder')
-        fileName = ueLogFilePath.split('\\')[-1]
-        if os.path.exists(ueLogBackup+'\\'+fileName):
-            os.remove(ueLogFilePath)
-        else:
-            shutil.move(ueLogFilePath, ueLogBackup)     
+        key_qxdm_log_save(ueLogFilePath)

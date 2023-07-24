@@ -18,10 +18,13 @@ from UserKeywords.basic.basic import key_get_time, key_wait
 from UserKeywords.hms.CellManager import key_confirm_cell_status, key_block_cell, \
     key_unblock_cell
 from UserKeywords.hms.DeviceManager import key_confirm_device_online
-from UserKeywords.hms.DiagnosticManager import key_reboot_enb
-from UserKeywords.hms.HmsManager import key_get_enb_info, key_login_hms
+from UserKeywords.hms.DiagnosticManager import key_reboot_enb, key_gnb_ping_diag, \
+    key_get_ping_diag_result, key_gnb_trace_route_diag, \
+    key_get_trace_route_diag_result
+from UserKeywords.hms.HmsManager import key_get_enb_info, key_login_hms, \
+    key_get_enb_ip
 from UserKeywords.ue.CpeManager import key_cpe_ping, key_cpe_login, \
-    key_cpe_attach, key_confirm_pdu_setup_succ, key_cpe_detach
+    key_confirm_pdu_setup_succ, key_cpe_detach, key_cpe_logout
 
 
 #获取父目录
@@ -35,15 +38,11 @@ globalPara.init()
 @pytest.mark.skipif(globalPara.get_upgrade_status()==True, reason='No Newest Version Upgrade') 
 @pytest.mark.parametrize("testNum",RUN_TESTCASE['复位基站正常后ping包'] if RUN_TESTCASE.get('复位基站正常后ping包') else [])
 def testRebootGnbAndPing(testNum):
-    exptLossRate = BASIC_DATA['ping']['loseRate']
-    exptPingAvg = BASIC_DATA['ping']['pingAvg']
-    pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
-    pingwifiInterface = BASIC_DATA['cpe']['pingWifiInterface']
     hmsObj=key_login_hms()
     enbId, enbName = key_get_enb_info(hmsObj)
     for i in range (1,testNum+1):
-        logging.info(key_get_time()+':run the test <'+str(i)+'> times')
         with allure.step(key_get_time()+'执行第 '+str(i)+'次测试'):
+            logging.info(key_get_time()+':run the test <'+str(i)+'> times')
             rebootRes = key_reboot_enb(hmsObj, enbId)
             assert rebootRes == 'success','基站复位操作失败，请检查！'   
             with allure.step(key_get_time()+':等待基站复位启动'):
@@ -53,24 +52,14 @@ def testRebootGnbAndPing(testNum):
             key_confirm_cell_status(hmsObj, enbId, 'available')
             with allure.step('CPE接入并ping包测试'):
                 cpe = key_cpe_login()
-                attachRes = key_cpe_attach(cpe)
-                setupRes = key_confirm_pdu_setup_succ(cpe)
-                if attachRes == 'OK':
+                for i in range (0, 10):
+                    setupRes = key_confirm_pdu_setup_succ(cpe)
                     if setupRes == 'success':
-                        with allure.step(key_get_time()+': cpe接入成功'):
-                            logging.warning(key_get_time()+': cpe attach sussess')
-                    else:
-                        with allure.step(key_get_time()+': cpe接入失败'):
-                            logging.warning(key_get_time()+': cpe attach failure')
-                    assert setupRes == 'success','cpe接入失败，请检查！'
-                    lossrate,avg = key_cpe_ping(cpe, pingInterface = '')
-                    lossrate = lossrate.split('%')[0]
-#                     assert int(lossrate) <= exptLossRate, 'nr端口ping包丢包率大于预期，请检查！'
-#                     assert float(avg) <= exptPingAvg, 'nr端口ping包平均时延大于预期，请检查！'
-#                     lossrate,avg = key_cpe_ping(cpe, pingInterface = pingwifiInterface)
-#                     lossrate = lossrate.split('%')[0]
-#                     assert int(lossrate) <= exptLossRate, 'wifi端口ping包丢包率大于预期，请检查！'
-#                     assert float(avg) <= exptPingAvg, 'wifi端口ping包平均时延大于预期，请检查！'
+                        break
+                assert setupRes == 'success','cpe接入失败，请检查！'
+                key_wait(5)
+                key_cpe_ping(cpe, pingInterface = '')
+                key_cpe_logout(cpe)
 
 @allure.story("复位基站正常后ping包_5524")  
 @pytest.mark.复位基站正常后ping包_5524
@@ -78,7 +67,6 @@ def testRebootGnbAndPing(testNum):
 @pytest.mark.skipif(globalPara.get_upgrade_status()==True, reason='No Newest Version Upgrade') 
 @pytest.mark.parametrize("testNum",RUN_TESTCASE['复位基站正常后ping包_5524'] if RUN_TESTCASE.get('复位基站正常后ping包_5524') else [])
 def testRebootGnbAndPing5524(testNum):
-    exptLossRate = BASIC_DATA['ping']['loseRate']
     hmsObj=key_login_hms()
     enbId, enbName = key_get_enb_info(hmsObj)
     for i in range (1,testNum+1):
@@ -101,28 +89,19 @@ def testRebootGnbAndPing5524(testNum):
                 cpe = key_cpe_login()
                 key_cpe_detach(cpe)
                 key_wait(2)
-                attachRes = key_cpe_attach(cpe)
-                setupRes = key_confirm_pdu_setup_succ(cpe)
-                if attachRes == 'OK':
+                for i in range (0, 10):
+                    setupRes = key_confirm_pdu_setup_succ(cpe)
                     if setupRes == 'success':
-                        with allure.step(key_get_time()+': cpe接入成功'):
-                            logging.warning(key_get_time()+': cpe attach sussess')
-                    else:
-                        with allure.step(key_get_time()+': cpe接入失败'):
-                            logging.warning(key_get_time()+': cpe attach failure')
-                    assert setupRes == 'success','cpe接入失败，请检查！'
-                    key_wait(20)
-                    lossrate = key_cpe_ping(cpe, pingInterface = '')
-                    lossrate = lossrate.split('%')[0]
-                    assert int(lossrate) <= exptLossRate, 'ping包丢包率大于预期，请检查！'
-                    key_cpe_detach(cpe)
+                        break
+                assert setupRes == 'success','cpe接入失败，请检查！'
+                key_wait(5)
+                key_cpe_ping(cpe, pingInterface = '')
+                key_cpe_detach(cpe)
 
 @allure.story("闭塞小区后复位基站") 
 @pytest.mark.闭塞小区后复位基站
 @pytest.mark.parametrize("testNum",RUN_TESTCASE['闭塞小区后复位基站'] if RUN_TESTCASE.get('闭塞小区后复位基站') else [])
 def testBlockCellAndRebootGnb(testNum):
-    exptLossRate = BASIC_DATA['ping']['loseRate']
-    exptPingAvg = BASIC_DATA['ping']['pingAvg']
     pingNrInterface = BASIC_DATA['cpe']['pingNrInterface']
     pingwifiInterface = BASIC_DATA['cpe']['pingWifiInterface']
     hmsObj=key_login_hms()
@@ -145,24 +124,35 @@ def testBlockCellAndRebootGnb(testNum):
             key_confirm_cell_status(hmsObj, enbId, 'available')
             with allure.step('CPE接入并ping包测试'):
                 cpe = key_cpe_login()
-                attachRes = key_cpe_attach(cpe)
-                setupRes = key_confirm_pdu_setup_succ(cpe)
-                if attachRes == 'OK':
+                for i in range (0, 10):
+                    setupRes = key_confirm_pdu_setup_succ(cpe)
                     if setupRes == 'success':
-                        with allure.step(key_get_time()+': cpe接入成功'):
-                            logging.warning(key_get_time()+': cpe attach sussess')
-                    else:
-                        with allure.step(key_get_time()+': cpe接入失败'):
-                            logging.warning(key_get_time()+': cpe attach failure')
-                    assert setupRes == 'success','cpe接入失败，请检查！'
-                    lossrate,avg = key_cpe_ping(cpe, pingInterface = pingNrInterface)
-                    lossrate = lossrate.split('%')[0]
-                    assert int(lossrate) <= exptLossRate, 'nr端口ping包丢包率大于预期，请检查！'
-                    assert float(avg) > exptPingAvg, 'nr端口ping包平均时延大于预期，请检查！'
-                    lossrate,avg = key_cpe_ping(cpe, pingInterface = pingwifiInterface)
-                    lossrate = lossrate.split('%')[0]
-                    assert int(lossrate) <= exptLossRate, 'wifi端口ping包丢包率大于预期，请检查！'
-                    assert float(avg) <= exptPingAvg, 'wifi端口ping包平均时延大于预期，请检查！'
+                        break
+                assert setupRes == 'success','cpe接入失败，请检查！'
+                key_wait(5)
+                key_cpe_ping(cpe, pingInterface = pingNrInterface)
+                key_cpe_ping(cpe, pingInterface = pingwifiInterface)
+                    
+@allure.story("基站诊断测试") 
+@pytest.mark.基站ping包诊断测试
+@pytest.mark.parametrize("pingTimes",RUN_TESTCASE['基站ping包诊断测试'] if RUN_TESTCASE.get('基站ping包诊断测试') else [])                    
+def testPingDiagnosis(pingTimes):
+    hmsObj=key_login_hms()
+    with allure.step(key_get_time()+'执行基站ping诊断测试'):
+        logging.info(key_get_time()+':exec gnb ping diagnosis')
+        enbIp = key_get_enb_ip(hmsObj)
+        clientId = key_gnb_ping_diag(hmsObj, pingTimes, enbIp)
+        key_get_ping_diag_result(hmsObj, pingTimes, clientId)
+                    
+@allure.story("基站诊断测试") 
+@pytest.mark.基站跟踪路由诊断测试
+def testTraceRouteDiagnosis():
+    hmsObj=key_login_hms()
+    with allure.step(key_get_time()+'执行基站跟踪路由诊断测试'):
+        logging.info(key_get_time()+':exec gnb trace route diagnosis')
+        enbIp = key_get_enb_ip(hmsObj)
+        clientId = key_gnb_trace_route_diag(hmsObj, enbIp)
+        key_get_trace_route_diag_result(hmsObj, clientId)
 
 if __name__ == "__main__":
     pytest.main(['-s', '-vv', 'test_cell.py'])

@@ -41,18 +41,17 @@ def testUpdateOmcIpScence1(testNum):
             with allure.step(key_get_time()+':执行第 '+str(i)+'次测试'):
                 key_confirm_device_online(souHmsObj)
                 key_modify_omc_url(souHmsObj, souEnbId, newOmcIp)
-                with allure.step(key_get_time()+': omc ip修改生效，等待10s检查基站状态'):
+                with allure.step(key_get_time()+': omc ip修改生效，等待60s检查基站状态'):
                     key_wait(60)
-                key_confirm_device_status_same_as_expect(souHmsObj,'offline')
+                key_confirm_device_status_same_as_expect(souHmsObj, expectStatus='offline')
                 #登录另一个omc系统，确认基站在线
                 key_confirm_device_online(desHmsObj)
                 with allure.step(key_get_time()+': 恢复基站参数'):
                     key_modify_omc_url(desHmsObj, desEnbId, oldOmcIp)
                 with allure.step(key_get_time()+': omc ip修改生效，等待10s检查基站状态'):
                     key_wait(60)
-                key_confirm_device_status_same_as_expect(desHmsObj,'offline')
-
-
+                key_confirm_device_status_same_as_expect(desHmsObj, expectStatus='offline')
+        
 @allure.story("OMC IP地址修改")
 @pytest.mark.更新omcIp地址_地址正确但基站未注册
 @pytest.mark.parametrize("testNum",RUN_TESTCASE['更新omcIp地址_地址正确但基站未注册'] if RUN_TESTCASE.get('更新omcIp地址_地址正确但基站未注册') else [])
@@ -67,11 +66,9 @@ def testUpdateOmcIpScence2(testNum):
             with allure.step(key_get_time()+':执行第 '+str(i)+'次测试'):
                 key_confirm_device_online(souHmsObj)
                 key_modify_omc_url(souHmsObj, souEnbId, newOmcIp)
-                with allure.step(key_get_time()+': omc ip修改生效，等待10s检查基站状态'):
-                    key_wait(60)
-                key_confirm_device_status_same_as_expect(souHmsObj, 'offline')
-                with allure.step(key_get_time()+': 新网管上基站未注册，等待3分钟后omc ip地址回退'):
-                    key_wait(180)
+                with allure.step(key_get_time()+': 新网管上基站未注册，等待2分钟后omc ip地址回退'):
+                    key_wait(120)
+                key_confirm_device_status_same_as_expect(souHmsObj, expectStatus='online')
                 key_modify_omc_url(souHmsObj, souEnbId, oldOmcIp)
                 
 @allure.story("OMC IP地址修改")
@@ -90,7 +87,7 @@ def testUpdateOmcIpScence3(testNum):
                 key_modify_omc_url(souHmsObj, souEnbId, newOmcIp)
                 with allure.step(key_get_time()+': omc ip修改生效，等待10s检查基站状态'):
                     key_wait(60)
-                key_confirm_device_status_same_as_expect(souHmsObj, 'offline')
+                key_confirm_device_status_same_as_expect(souHmsObj, expectStatus='offline')
                 with allure.step(key_get_time()+': 目标omc ip地址错误，等待3分钟后omc ip地址回退'):
                     key_wait(180)
                 key_modify_omc_url(souHmsObj, souEnbId, oldOmcIp)

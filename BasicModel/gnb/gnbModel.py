@@ -7,13 +7,12 @@ Created on 2022年11月17日
 
 '''
 
+from datetime import datetime
 import logging
 import re
 from time import sleep
-from datetime import datetime
 
 import paramiko
-from pip._vendor.typing_extensions import Self
 
 
 class gnbModel(object):
@@ -59,7 +58,7 @@ class gnbModel(object):
     
     def rece_fun_command(self):
         try:
-            return self._channel.recv(65535).decode()
+            return self._channel.recv(65535).decode('utf-8')
         except:
             print('rece error!')
     
@@ -175,3 +174,58 @@ class gnbModel(object):
         execRes = self.exec_fun_command(cmdStr)
         return execRes
     
+    '''
+                查询核x cpu利用率
+    '''
+    def query_core_cpu_ratio(self, cmdStr, queryNum):
+        resS = self.exec_fun_command('nrapp.sh')
+        cpuRatioStr = ''
+        try:
+            for i in range(1, queryNum+1):
+                execRes = self.exec_fun_command(cmdStr)
+                cpuRatio = self.filter_cpu_ratio(execRes)
+                cpuRatioStr = cpuRatio + ','+cpuRatioStr
+                sleep(1)
+        except:
+            return cpuRatioStr
+        return cpuRatioStr
+    
+    '''
+                正则表达式过滤提取cpu利用率值
+    '''
+    def filter_cpu_ratio(self, resStr):
+        pattern = '.*nrtp_get_cpu_use return=([0-100])'
+        result = re.findall(pattern, resStr)
+        if result!=[]:
+            return result[-1]
+        else:
+            return '-'
+        
+    '''
+                登录wifi板执行桩函数
+    '''    
+    def login_wifi_exec_cmd(self, cmdStr):
+        self.exec_fun_command('ssh 10.254.254.254')
+        self.exec_fun_command('snc123...')
+        result = self.exec_fun_command(cmdStr)
+        return result
+        
+    '''
+                登录nrapp执行桩函数
+    '''
+    def login_nrapp_exec_cmd(self, cmdStr):
+        self.exec_fun_command('nrapp.sh')
+        result = self.exec_fun_command(cmdStr)
+        return result
+    
+        
+if __name__ == '__main__':
+    str = '''
+nrtp_get_cpu_use return=0[K
+
+nrtp> nrtp_get_cpu_use 14[K
+
+nrtp_get_cpu_use return=0[K
+
+        '''
+    gnbModel().filter_cpu_ratio(str)

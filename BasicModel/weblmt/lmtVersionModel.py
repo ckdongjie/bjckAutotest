@@ -77,7 +77,7 @@ class LmtVersionModel(WebLmt):
         
     
     '''
-                版本包激活
+                查询版本明细
                 参数：
         version:版本号
     '''
@@ -85,6 +85,20 @@ class LmtVersionModel(WebLmt):
         header = LMT_VER_URL_DICT['queryVersionInfo']['header']
         url = self.baseUrl+LMT_VER_URL_DICT['queryVersionInfo']['action']
         body = LMT_VER_URL_DICT['queryVersionInfo']['body']
+        response = self.post_request(url, json=body, headers = header)
+        resCode = response.status_code 
+        resInfo = response.json()
+        return  resCode, resInfo
+    
+    '''
+                查询版本包信息
+                参数：
+        version:版本号
+    '''
+    def weblmt_query_version_package_info(self):
+        header = LMT_VER_URL_DICT['queryVersionPackageInfo']['header']
+        url = self.baseUrl+LMT_VER_URL_DICT['queryVersionPackageInfo']['action']
+        body = LMT_VER_URL_DICT['queryVersionPackageInfo']['body']
         response = self.post_request(url, json=body, headers = header)
         resCode = response.status_code 
         resInfo = response.json()

@@ -82,8 +82,7 @@ class APS7100Service():
                 启动程控电源开关
     '''    
     def power_on(self, serial):
-#         cmdStr = 'PON'
-        cmdStr = bytes.fromhex('A0 01 01 A2')
+        cmdStr = 'PON'
         serial.exec_at_command(cmdStr)
         ponRes = serial.read_result_of_serial()
         return ponRes
@@ -92,8 +91,7 @@ class APS7100Service():
                 关闭程控电源开关
     '''    
     def power_off(self, serial):
-#         cmdStr = 'POFF'
-        cmdStr = bytes.fromhex('A0 01 00 A1')
+        cmdStr = 'POFF'
         serial.exec_at_command(cmdStr)
         poffRes = serial.read_result_of_serial()
         return poffRes

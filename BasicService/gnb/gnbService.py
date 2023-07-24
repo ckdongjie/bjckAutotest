@@ -7,7 +7,9 @@ Created on 2022年11月17日
 
 import logging
 from time import sleep
+
 from BasicModel.gnb.gnbModel import gnbModel
+from BasicModel.serial.serialModel import SerialModel
 
 
 class gnbService():
@@ -103,4 +105,36 @@ class gnbService():
         cpldRes = gnb.query_cpld_version_info()
         return cpldRes
     
+    '''
+                    查询核x Cpu利用率
+    '''
+    def query_cpu_ratio(self, gnb, coreNum, queryNum):
+        cmdStr = 'nrtp_get_cpu_use '+str(coreNum)
+        cpuRatio = gnb.query_core_cpu_ratio(cmdStr, queryNum)
+        return cpuRatio
     
+    '''
+                登录wifi执行桩函数
+    '''
+    def login_wifi_exec_command(self, gnb, cmdStr):
+        result = gnb.login_wifi_exec_cmd(cmdStr) 
+        logging.info(cmdStr+' exec result: '+result)
+        return result
+    
+    '''
+                登录nrapp执行桩函数
+    '''
+    def login_nrapp_exec_command(self, gnb, cmdStr):
+        result = gnb.login_nrapp_exec_cmd(cmdStr) 
+        logging.info(cmdStr+' exec result: '+result)
+        return result
+    
+    def serial_login_2160(self, serialPort='COM7', serialRate=115200):
+        serial = SerialModel().login_serial(serialPort, serialRate)
+        serial.exec_at_command('root')
+        serial.exec_at_command('Web2022@Nr5gTech')
+        return serial
+    
+    def serial_logout_2160(self, serial):
+        serial.exec_at_command('exit')
+        serial.logout_serial()

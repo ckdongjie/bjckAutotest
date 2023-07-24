@@ -37,7 +37,7 @@ class LmtGnbService():
     def lmtRebootGnb(self, lmtObj):
         resCode, resInfo = LmtGnbModel(lmtObj).lmtRebootGnb()
         if resCode == 200 and resInfo['result']== 'success':
-            logging.warning(key_get_time()+': weblmt reboot gnb success')
+            logging.info(key_get_time()+': weblmt reboot gnb success')
             return True
         else:
             logging.warning(key_get_time()+': weblmt reboot gnb fail')
@@ -50,7 +50,7 @@ class LmtGnbService():
     def lmtLogOut(self, lmtObj):
         resCode = LmtGnbModel(lmtObj).lmtLogOut()
         if resCode == 200:
-            logging.warning(key_get_time() + ': weblmt logout success')
+            logging.info(key_get_time() + ': weblmt logout success')
             return True
         else:
             logging.warning(key_get_time() + ': weblmt logout fail')
@@ -63,7 +63,7 @@ class LmtGnbService():
     def lmtGetGnbInfo(self, lmtObj):
         resCode, resInfo = LmtGnbModel(lmtObj).lmtGetGnbInfo()
         if resCode == 200:
-            logging.warning(key_get_time() + ': weblmt get gnb information success')
+            logging.info(key_get_time() + ': weblmt get gnb information success')
             return resInfo
         else:
             logging.warning(key_get_time() + ': weblmt get gnb information fail')
@@ -75,7 +75,7 @@ class LmtGnbService():
     def lmtClockSrcCfg(self, lmtObj, clockMode):
         resCode, resInfo = LmtGnbModel(lmtObj).lmtClockSrcCfg(clockMode)
         if resCode == 200:
-            logging.warning(key_get_time() + ': weblmt clock source config success')
+            logging.info(key_get_time() + ': weblmt clock source config success')
             return resInfo
         else:
             logging.warning(key_get_time() + ': weblmt clock source config fail')
@@ -88,7 +88,7 @@ class LmtGnbService():
     def lmtGetOperatorInfo(self, lmtObj):
         resCode, resInfo = LmtGnbModel(lmtObj).lmtGetOperatorInfo()
         if resCode == 200:
-            logging.warning(key_get_time() + ': weblmt get operator information success')
+            logging.info(key_get_time() + ': weblmt get operator information success')
             return resInfo
         else:
             logging.warning(key_get_time() + ': weblmt get operator information fail')
@@ -101,7 +101,7 @@ class LmtGnbService():
     def lmtOperatorCfg(self, lmtObj, mcc, mnc):
         resCode, resInfo = LmtGnbModel(lmtObj).lmtOperatorCfg(mcc, mnc)
         if resCode == 200:
-            logging.warning(key_get_time() + ': weblmt operator config success')
+            logging.info(key_get_time() + ': weblmt operator config success')
             return resInfo
         else:
             logging.warning(key_get_time() + ': weblmt operator config fail')

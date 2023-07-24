@@ -28,9 +28,9 @@ class LmtXmlService():
     def export_xml_file_to_local(self, lmt, savePath, xmlFilename='BntCfgFile'):
         fileSize = LmtXmlModel(lmt).export_xml_file_to_local(savePath, xmlFilename)
         if fileSize != 0:
-            return 'success'
+            return fileSize
         else:
-            return 'fail'
+            return 0
     
     '''
                 下载xml文件到本地目录

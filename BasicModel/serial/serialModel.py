@@ -21,7 +21,7 @@ class SerialModel():
         '''
         self.serial = None
     
-    def login_serial(self, serialPort='COM7', serialRate=9600, timeout = 30):
+    def login_serial(self, serialPort='COM7', serialRate=9600, timeout=30):
         self.serial = serial.Serial(serialPort, serialRate, timeout=timeout)
         if self.serial.isOpen() == False:
             self.serial.open()
@@ -57,8 +57,13 @@ class SerialModel():
         return data
     
 if __name__ == '__main__':
-    serial = SerialModel().login_serial('COM16',9600)
-#     serial.login_serial()
-    serial.exec_at_command(bytes.fromhex('A0 01 00 A1'))
+    serial = SerialModel().login_serial('COM14',115200)
+    serial.exec_at_command('root')
+    serial.exec_at_command('Web2022@Nr5gTech')
+    serial.exec_at_command('pwd')
+    result = serial.read_result_of_serial()
+    print(result)
+#     serial.exec_at_command('ls')
 #     result = serial.read_result_of_serial()
 #     print(result)
+    serial.logout_serial()

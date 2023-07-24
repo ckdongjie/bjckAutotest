@@ -57,7 +57,7 @@ class LmtXmlModel(WebLmt):
         resCode = response.status_code
         resInfo = response.json()
         if resCode == 200:
-            return  resInfo['result']  # {"result": "yes", "filename": "BntCfgFile"}
+            return  resInfo  # {"result": "yes", "filename": "BntCfgFile"}
     
     '''
                 同步xml文件到基站
@@ -75,7 +75,7 @@ class LmtXmlModel(WebLmt):
         resCode = response.status_code
         resInfo = response.json()  #{"staType": "BS5514", "script": "yes", "result": "success", "checkFlag": 0, "fileName": "/tmp/BntCfgFile"}
         if resCode == 200:
-            return resInfo['result']
+            return resInfo
     
     
 if __name__ == '__main__':
